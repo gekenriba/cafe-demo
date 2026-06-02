@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Tawang Cafe Order</title>
 
   <style>
@@ -125,6 +126,20 @@
       font-size: 16px;
     }
 
+    .payment-option {
+      display: block;
+      text-decoration: none;
+      margin-top: 10px;
+    }
+
+    .payment-box {
+      background: #fff7e8;
+      border: 1px solid #e0c99f;
+      margin-top: 25px;
+      padding: 20px;
+      border-radius: 16px;
+    }
+
     .empty {
       text-align: center;
       padding: 30px;
@@ -141,6 +156,12 @@
     .admin-link a {
       color: #6b3f25;
       font-weight: bold;
+    }
+
+    .small-note {
+      font-size: 14px;
+      color: #777;
+      line-height: 1.5;
     }
   </style>
 </head>
@@ -168,8 +189,10 @@
     <input id="phone" placeholder="Phone number" />
     <input id="tableNumber" placeholder="Table number / Pickup note" />
 
-    <button class="pay-btn" onclick="placeOrder()">Place Order & Pay by UPI</button>
+    <button class="pay-btn" onclick="placeOrder()">Place Order</button>
   </div>
+
+  <div id="paymentArea"></div>
 
   <div class="admin-link">
     <a href="admin.html">Owner Admin Page</a>
@@ -203,7 +226,7 @@
 
   /*
     IMPORTANT:
-    Replace this with the cafe owner's real UPI ID.
+    Put the cafe owner's real UPI ID here.
     Example:
     const CAFE_UPI_ID = "tawangcafe@oksbi";
   */
@@ -280,6 +303,8 @@
     }
 
     renderCart();
+
+    document.getElementById("paymentArea").innerHTML = "";
   };
 
   function renderCart() {
@@ -319,6 +344,7 @@
   window.removeItem = function(index) {
     cart.splice(index, 1);
     renderCart();
+    document.getElementById("paymentArea").innerHTML = "";
   };
 
   window.placeOrder = async function() {
@@ -368,19 +394,57 @@
     try {
       await addDoc(collection(db, "orders"), orderData);
 
-      const transactionNote = `Cafe order from ${name}`;
+      const upiParams = new URLSearchParams({
+        pa: CAFE_UPI_ID,
+        pn: CAFE_NAME,
+        am: finalAmount,
+        cu: "INR"
+      });
 
-      const upiLink =
-        "upi://pay" +
-        "?pa=" + encodeURIComponent(CAFE_UPI_ID) +
-        "&pn=" + encodeURIComponent(CAFE_NAME) +
-        "&am=" + encodeURIComponent(finalAmount) +
-        "&cu=INR" +
-        "&tn=" + encodeURIComponent(transactionNote);
+      const genericUPI = "upi://pay?" + upiParams.toString();
+      const phonePeUPI = "phonepe://pay?" + upiParams.toString();
+      const googlePayUPI = "tez://upi/pay?" + upiParams.toString();
+      const paytmUPI = "paytmmp://pay?" + upiParams.toString();
 
-      alert("Order saved. Payment amount is ₹" + finalAmount + ". Opening UPI app now.");
+      const paymentArea = document.getElementById("paymentArea");
 
-      window.location.href = upiLink;
+      paymentArea.innerHTML = `
+        <div class="payment-box">
+          <h2>Complete Payment</h2>
+
+          <p><strong>Amount:</strong> ₹${finalAmount}</p>
+          <p><strong>UPI ID:</strong> ${CAFE_UPI_ID}</p>
+
+          <p class="small-note">
+            Your order has been saved. Tap one payment option below.
+            If one app does not complete payment, come back and try another option.
+          </p>
+
+          <a class="payment-option" href="${genericUPI}">
+            <button class="pay-btn">Pay with Any UPI App</button>
+          </a>
+
+          <a class="payment-option" href="${phonePeUPI}">
+            <button class="pay-btn">Pay with PhonePe</button>
+          </a>
+
+          <a class="payment-option" href="${googlePayUPI}">
+            <button class="pay-btn">Pay with Google Pay</button>
+          </a>
+
+          <a class="payment-option" href="${paytmUPI}">
+            <button class="pay-btn">Pay with Paytm</button>
+          </a>
+
+          <p class="small-note">
+            After payment, show the payment success screen to the cafe owner.
+          </p>
+        </div>
+      `;
+
+      alert("Order saved. Now tap a UPI payment button below.");
+
+      paymentArea.scrollIntoView({ behavior: "smooth" });
 
     } catch (error) {
       console.error(error);
