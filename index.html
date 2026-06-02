@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cafe Order Demo</title>
+  <title>Tawang Cafe Order</title>
+
   <style>
     body {
       margin: 0;
@@ -99,6 +100,13 @@
       border-bottom: 1px solid #eee;
       padding: 8px 0;
       gap: 10px;
+      align-items: center;
+    }
+
+    .remove-btn {
+      background: #b3261e;
+      padding: 6px 9px;
+      font-size: 12px;
     }
 
     input {
@@ -136,6 +144,7 @@
     }
   </style>
 </head>
+
 <body>
 
 <header>
@@ -144,13 +153,15 @@
 </header>
 
 <div class="container">
+
   <h2 class="section-title">Today’s Available Menu</h2>
   <div id="menu" class="menu-grid"></div>
 
   <div class="cart">
     <h2>Your Cart</h2>
     <div id="cartItems"></div>
-    <h3>Total: ₹<span id="total">0</span></h3>
+
+    <h3>Total: ₹<span id="total">0.00</span></h3>
 
     <h3>Customer Details</h3>
     <input id="customerName" placeholder="Your name" />
@@ -163,10 +174,12 @@
   <div class="admin-link">
     <a href="admin.html">Owner Admin Page</a>
   </div>
+
 </div>
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
   import {
     getFirestore,
     collection,
@@ -188,46 +201,65 @@
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  const CAFE_UPI_ID = "geliriba11@oksbi"; 
+  /*
+    IMPORTANT:
+    Replace this with the cafe owner's real UPI ID.
+    Example:
+    const CAFE_UPI_ID = "tawangcafe@oksbi";
+  */
+  const CAFE_UPI_ID = "geliriba11@oksbi";
   const CAFE_NAME = "Tawang Cafe";
 
   let menuItems = [];
   let cart = [];
 
+  function cleanPrice(value) {
+    const number = Number(String(value).replace(/[^0-9.]/g, ""));
+    return isNaN(number) ? 0 : number;
+  }
+
   async function loadMenu() {
     const menuDiv = document.getElementById("menu");
     menuDiv.innerHTML = "Loading menu...";
 
-    const querySnapshot = await getDocs(collection(db, "menu"));
-    menuItems = [];
+    try {
+      const querySnapshot = await getDocs(collection(db, "menu"));
+      menuItems = [];
 
-    querySnapshot.forEach((doc) => {
-      const item = { id: doc.id, ...doc.data() };
-      if (item.available === true) {
-        menuItems.push(item);
+      querySnapshot.forEach((docSnap) => {
+        const item = { id: docSnap.id, ...docSnap.data() };
+
+        if (item.available === true) {
+          item.price = cleanPrice(item.price);
+          menuItems.push(item);
+        }
+      });
+
+      if (menuItems.length === 0) {
+        menuDiv.innerHTML = '<div class="empty">No items available today.</div>';
+        return;
       }
-    });
 
-    if (menuItems.length === 0) {
-      menuDiv.innerHTML = '<div class="empty">No items available today.</div>';
-      return;
+      menuDiv.innerHTML = "";
+
+      menuItems.forEach((item) => {
+        const card = document.createElement("div");
+        card.className = "card";
+
+        card.innerHTML = `
+          <h3>${item.name}</h3>
+          <div class="category">${item.category || "Cafe Item"}</div>
+          <div class="price">₹${item.price.toFixed(2)}</div>
+          <button onclick="addToCart('${item.id}')">Add to Cart</button>
+        `;
+
+        menuDiv.appendChild(card);
+      });
+
+    } catch (error) {
+      console.error(error);
+      menuDiv.innerHTML = '<div class="empty">Error loading menu. Check Firebase rules.</div>';
     }
-
-    menuDiv.innerHTML = "";
-
-    menuItems.forEach((item) => {
-      const card = document.createElement("div");
-      card.className = "card";
-
-      card.innerHTML = `
-        <h3>${item.name}</h3>
-        <div class="category">${item.category || "Cafe Item"}</div>
-        <div class="price">₹${item.price}</div>
-        <button onclick="addToCart('${item.id}')">Add to Cart</button>
-      `;
-
-      menuDiv.appendChild(card);
-    });
   }
 
   window.addToCart = function(id) {
@@ -242,7 +274,7 @@
       cart.push({
         id: item.id,
         name: item.name,
-        price: item.price,
+        price: cleanPrice(item.price),
         quantity: 1
       });
     }
@@ -256,7 +288,7 @@
 
     if (cart.length === 0) {
       cartDiv.innerHTML = "<p>Your cart is empty.</p>";
-      totalSpan.textContent = "0";
+      totalSpan.textContent = "0.00";
       return;
     }
 
@@ -264,19 +296,24 @@
     let total = 0;
 
     cart.forEach((item, index) => {
-      const itemTotal = item.price * item.quantity;
+      const itemTotal = cleanPrice(item.price) * item.quantity;
       total += itemTotal;
 
       const row = document.createElement("div");
       row.className = "cart-item";
+
       row.innerHTML = `
         <span>${item.name} × ${item.quantity}</span>
-        <span>₹${itemTotal} <button onclick="removeItem(${index})">X</button></span>
+        <span>
+          ₹${itemTotal.toFixed(2)}
+          <button class="remove-btn" onclick="removeItem(${index})">X</button>
+        </span>
       `;
+
       cartDiv.appendChild(row);
     });
 
-    totalSpan.textContent = total;
+    totalSpan.textContent = total.toFixed(2);
   }
 
   window.removeItem = function(index) {
@@ -299,26 +336,56 @@
       return;
     }
 
-    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const total = cart.reduce((sum, item) => {
+      return sum + cleanPrice(item.price) * item.quantity;
+    }, 0);
+
+    if (!total || isNaN(total) || total <= 0) {
+      alert("Amount error. Please check item price in Firebase.");
+      return;
+    }
+
+    const finalAmount = total.toFixed(2);
+
+    const safeCart = cart.map(item => ({
+      id: item.id,
+      name: item.name,
+      price: cleanPrice(item.price),
+      quantity: item.quantity
+    }));
 
     const orderData = {
       customerName: name,
       phone: phone,
       tableNumber: table || "Not given",
-      items: cart,
-      total: total,
+      items: safeCart,
+      total: Number(finalAmount),
       status: "New",
       paymentStatus: "Pending",
       createdAt: serverTimestamp()
     };
 
-    await addDoc(collection(db, "orders"), orderData);
+    try {
+      await addDoc(collection(db, "orders"), orderData);
 
-    const orderNote = encodeURIComponent(`Order from ${name}, Phone ${phone}, Table ${table || "NA"}`);
-    const upiLink = `upi://pay?pa=${CAFE_UPI_ID}&pn=${encodeURIComponent(CAFE_NAME)}&am=${total}&cu=INR&tn=${orderNote}`;
+      const transactionNote = `Cafe order from ${name}`;
 
-    alert("Order saved. Now complete payment in your UPI app.");
-    window.location.href = upiLink;
+      const upiLink =
+        "upi://pay" +
+        "?pa=" + encodeURIComponent(CAFE_UPI_ID) +
+        "&pn=" + encodeURIComponent(CAFE_NAME) +
+        "&am=" + encodeURIComponent(finalAmount) +
+        "&cu=INR" +
+        "&tn=" + encodeURIComponent(transactionNote);
+
+      alert("Order saved. Payment amount is ₹" + finalAmount + ". Opening UPI app now.");
+
+      window.location.href = upiLink;
+
+    } catch (error) {
+      console.error(error);
+      alert("Order could not be saved. Please check Firebase rules.");
+    }
   };
 
   loadMenu();
