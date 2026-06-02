@@ -1,1 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cafe Admin</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f8f3ec;
+      color: #2b2118;
+    }
 
+    header {
+      background: linear-gradient(135deg, #4b2e1f, #8b5e34);
+      color: white;
+      padding: 28px 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .box {
+      background: white;
+      padding: 18px;
+      border-radius: 16px;
+      margin-bottom: 22px;
+      box-shadow: 0 5px 16px rgba(0,0,0,0.1);
+    }
+
+    input, select {
+      width: 100%;
+      padding: 11px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button {
+      border: none;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: #6b3f25;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 4px;
+    }
+
+    .on {
+      background: #0b8f4d;
+    }
+
+    .off {
+      background: #b3261e;
+    }
+
+    .menu-item, .order-item {
+      border-bottom: 1px solid #eee;
+      padding: 12px 0;
+    }
+
+    .menu-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .small {
+      color: #777;
+      font-size: 14px;
+    }
+
+    a {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Cafe Owner Admin</h1>
+  <p><a href="index.html">Open Customer Website</a></p>
+</header>
+
+<div class="container">
+
+  <div class="box">
+    <h2>Add New Menu Item</h2>
+    <input id="itemName" placeholder="Item name e.g. Cappuccino" />
+    <input id="itemPrice" type="number" placeholder="Price e.g. 120" />
+    <input id="itemCategory" placeholder="Category e.g. Coffee, Tea, Snacks" />
+    <button onclick="addMenuItem()">Add Item</button>
+  </div>
+
+  <div class="box">
+    <h2>Today’s Menu Control</h2>
+    <p class="small">Click ON/OFF to show or hide items from customer website.</p>
+    <div id="menuList">Loading menu...</div>
+  </div>
+
+  <div class="box">
+    <h2>Orders</h2>
+    <div id="ordersList">Loading orders...</div>
+  </div>
+
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import {
+    getFirestore,
+    collection,
+    getDocs,
+    addDoc,
+    updateDoc,
+    deleteDoc,
+    doc,
+    query,
+    orderBy,
+    serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAYonKe7d9rNp59LOkzEbBowQrcsFH32ts",
+    authDomain: "cafe-b80ce.firebaseapp.com",
+    projectId: "cafe-b80ce",
+    storageBucket: "cafe-b80ce.firebasestorage.app",
+    messagingSenderId: "110426428527",
+    appId: "1:110426428527:web:d91f0d414bd13a61ea699a",
+    measurementId: "G-0JVCTK651G"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  async function loadMenuAdmin() {
+    const menuList = document.getElementById("menuList");
+    menuList.innerHTML = "Loading...";
+
+    const querySnapshot = await getDocs(collection(db, "menu"));
+    menuList.innerHTML = "";
+
+    if (querySnapshot.empty) {
+      menuList.innerHTML = "<p>No menu items yet.</p>";
+      return;
+    }
+
+    querySnapshot.forEach((document) => {
+      const item = document.data();
+      const id = document.id;
+
+      const div = document.createElement("div");
+      div.className = "menu-item";
+
+      div.innerHTML = `
+        <div class="menu-top">
+          <div>
+            <strong>${item.name}</strong><br>
+            <span class="small">${item.category || "Cafe Item"} | ₹${item.price}</span>
+          </div>
+          <div>
+            <button class="${item.available ? "on" : "off"}" onclick="toggleAvailability('${id}', ${item.available === true})">
+              ${item.available ? "ON" : "OFF"}
+            </button>
+            <button onclick="deleteMenuItem('${id}')">Delete</button>
+          </div>
+        </div>
+      `;
+
+      menuList.appendChild(div);
+    });
+  }
+
+  window.addMenuItem = async function() {
+    const name = document.getElementById("itemName").value.trim();
+    const price = Number(document.getElementById("itemPrice").value);
+    const category = document.getElementById("itemCategory").value.trim();
+
+    if (!name || !price || !category) {
+      alert("Please fill item name, price and category.");
+      return;
+    }
+
+    await addDoc(collection(db, "menu"), {
+      name: name,
+      price: price,
+      category: category,
+      available: true,
+      createdAt: serverTimestamp()
+    });
+
+    document.getElementById("itemName").value = "";
+    document.getElementById("itemPrice").value = "";
+    document.getElementById("itemCategory").value = "";
+
+    loadMenuAdmin();
+  };
+
+  window.toggleAvailability = async function(id, currentStatus) {
+    await updateDoc(doc(db, "menu", id), {
+      available: !currentStatus
+    });
+
+    loadMenuAdmin();
+  };
+
+  window.deleteMenuItem = async function(id) {
+    const confirmDelete = confirm("Delete this menu item?");
+    if (!confirmDelete) return;
+
+    await deleteDoc(doc(db, "menu", id));
+    loadMenuAdmin();
+  };
+
+  async function loadOrders() {
+    const ordersList = document.getElementById("ordersList");
+    ordersList.innerHTML = "Loading orders...";
+
+    let querySnapshot;
+
+    try {
+      const q = query(collection(db, "orders"), orderBy("createdAt", "desc"));
+      querySnapshot = await getDocs(q);
+    } catch (error) {
+      querySnapshot = await getDocs(collection(db, "orders"));
+    }
+
+    ordersList.innerHTML = "";
+
+    if (querySnapshot.empty) {
+      ordersList.innerHTML = "<p>No orders yet.</p>";
+      return;
+    }
+
+    querySnapshot.forEach((document) => {
+      const order = document.data();
+      const id = document.id;
+
+      const itemsText = order.items
+        ? order.items.map(i => `${i.name} × ${i.quantity}`).join(", ")
+        : "No items";
+
+      const div = document.createElement("div");
+      div.className = "order-item";
+
+      div.innerHTML = `
+        <strong>${order.customerName || "Customer"}</strong><br>
+        <span class="small">Phone: ${order.phone || "NA"} | Table/Pickup: ${order.tableNumber || "NA"}</span><br>
+        <span>${itemsText}</span><br>
+        <strong>Total: ₹${order.total || 0}</strong><br>
+        <span class="small">Payment: ${order.paymentStatus || "Pending"} | Status: ${order.status || "New"}</span><br>
+        <button onclick="updateOrderStatus('${id}', 'Preparing')">Preparing</button>
+        <button onclick="updateOrderStatus('${id}', 'Ready')">Ready</button>
+        <button onclick="updateOrderStatus('${id}', 'Completed')">Completed</button>
+        <button onclick="markPaid('${id}')">Mark Paid</button>
+      `;
+
+      ordersList.appendChild(div);
+    });
+  }
+
+  window.updateOrderStatus = async function(id, status) {
+    await updateDoc(doc(db, "orders", id), {
+      status: status
+    });
+
+    loadOrders();
+  };
+
+  window.markPaid = async function(id) {
+    await updateDoc(doc(db, "orders", id), {
+      paymentStatus: "Paid"
+    });
+
+    loadOrders();
+  };
+
+  loadMenuAdmin();
+  loadOrders();
+</script>
+
+</body>
+</html>
