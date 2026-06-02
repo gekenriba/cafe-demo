@@ -394,17 +394,25 @@
     try {
       await addDoc(collection(db, "orders"), orderData);
 
-      const upiParams = new URLSearchParams({
-        pa: CAFE_UPI_ID,
-        pn: CAFE_NAME,
-        am: finalAmount,
-        cu: "INR"
-      });
+      const exactParams = new URLSearchParams({
+  pa: CAFE_UPI_ID,
+  pn: CAFE_NAME,
+  am: finalAmount,
+  cu: "INR"
+});
 
-      const genericUPI = "upi://pay?" + upiParams.toString();
-      const phonePeUPI = "phonepe://pay?" + upiParams.toString();
-      const googlePayUPI = "tez://upi/pay?" + upiParams.toString();
-      const paytmUPI = "paytmmp://pay?" + upiParams.toString();
+const noAmountParams = new URLSearchParams({
+  pa: CAFE_UPI_ID,
+  pn: CAFE_NAME,
+  cu: "INR"
+});
+
+const genericUPI = "upi://pay?" + exactParams.toString();
+const googlePayUPI = "tez://upi/pay?" + exactParams.toString();
+const paytmUPI = "paytmmp://pay?" + exactParams.toString();
+
+const fallbackUPI = "upi://pay?" + noAmountParams.toString();
+const fallbackGPay = "tez://upi/pay?" + noAmountParams.toString();
 
       const paymentArea = document.getElementById("paymentArea");
 
