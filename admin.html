@@ -1,119 +1,587 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cafe Admin</title>
+  <title>Tokyi Cafe - Owner Admin Console</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons for high fidelity visuals -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f8f3ec;
-      color: #2b2118;
+    :root {
+      --primary: #1b4332;       /* Deep Forest Green */
+      --primary-hover: #0f2a1d; /* Deepest Spruce Dark Green */
+      --secondary: #40916c;     /* Soft Leaf Sage Green */
+      --accent: #c29438;        /* Luxurious Gold/Caramel Accent */
+      --bg-cream: #faf9f5;      /* Warm Latte Cream Background */
+      --card-bg: #ffffff;
+      --text-dark: #1a2b22;     /* Charcoal Forest Green */
+      --text-light: #5c6b61;    /* Soft Muted Sage Gray */
+      --danger: #b3261e;
+      --success: #2d6a4f;
     }
 
-    header {
-      background: linear-gradient(135deg, #4b2e1f, #8b5e34);
-      color: white;
-      padding: 28px 20px;
-      text-align: center;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: auto;
-      padding: 20px;
-    }
-
-    .box {
-      background: white;
-      padding: 18px;
-      border-radius: 16px;
-      margin-bottom: 22px;
-      box-shadow: 0 5px 16px rgba(0,0,0,0.1);
-    }
-
-    input, select {
-      width: 100%;
-      padding: 11px;
-      margin: 8px 0;
-      border-radius: 8px;
-      border: 1px solid #ccc;
+    * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
     }
 
+    body {
+      background-color: var(--bg-cream);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    /* Custom Premium Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-cream);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #ccd5ae;
+      border-radius: 4px;
+    }
+
+    /* Header & Hero Section */
+    header {
+      background: linear-gradient(135deg, #0f2a1d, #1b4332);
+      color: white;
+      padding: 35px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 25px rgba(27, 67, 50, 0.2);
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at 50% 30%, rgba(194, 148, 56, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .header-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .header-logo i {
+      color: var(--accent);
+    }
+
+    header p {
+      font-size: 14px;
+      color: #d8f3dc;
+    }
+
+    header p a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 700;
+      border-bottom: 1px dashed var(--accent);
+      padding-bottom: 2px;
+      transition: all 0.2s ease;
+    }
+
+    header p a:hover {
+      color: white;
+      border-bottom-color: white;
+    }
+
+    /* Container layout */
+    .container {
+      max-width: 1050px;
+      margin: auto;
+      padding: 30px 16px;
+    }
+
+    /* Premium Cards / Boxes */
+    .box {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 24px rgba(27, 67, 50, 0.03);
+      border: 1px solid rgba(27, 67, 50, 0.08);
+    }
+
+    .box h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      color: var(--primary);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid rgba(27, 67, 50, 0.08);
+      padding-bottom: 12px;
+    }
+
+    /* Forms */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    @media(max-width: 600px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--text-light);
+      letter-spacing: 0.5px;
+    }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(27, 67, 50, 0.15);
+      background: white;
+      font-size: 14px;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(27, 67, 50, 0.15);
+    }
+
+    .form-textarea {
+      min-height: 70px;
+      resize: vertical;
+    }
+
+    /* Actions */
     button {
       border: none;
-      padding: 10px 14px;
-      border-radius: 10px;
-      background: #6b3f25;
-      color: white;
-      font-weight: bold;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 13px;
       cursor: pointer;
-      margin: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s ease;
     }
 
-    .on {
-      background: #0b8f4d;
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 4px 12px rgba(27, 67, 50, 0.15);
     }
 
-    .off {
-      background: #b3261e;
+    .btn-primary:hover {
+      background: var(--primary-hover);
     }
 
-    .menu-item, .order-item {
-      border-bottom: 1px solid #eee;
-      padding: 12px 0;
+    .btn-danger {
+      background: #fff1f0;
+      color: var(--danger);
+      border: 1px solid rgba(179, 38, 30, 0.15);
     }
 
-    .menu-top {
+    .btn-danger:hover {
+      background: var(--danger);
+      color: white;
+    }
+
+    /* Dynamic Menu Control Items */
+    .menu-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(27, 67, 50, 0.05);
+    }
+
+    .menu-item:last-child {
+      border-bottom: none;
+    }
+
+    .menu-info h4 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .menu-info p {
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    .menu-actions {
+      display: flex;
+      align-items: center;
       gap: 10px;
-      flex-wrap: wrap;
     }
 
-    .small {
-      color: #777;
-      font-size: 14px;
-    }
-
-    a {
+    .toggle-btn {
+      min-width: 80px;
       color: white;
     }
+
+    .toggle-btn.on {
+      background: var(--success);
+    }
+
+    .toggle-btn.off {
+      background: var(--danger);
+    }
+
+    /* Orders Layout Cards */
+    .order-card {
+      background: var(--bg-cream);
+      border: 1px solid rgba(27, 67, 50, 0.1);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      animation: slideUp 0.3s ease-out;
+    }
+
+    .order-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1px dashed rgba(27, 67, 50, 0.15);
+      padding-bottom: 12px;
+    }
+
+    .customer-meta h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: var(--primary);
+    }
+
+    .customer-meta p {
+      font-size: 13px;
+      color: var(--text-light);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .order-meta-badges {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+
+    .badge {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .badge.status-new { background: #e3f2fd; color: #1e88e5; }
+    .badge.status-preparing { background: #fff8e1; color: #f57f17; }
+    .badge.status-dispatched { background: #e8f5e9; color: #43a047; }
+    .badge.status-completed { background: rgba(27, 67, 50, 0.1); color: var(--primary); }
+
+    .badge.paid { background: #e8f5e9; color: #2e7d32; }
+    .badge.unpaid { background: #ffebee; color: #c62828; }
+
+    .order-address {
+      background: white;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(27, 67, 50, 0.05);
+      font-size: 13px;
+      color: var(--text-dark);
+      display: flex;
+      gap: 8px;
+    }
+
+    .order-address i {
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .order-items-list {
+      padding: 4px 0;
+    }
+
+    .order-item-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      padding: 4px 0;
+      color: var(--text-dark);
+    }
+
+    .order-total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px dashed rgba(27, 67, 50, 0.15);
+      padding-top: 12px;
+      font-weight: 700;
+    }
+
+    .order-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .order-controls button {
+      padding: 8px 14px;
+      font-size: 12px;
+    }
+
+    /* Modal Overlay replacing alerts */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 42, 29, 0.6);
+      backdrop-filter: blur(10px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      padding: 16px;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 28px;
+      max-width: 450px;
+      width: 100%;
+      padding: 28px;
+      box-shadow: 0 15px 45px rgba(15, 42, 29, 0.15);
+      transform: scale(0.9);
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      text-align: center;
+      border: 1px solid rgba(27, 67, 50, 0.1);
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: scale(1);
+    }
+
+    .modal-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .modal-icon.warning {
+      background: rgba(179, 38, 30, 0.12);
+      color: var(--danger);
+    }
+
+    .modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .modal-desc {
+      font-size: 14px;
+      color: var(--text-light);
+      margin-bottom: 24px;
+    }
+
+    .modal-actions-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    /* Toast Notification system */
+    .toast-container {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      z-index: 3000;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .toast-container {
+        left: 24px;
+        right: 24px;
+      }
+    }
+
+    .toast {
+      background: var(--primary);
+      color: white;
+      padding: 14px 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      animation: slideInRight 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.25);
+    }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>Cafe Owner Admin</h1>
-  <p><a href="index.html">Open Customer Website</a></p>
+  <div class="header-logo">
+    <i data-lucide="coffee"></i>
+    <span>Tokyi Cafe</span>
+  </div>
+  <p>Owner Control Suite &bull; <a href="index.html">Open Customer Website</a></p>
 </header>
 
 <div class="container">
 
+  <!-- New Menu Addition Block -->
   <div class="box">
-    <h2>Add New Menu Item</h2>
-    <input id="itemName" placeholder="Item name e.g. Cappuccino" />
-    <input id="itemPrice" type="number" placeholder="Price e.g. 120" />
-    <input id="itemCategory" placeholder="Category e.g. Coffee, Tea, Snacks" />
-    <button onclick="addMenuItem()">Add Item</button>
+    <h2>
+      <i data-lucide="plus-circle" style="color: var(--accent);"></i>
+      Add New Delight
+    </h2>
+    <div class="form-grid">
+      <div class="form-group">
+        <label class="form-label" for="itemName">Item Name</label>
+        <input id="itemName" class="form-input" placeholder="e.g. Vanilla Roast Latte" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="itemPrice">Price (INR)</label>
+        <input id="itemPrice" type="number" class="form-input" placeholder="e.g. 150" />
+      </div>
+    </div>
+    <div class="form-grid">
+      <div class="form-group">
+        <label class="form-label" for="itemCategory">Category Selection</label>
+        <select id="itemCategory" class="form-select">
+          <option value="Coffee">Coffee (Espresso Craft)</option>
+          <option value="Tea">Tea (Specialty Tea)</option>
+          <option value="Snacks">Snacks (Sweet Snacks)</option>
+          <option value="Desserts">Desserts (Artisan Desserts)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="itemDescription">Short Ingredient Description</label>
+        <textarea id="itemDescription" class="form-textarea" placeholder="e.g. Single origin roast, whipped cream, vanilla bean paste"></textarea>
+      </div>
+    </div>
+    <button class="btn-primary" onclick="addMenuItem()">
+      <i data-lucide="save"></i> Save to Database
+    </button>
   </div>
 
+  <!-- Dynamic Control Block -->
   <div class="box">
-    <h2>Today’s Menu Control</h2>
-    <p class="small">Click ON/OFF to show or hide items from customer website.</p>
-    <div id="menuList">Loading menu...</div>
+    <h2>
+      <i data-lucide="toggle-left" style="color: var(--accent);"></i>
+      Today's Menu Stock Control
+    </h2>
+    <div id="menuList" style="display: flex; flex-direction: column;">
+      <div style="text-align: center; padding: 20px; color: var(--text-light);">
+        <i data-lucide="loader" class="animate-spin" style="margin: auto;"></i>
+      </div>
+    </div>
   </div>
 
+  <!-- Active Deliveries Block -->
   <div class="box">
-    <h2>Orders</h2>
-    <div id="ordersList">Loading orders...</div>
+    <h2>
+      <i data-lucide="truck" style="color: var(--accent);"></i>
+      Active Delivery Orders
+    </h2>
+    <div id="ordersList">
+      <div style="text-align: center; padding: 20px; color: var(--text-light);">
+        <i data-lucide="loader" class="animate-spin" style="margin: auto;"></i>
+      </div>
+    </div>
   </div>
 
 </div>
 
+<!-- Custom Confirmation Dialog markup -->
+<div class="modal-overlay" id="confirmModal">
+  <div class="modal-content">
+    <div class="modal-icon warning">
+      <i data-lucide="alert-triangle" style="width: 32px; height: 32px;"></i>
+    </div>
+    <h3 class="modal-title">Delete Menu Item?</h3>
+    <p class="modal-desc" id="confirmModalDesc">Are you absolutely sure you want to remove this item permanently from Tokyi Cafe database?</p>
+    <div class="modal-actions-row">
+      <button class="btn-primary" style="background: var(--text-light);" onclick="closeConfirmModal(false)">Cancel</button>
+      <button class="btn-danger" id="confirmModalActionBtn">Delete</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- JavaScript Database Engine -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
   import {
@@ -142,91 +610,156 @@
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
+  let currentDeleteId = null;
+
+  // Modern Toast Utility
+  window.showToast = function(message, iconName = "check") {
+    const container = document.getElementById("toastContainer");
+    const toast = document.createElement("div");
+    toast.className = "toast";
+    toast.innerHTML = `<i data-lucide="${iconName}"></i> <span>${message}</span>`;
+    container.appendChild(toast);
+    lucide.createIcons();
+
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transition = 'opacity 0.5s ease-out';
+      setTimeout(() => toast.remove(), 500);
+    }, 3000);
+  }
+
+  // Confirmation Modal utilities replacing default alert
+  window.triggerConfirmModal = function(id, name) {
+    const modal = document.getElementById("confirmModal");
+    document.getElementById("confirmModalDesc").innerHTML = `Are you absolutely sure you want to remove <strong>"${name}"</strong> from Tokyi Cafe server stock database? This cannot be undone.`;
+    currentDeleteId = id;
+    
+    document.getElementById("confirmModalActionBtn").onclick = async function() {
+      await deleteMenuItem(currentDeleteId);
+      closeConfirmModal(true);
+    };
+
+    modal.classList.add("active");
+  }
+
+  window.closeConfirmModal = function(didAction) {
+    document.getElementById("confirmModal").classList.remove("active");
+    if(didAction) {
+      showToast("Menu Item Deleted", "trash-2");
+    }
+  }
+
+  // Load menu into Admin stock control panel
   async function loadMenuAdmin() {
     const menuList = document.getElementById("menuList");
-    menuList.innerHTML = "Loading...";
 
-    const querySnapshot = await getDocs(collection(db, "menu"));
-    menuList.innerHTML = "";
+    try {
+      const querySnapshot = await getDocs(collection(db, "menu"));
+      menuList.innerHTML = "";
 
-    if (querySnapshot.empty) {
-      menuList.innerHTML = "<p>No menu items yet.</p>";
-      return;
-    }
+      if (querySnapshot.empty) {
+        menuList.innerHTML = `
+          <div style="text-align: center; padding: 24px; color: var(--text-light);">
+            <i data-lucide="coffee" style="width: 48px; height: 48px; stroke-width: 1.5; margin: auto;"></i>
+            <p style="margin-top: 10px;">The database menu sheet is completely empty. Create your first delight above!</p>
+          </div>`;
+        lucide.createIcons();
+        return;
+      }
 
-    querySnapshot.forEach((document) => {
-      const item = document.data();
-      const id = document.id;
+      querySnapshot.forEach((documentSnap) => {
+        const item = documentSnap.data();
+        const id = documentSnap.id;
 
-      const div = document.createElement("div");
-      div.className = "menu-item";
+        const div = document.createElement("div");
+        div.className = "menu-item";
 
-      div.innerHTML = `
-        <div class="menu-top">
-          <div>
-            <strong>${item.name}</strong><br>
-            <span class="small">${item.category || "Cafe Item"} | ₹${item.price}</span>
+        div.innerHTML = `
+          <div class="menu-info">
+            <h4>${item.name}</h4>
+            <p>${item.category || "General Delight"} &bull; ₹${cleanPrice(item.price)}</p>
+            ${item.description ? `<p style="font-style: italic; color: var(--text-light); font-size:11px; margin-top:2px;">${item.description}</p>` : ''}
           </div>
-          <div>
-            <button class="${item.available ? "on" : "off"}" onclick="toggleAvailability('${id}', ${item.available === true})">
-              ${item.available ? "ON" : "OFF"}
+          <div class="menu-actions">
+            <button class="toggle-btn ${item.available ? "on" : "off"}" onclick="toggleAvailability('${id}', ${item.available === true})">
+              <i data-lucide="${item.available ? "check" : "x"}"></i>
+              ${item.available ? "STOCK ON" : "OUT"}
             </button>
-            <button onclick="deleteMenuItem('${id}')">Delete</button>
+            <button class="btn-danger" onclick="triggerConfirmModal('${id}', '${item.name}')">
+              <i data-lucide="trash-2" style="width: 14px;"></i>
+            </button>
           </div>
-        </div>
-      `;
+        `;
 
-      menuList.appendChild(div);
-    });
+        menuList.appendChild(div);
+      });
+      
+      lucide.createIcons();
+    } catch(err) {
+      console.error(err);
+      menuList.innerHTML = `<p style="color: var(--danger)">Failure to sync items with Firebase store database.</p>`;
+    }
   }
 
   window.addMenuItem = async function() {
     const name = document.getElementById("itemName").value.trim();
     const price = Number(document.getElementById("itemPrice").value);
-    const category = document.getElementById("itemCategory").value.trim();
+    const category = document.getElementById("itemCategory").value;
+    const description = document.getElementById("itemDescription").value.trim();
 
-    if (!name || !price || !category) {
-      alert("Please fill item name, price and category.");
+    if (!name || isNaN(price) || price <= 0) {
+      showToast("Fulfill Name and valid Price", "alert-circle");
       return;
     }
 
-    await addDoc(collection(db, "menu"), {
-      name: name,
-      price: price,
-      category: category,
-      available: true,
-      createdAt: serverTimestamp()
-    });
+    try {
+      await addDoc(collection(db, "menu"), {
+        name: name,
+        price: price,
+        category: category,
+        description: description,
+        available: true,
+        createdAt: serverTimestamp()
+      });
 
-    document.getElementById("itemName").value = "";
-    document.getElementById("itemPrice").value = "";
-    document.getElementById("itemCategory").value = "";
+      document.getElementById("itemName").value = "";
+      document.getElementById("itemPrice").value = "";
+      document.getElementById("itemDescription").value = "";
 
-    loadMenuAdmin();
+      showToast(`${name} registered in database!`, "check-circle-2");
+      loadMenuAdmin();
+    } catch (err) {
+      console.error(err);
+      showToast("Failed to save database item.", "alert-triangle");
+    }
   };
 
   window.toggleAvailability = async function(id, currentStatus) {
-    await updateDoc(doc(db, "menu", id), {
-      available: !currentStatus
-    });
-
-    loadMenuAdmin();
+    try {
+      await updateDoc(doc(db, "menu", id), {
+        available: !currentStatus
+      });
+      showToast("Stock configuration updated", "toggle-right");
+      loadMenuAdmin();
+    } catch(err) {
+      showToast("Database update lock failure.", "alert-circle");
+    }
   };
 
-  window.deleteMenuItem = async function(id) {
-    const confirmDelete = confirm("Delete this menu item?");
-    if (!confirmDelete) return;
+  async function deleteMenuItem(id) {
+    try {
+      await deleteDoc(doc(db, "menu", id));
+      loadMenuAdmin();
+    } catch(err) {
+      showToast("Failed to remove catalog item.", "alert-circle");
+    }
+  }
 
-    await deleteDoc(doc(db, "menu", id));
-    loadMenuAdmin();
-  };
-
+  // Load Active Deliveries
   async function loadOrders() {
     const ordersList = document.getElementById("ordersList");
-    ordersList.innerHTML = "Loading orders...";
 
     let querySnapshot;
-
     try {
       const q = query(collection(db, "orders"), orderBy("createdAt", "desc"));
       querySnapshot = await getDocs(q);
@@ -237,56 +770,123 @@
     ordersList.innerHTML = "";
 
     if (querySnapshot.empty) {
-      ordersList.innerHTML = "<p>No orders yet.</p>";
+      ordersList.innerHTML = `
+        <div style="text-align: center; padding: 24px; color: var(--text-light);">
+          <i data-lucide="package-open" style="width: 48px; height: 48px; stroke-width: 1.5; margin: auto;"></i>
+          <p style="margin-top: 10px;">Waiting for first delivery orders...</p>
+        </div>`;
+      lucide.createIcons();
       return;
     }
 
-    querySnapshot.forEach((document) => {
-      const order = document.data();
-      const id = document.id;
+    querySnapshot.forEach((documentSnap) => {
+      const order = documentSnap.data();
+      const id = documentSnap.id;
 
-      const itemsText = order.items
-        ? order.items.map(i => `${i.name} × ${i.quantity}`).join(", ")
-        : "No items";
+      // Extract delivery address layout comfortably
+      const deliveryLocation = order.deliveryAddress || "Takeaway / Self Pickup";
 
-      const div = document.createElement("div");
-      div.className = "order-item";
+      const badgeStatusClass = `status-${(order.status || "New").toLowerCase()}`;
+      const paymentBadgeClass = order.paymentStatus === "Paid" ? "paid" : "unpaid";
 
-      div.innerHTML = `
-        <strong>${order.customerName || "Customer"}</strong><br>
-        <span class="small">Phone: ${order.phone || "NA"} | Table/Pickup: ${order.tableNumber || "NA"}</span><br>
-        <span>${itemsText}</span><br>
-        <strong>Total: ₹${order.total || 0}</strong><br>
-        <span class="small">Payment: ${order.paymentStatus || "Pending"} | Status: ${order.status || "New"}</span><br>
-        <button onclick="updateOrderStatus('${id}', 'Preparing')">Preparing</button>
-        <button onclick="updateOrderStatus('${id}', 'Ready')">Ready</button>
-        <button onclick="updateOrderStatus('${id}', 'Completed')">Completed</button>
-        <button onclick="markPaid('${id}')">Mark Paid</button>
+      const card = document.createElement("div");
+      card.className = "order-card";
+
+      // Formulate items catalog string
+      let itemsListHtml = "";
+      if (order.items) {
+        order.items.forEach(item => {
+          itemsListHtml += `
+            <div class="order-item-row">
+              <span>${item.name} <strong style="color: var(--secondary)">× ${item.quantity}</strong></span>
+              <span>₹${(cleanPrice(item.price) * item.quantity).toFixed(0)}</span>
+            </div>`;
+        });
+      }
+
+      card.innerHTML = `
+        <div class="order-header">
+          <div class="customer-meta">
+            <h3>${order.customerName || "Patron Customer"}</h3>
+            <p><i data-lucide="phone" style="width: 13px;"></i> ${order.phone || "No contact info"}</p>
+          </div>
+          <div class="order-meta-badges">
+            <span class="badge ${badgeStatusClass}">${order.status || "New"}</span>
+            <span class="badge ${paymentBadgeClass}">${order.paymentStatus || "Unpaid"}</span>
+          </div>
+        </div>
+
+        <div class="order-address">
+          <i data-lucide="map-pin" style="width: 16px;"></i>
+          <span>${deliveryLocation}</span>
+        </div>
+
+        <div class="order-items-list">
+          ${itemsListHtml}
+        </div>
+
+        <div class="order-total-row">
+          <span>Order Value:</span>
+          <span style="font-size: 18px; color: var(--primary)">₹${cleanPrice(order.total).toFixed(0)}</span>
+        </div>
+
+        <div class="order-controls">
+          <button class="btn-primary" style="background: #3182ce" onclick="updateOrderStatus('${id}', 'Preparing')">
+            <i data-lucide="cog"></i> Prepare
+          </button>
+          <button class="btn-primary" style="background: var(--secondary)" onclick="updateOrderStatus('${id}', 'Dispatched')">
+            <i data-lucide="navigation"></i> Dispatch
+          </button>
+          <button class="btn-primary" style="background: #2b6cb0" onclick="updateOrderStatus('${id}', 'Completed')">
+            <i data-lucide="check-square"></i> Complete
+          </button>
+          <button class="btn-primary" style="background: #2f855a" onclick="markPaid('${id}')">
+            <i data-lucide="dollar-sign"></i> Mark Paid
+          </button>
+        </div>
       `;
 
-      ordersList.appendChild(div);
+      ordersList.appendChild(card);
     });
+    
+    lucide.createIcons();
   }
 
   window.updateOrderStatus = async function(id, status) {
-    await updateDoc(doc(db, "orders", id), {
-      status: status
-    });
-
-    loadOrders();
+    try {
+      await updateDoc(doc(db, "orders", id), {
+        status: status
+      });
+      showToast(`Order status updated to ${status.toUpperCase()}`, "check");
+      loadOrders();
+    } catch(err) {
+      showToast("Order transaction write locked.", "alert-triangle");
+    }
   };
 
   window.markPaid = async function(id) {
-    await updateDoc(doc(db, "orders", id), {
-      paymentStatus: "Paid"
-    });
-
-    loadOrders();
+    try {
+      await updateDoc(doc(db, "orders", id), {
+        paymentStatus: "Paid"
+      });
+      showToast("Order marked as PAID", "dollar-sign");
+      loadOrders();
+    } catch(err) {
+      showToast("Order transaction write locked.", "alert-triangle");
+    }
   };
 
+  function cleanPrice(value) {
+    const number = Number(String(value).replace(/[^0-9.]/g, ""));
+    return isNaN(number) ? 0 : number;
+  }
+
+  // Initial runs
   loadMenuAdmin();
   loadOrders();
 </script>
 
 </body>
 </html>
+
+```
