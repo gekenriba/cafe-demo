@@ -1,31 +1,30 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tokyi Cafe - Owner Admin Console</title>
-  
-  <!-- Fonts -->
+  <title>Tokyi Cafe - Owner Console</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Lucide Icons for high fidelity visuals -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
     :root {
-      --primary: #1b4332;       /* Deep Forest Green */
-      --primary-hover: #0f2a1d; /* Deepest Spruce Dark Green */
-      --secondary: #40916c;     /* Soft Leaf Sage Green */
-      --accent: #c29438;        /* Luxurious Gold/Caramel Accent */
-      --bg-cream: #faf9f5;      /* Warm Latte Cream Background */
+      --primary: #2d6a4f;
+      --primary-hover: #1b4332;
+      --secondary: #52b788;
+      --accent: #b89130;
+      --bg-cream: #faf9f5;
       --card-bg: #ffffff;
-      --text-dark: #1a2b22;     /* Charcoal Forest Green */
-      --text-light: #5c6b61;    /* Soft Muted Sage Gray */
-      --danger: #b3261e;
+      --text-dark: #1f2c24;
+      --text-light: #6b7c70;
+      --danger: #d90429;
       --success: #2d6a4f;
+      --warning: #b89130;
+      --border-soft: rgba(45, 106, 79, 0.08);
     }
 
     * {
@@ -39,160 +38,252 @@
     body {
       background-color: var(--bg-cream);
       color: var(--text-dark);
-      line-height: 1.6;
+      line-height: 1.5;
+      font-size: 14px;
+      overflow-x: hidden;
     }
 
-    /* Custom Premium Scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: var(--bg-cream);
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #ccd5ae;
-      border-radius: 4px;
-    }
-
-    /* Header & Hero Section */
     header {
-      background: linear-gradient(135deg, #0f2a1d, #1b4332);
-      color: white;
-      padding: 35px 24px;
+      background: white;
+      padding: 24px 16px;
       text-align: center;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 4px 25px rgba(27, 67, 50, 0.2);
-    }
-
-    header::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: radial-gradient(circle at 50% 30%, rgba(194, 148, 56, 0.15) 0%, transparent 70%);
-      pointer-events: none;
+      border-bottom: 1px solid var(--border-soft);
     }
 
     .header-logo {
       font-family: 'Playfair Display', serif;
-      font-size: 32px;
+      font-size: 28px;
       font-weight: 800;
-      letter-spacing: -0.5px;
-      margin-bottom: 6px;
+      color: var(--primary);
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
+      gap: 8px;
     }
 
     .header-logo i {
       color: var(--accent);
+      width: 24px;
+      height: 24px;
     }
 
     header p {
-      font-size: 14px;
-      color: #d8f3dc;
+      font-size: 12px;
+      color: var(--text-light);
+      margin-top: 2px;
     }
 
-    header p a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 700;
-      border-bottom: 1px dashed var(--accent);
-      padding-bottom: 2px;
-      transition: all 0.2s ease;
-    }
-
-    header p a:hover {
-      color: white;
-      border-bottom-color: white;
-    }
-
-    /* Container layout */
-    .container {
-      max-width: 1050px;
-      margin: auto;
-      padding: 30px 16px;
-    }
-
-    /* Premium Cards / Boxes */
-    .box {
-      background: var(--card-bg);
-      border-radius: 20px;
-      padding: 30px;
-      margin-bottom: 30px;
-      box-shadow: 0 8px 24px rgba(27, 67, 50, 0.03);
-      border: 1px solid rgba(27, 67, 50, 0.08);
-    }
-
-    .box h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 24px;
+    header a {
       color: var(--primary);
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border-bottom: 1px solid rgba(27, 67, 50, 0.08);
-      padding-bottom: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 1px solid var(--primary);
     }
 
-    /* Forms */
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
+    .container {
+      max-width: 760px;
+      margin: auto;
+      padding: 16px;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
       margin-bottom: 16px;
     }
 
-    @media(max-width: 600px) {
-      .form-grid {
-        grid-template-columns: 1fr;
+    .page-title h1 {
+      font-family: 'Playfair Display', serif;
+      color: var(--primary);
+      font-size: 24px;
+      line-height: 1.1;
+    }
+
+    .page-title p {
+      font-size: 12px;
+      color: var(--text-light);
+      margin-top: 4px;
+    }
+
+    .refresh-btn {
+      border: none;
+      background: white;
+      color: var(--primary);
+      border: 1px solid var(--border-soft);
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    .admin-tabs {
+      background: white;
+      border: 1px solid var(--border-soft);
+      border-radius: 18px;
+      padding: 6px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin-bottom: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 4px 16px rgba(45, 106, 79, 0.03);
+    }
+
+    .tab-btn {
+      border: none;
+      border-radius: 14px;
+      padding: 11px 12px;
+      background: transparent;
+      color: var(--text-light);
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: white;
+    }
+
+    .tab-panel {
+      display: none;
+      animation: slideIn 0.25s ease;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(8px);
+        opacity: 0;
       }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .stat-card {
+      background: white;
+      border: 1px solid var(--border-soft);
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .stat-card span {
+      font-size: 10px;
+      color: var(--text-light);
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .stat-card strong {
+      display: block;
+      font-size: 20px;
+      color: var(--primary);
+      margin-top: 3px;
+    }
+
+    .box {
+      background: white;
+      border-radius: 18px;
+      padding: 18px;
+      border: 1px solid var(--border-soft);
+      margin-bottom: 14px;
+      box-shadow: 0 4px 18px rgba(45, 106, 79, 0.02);
+    }
+
+    .box h2 {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
     }
 
     .form-group {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 5px;
     }
 
     .form-label {
-      font-size: 11px;
+      font-size: 10px;
       text-transform: uppercase;
       font-weight: 800;
       color: var(--text-light);
-      letter-spacing: 0.5px;
+      letter-spacing: 0.4px;
     }
 
-    .form-input, .form-select, .form-textarea {
+    .form-input,
+    .form-select,
+    .form-textarea {
       width: 100%;
-      padding: 12px 16px;
-      border-radius: 12px;
-      border: 1px solid rgba(27, 67, 50, 0.15);
-      background: white;
-      font-size: 14px;
+      padding: 11px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(45, 106, 79, 0.15);
+      background: var(--bg-cream);
+      font-size: 13px;
       outline: none;
       transition: all 0.2s;
     }
 
-    .form-input:focus, .form-select:focus, .form-textarea:focus {
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
       border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(27, 67, 50, 0.15);
+      background: white;
     }
 
     .form-textarea {
-      min-height: 70px;
+      min-height: 64px;
       resize: vertical;
     }
 
-    /* Actions */
     button {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .btn-primary,
+    .btn-danger,
+    .btn-soft,
+    .btn-small {
       border: none;
-      padding: 12px 18px;
-      border-radius: 12px;
-      font-weight: 700;
-      font-size: 13px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 12px;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
@@ -204,7 +295,6 @@
     .btn-primary {
       background: var(--primary);
       color: white;
-      box-shadow: 0 4px 12px rgba(27, 67, 50, 0.15);
     }
 
     .btn-primary:hover {
@@ -212,9 +302,8 @@
     }
 
     .btn-danger {
-      background: #fff1f0;
+      background: rgba(217, 4, 41, 0.08);
       color: var(--danger);
-      border: 1px solid rgba(179, 38, 30, 0.15);
     }
 
     .btn-danger:hover {
@@ -222,40 +311,67 @@
       color: white;
     }
 
-    /* Dynamic Menu Control Items */
+    .btn-soft {
+      background: rgba(45, 106, 79, 0.08);
+      color: var(--primary);
+    }
+
+    .btn-small {
+      padding: 7px 10px;
+      font-size: 11px;
+      border-radius: 8px;
+    }
+
     .menu-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 16px;
-      padding: 18px 0;
-      border-bottom: 1px solid rgba(27, 67, 50, 0.05);
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px dashed var(--border-soft);
     }
 
     .menu-item:last-child {
       border-bottom: none;
     }
 
+    .menu-info {
+      min-width: 0;
+    }
+
     .menu-info h4 {
-      font-size: 16px;
-      font-weight: 700;
+      font-size: 15px;
+      font-weight: 800;
       color: var(--text-dark);
+      word-break: break-word;
     }
 
     .menu-info p {
-      font-size: 12px;
+      font-size: 11px;
       color: var(--text-light);
+      margin-top: 2px;
     }
 
     .menu-actions {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
+      flex-shrink: 0;
     }
 
     .toggle-btn {
-      min-width: 80px;
+      border: none;
+      min-width: 78px;
+      padding: 8px 10px;
+      border-radius: 9px;
       color: white;
+      font-size: 10px;
+      font-weight: 900;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
     }
 
     .toggle-btn.on {
@@ -266,39 +382,68 @@
       background: var(--danger);
     }
 
-    /* Orders Layout Cards */
-    .order-card {
-      background: var(--bg-cream);
-      border: 1px solid rgba(27, 67, 50, 0.1);
-      border-radius: 18px;
-      padding: 24px;
-      margin-bottom: 20px;
+    .filters-row {
       display: flex;
-      flex-direction: column;
-      gap: 12px;
-      animation: slideUp 0.3s ease-out;
+      gap: 7px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      scrollbar-width: none;
+    }
+
+    .filters-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-chip {
+      border: 1px solid var(--border-soft);
+      background: white;
+      color: var(--text-light);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .filter-chip.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .order-card {
+      background: white;
+      border: 1px solid var(--border-soft);
+      border-radius: 18px;
+      padding: 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 18px rgba(45, 106, 79, 0.02);
     }
 
     .order-header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      border-bottom: 1px dashed rgba(27, 67, 50, 0.15);
+      gap: 10px;
+      border-bottom: 1px dashed var(--border-soft);
       padding-bottom: 12px;
+      margin-bottom: 12px;
     }
 
     .customer-meta h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 20px;
       color: var(--primary);
+      font-size: 19px;
+      line-height: 1.1;
     }
 
     .customer-meta p {
-      font-size: 13px;
+      font-size: 12px;
       color: var(--text-light);
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       margin-top: 4px;
     }
 
@@ -307,37 +452,61 @@
       flex-direction: column;
       align-items: flex-end;
       gap: 6px;
+      flex-shrink: 0;
     }
 
     .badge {
-      font-size: 11px;
-      font-weight: 800;
+      font-size: 10px;
+      font-weight: 900;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-      padding: 4px 10px;
-      border-radius: 20px;
+      padding: 4px 8px;
+      border-radius: 999px;
       display: inline-flex;
       align-items: center;
       gap: 4px;
+      white-space: nowrap;
     }
 
-    .badge.status-new { background: #e3f2fd; color: #1e88e5; }
-    .badge.status-preparing { background: #fff8e1; color: #f57f17; }
-    .badge.status-dispatched { background: #e8f5e9; color: #43a047; }
-    .badge.status-completed { background: rgba(27, 67, 50, 0.1); color: var(--primary); }
+    .badge.status-new {
+      background: rgba(49, 130, 206, 0.12);
+      color: #2b6cb0;
+    }
 
-    .badge.paid { background: #e8f5e9; color: #2e7d32; }
-    .badge.unpaid { background: #ffebee; color: #c62828; }
+    .badge.status-preparing {
+      background: rgba(184, 145, 48, 0.15);
+      color: #9a721d;
+    }
+
+    .badge.status-dispatched {
+      background: rgba(82, 183, 136, 0.16);
+      color: #2d6a4f;
+    }
+
+    .badge.status-completed {
+      background: rgba(45, 106, 79, 0.1);
+      color: var(--primary);
+    }
+
+    .badge.paid {
+      background: rgba(82, 183, 136, 0.16);
+      color: #2d6a4f;
+    }
+
+    .badge.unpaid {
+      background: rgba(217, 4, 41, 0.08);
+      color: var(--danger);
+    }
 
     .order-address {
-      background: white;
-      padding: 12px 16px;
+      background: var(--bg-cream);
+      border: 1px solid var(--border-soft);
       border-radius: 12px;
-      border: 1px solid rgba(27, 67, 50, 0.05);
-      font-size: 13px;
+      padding: 10px 12px;
+      font-size: 12px;
       color: var(--text-dark);
       display: flex;
-      gap: 8px;
+      gap: 7px;
+      margin-bottom: 10px;
     }
 
     .order-address i {
@@ -347,13 +516,14 @@
     }
 
     .order-items-list {
-      padding: 4px 0;
+      margin-bottom: 10px;
     }
 
     .order-item-row {
       display: flex;
       justify-content: space-between;
-      font-size: 14px;
+      gap: 8px;
+      font-size: 13px;
       padding: 4px 0;
       color: var(--text-dark);
     }
@@ -362,29 +532,52 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-top: 1px dashed rgba(27, 67, 50, 0.15);
-      padding-top: 12px;
-      font-weight: 700;
-    }
-
-    .order-controls {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+      border-top: 1px dashed var(--border-soft);
+      padding-top: 10px;
+      font-weight: 800;
       margin-top: 8px;
     }
 
-    .order-controls button {
-      padding: 8px 14px;
-      font-size: 12px;
+    .order-total-row span:last-child {
+      color: var(--primary);
+      font-size: 18px;
     }
 
-    /* Modal Overlay replacing alerts */
+    .order-controls {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .empty-view {
+      text-align: center;
+      background: white;
+      border: 1px solid var(--border-soft);
+      border-radius: 18px;
+      padding: 28px 16px;
+      color: var(--text-light);
+    }
+
+    .empty-view h3 {
+      font-size: 16px;
+      color: var(--primary);
+      margin-top: 8px;
+    }
+
+    .empty-view p {
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
     .modal-overlay {
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(15, 42, 29, 0.6);
-      backdrop-filter: blur(10px);
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 42, 29, 0.45);
+      backdrop-filter: blur(8px);
       z-index: 2000;
       display: flex;
       align-items: center;
@@ -402,15 +595,15 @@
 
     .modal-content {
       background: white;
-      border-radius: 28px;
-      max-width: 450px;
+      border-radius: 20px;
+      max-width: 390px;
       width: 100%;
-      padding: 28px;
-      box-shadow: 0 15px 45px rgba(15, 42, 29, 0.15);
+      padding: 24px;
+      box-shadow: 0 15px 45px rgba(15, 42, 29, 0.12);
       transform: scale(0.9);
-      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: transform 0.3s ease;
       text-align: center;
-      border: 1px solid rgba(27, 67, 50, 0.1);
+      border: 1px solid var(--border-soft);
     }
 
     .modal-overlay.active .modal-content {
@@ -418,76 +611,119 @@
     }
 
     .modal-icon {
-      width: 56px;
-      height: 56px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 16px;
-    }
-
-    .modal-icon.warning {
-      background: rgba(179, 38, 30, 0.12);
+      margin-bottom: 12px;
+      background: rgba(217, 4, 41, 0.08);
       color: var(--danger);
     }
 
     .modal-title {
       font-family: 'Playfair Display', serif;
-      font-size: 22px;
+      font-size: 20px;
       color: var(--primary);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .modal-desc {
-      font-size: 14px;
+      font-size: 13px;
       color: var(--text-light);
-      margin-bottom: 24px;
+      margin-bottom: 18px;
     }
 
     .modal-actions-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    /* Toast Notification system */
-    .toast-container {
-      position: fixed;
-      top: 24px;
-      right: 24px;
-      z-index: 3000;
-      display: flex;
-      flex-direction: column;
       gap: 10px;
     }
 
-    @media (max-width: 600px) {
-      .toast-container {
-        left: 24px;
-        right: 24px;
-      }
+    .toast-container {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 3000;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: none;
     }
 
     .toast {
       background: var(--primary);
       color: white;
-      padding: 14px 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      padding: 10px 16px;
+      border-radius: 10px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-size: 14px;
-      font-weight: 600;
-      animation: slideInRight 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.25);
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      animation: slideInRight 0.25s ease;
+      pointer-events: auto;
     }
 
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-    @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes slideInRight {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 14px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .top-bar {
+        align-items: flex-start;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+
+      .stat-card {
+        padding: 11px;
+      }
+
+      .stat-card strong {
+        font-size: 18px;
+      }
+
+      .menu-item {
+        align-items: flex-start;
+      }
+
+      .menu-actions {
+        flex-direction: column;
+      }
+
+      .order-controls {
+        grid-template-columns: 1fr;
+      }
+
+      .toast-container {
+        left: 16px;
+        right: 16px;
+      }
+    }
   </style>
 </head>
+
 <body>
 
 <header>
@@ -495,85 +731,151 @@
     <i data-lucide="coffee"></i>
     <span>Tokyi Cafe</span>
   </div>
-  <p>Owner Control Suite &bull; <a href="index.html">Open Customer Website</a></p>
+  <p>Owner Console &bull; <a href="index.html">Open Customer Website</a></p>
 </header>
 
 <div class="container">
 
-  <!-- New Menu Addition Block -->
-  <div class="box">
-    <h2>
-      <i data-lucide="plus-circle" style="color: var(--accent);"></i>
-      Add New Delight
-    </h2>
-    <div class="form-grid">
-      <div class="form-group">
-        <label class="form-label" for="itemName">Item Name</label>
-        <input id="itemName" class="form-input" placeholder="e.g. Vanilla Roast Latte" />
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="itemPrice">Price (INR)</label>
-        <input id="itemPrice" type="number" class="form-input" placeholder="e.g. 150" />
-      </div>
+  <div class="top-bar">
+    <div class="page-title">
+      <h1>Owner Dashboard</h1>
+      <p>Manage menu, stock, payments and delivery orders.</p>
     </div>
-    <div class="form-grid">
-      <div class="form-group">
-        <label class="form-label" for="itemCategory">Category Selection</label>
-        <select id="itemCategory" class="form-select">
-          <option value="Coffee">Coffee (Espresso Craft)</option>
-          <option value="Tea">Tea (Specialty Tea)</option>
-          <option value="Snacks">Snacks (Sweet Snacks)</option>
-          <option value="Desserts">Desserts (Artisan Desserts)</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="itemDescription">Short Ingredient Description</label>
-        <textarea id="itemDescription" class="form-textarea" placeholder="e.g. Single origin roast, whipped cream, vanilla bean paste"></textarea>
-      </div>
-    </div>
-    <button class="btn-primary" onclick="addMenuItem()">
-      <i data-lucide="save"></i> Save to Database
+
+    <button class="refresh-btn" onclick="refreshAll()">
+      <i data-lucide="refresh-cw" style="width: 14px;"></i>
+      Refresh
     </button>
   </div>
 
-  <!-- Dynamic Control Block -->
-  <div class="box">
-    <h2>
-      <i data-lucide="toggle-left" style="color: var(--accent);"></i>
-      Today's Menu Stock Control
-    </h2>
-    <div id="menuList" style="display: flex; flex-direction: column;">
-      <div style="text-align: center; padding: 20px; color: var(--text-light);">
-        <i data-lucide="loader" class="animate-spin" style="margin: auto;"></i>
-      </div>
+  <div class="admin-tabs">
+    <button class="tab-btn active" id="menuTabBtn" onclick="switchAdminTab('menu')">
+      <i data-lucide="utensils" style="width: 15px;"></i>
+      Menu
+    </button>
+
+    <button class="tab-btn" id="ordersTabBtn" onclick="switchAdminTab('orders')">
+      <i data-lucide="truck" style="width: 15px;"></i>
+      Orders
+    </button>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <span>Total Items</span>
+      <strong id="statItems">0</strong>
+    </div>
+
+    <div class="stat-card">
+      <span>Active Orders</span>
+      <strong id="statOrders">0</strong>
+    </div>
+
+    <div class="stat-card">
+      <span>Unpaid</span>
+      <strong id="statUnpaid">0</strong>
     </div>
   </div>
 
-  <!-- Active Deliveries Block -->
-  <div class="box">
-    <h2>
-      <i data-lucide="truck" style="color: var(--accent);"></i>
-      Active Delivery Orders
-    </h2>
-    <div id="ordersList">
-      <div style="text-align: center; padding: 20px; color: var(--text-light);">
-        <i data-lucide="loader" class="animate-spin" style="margin: auto;"></i>
+  <div class="tab-panel active" id="menuPanel">
+
+    <div class="box">
+      <h2>
+        <i data-lucide="plus-circle" style="width: 16px;"></i>
+        Add New Item
+      </h2>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label" for="itemName">Item Name</label>
+          <input id="itemName" class="form-input" placeholder="e.g. Black Coffee" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="itemPrice">Price INR</label>
+          <input id="itemPrice" type="number" class="form-input" placeholder="e.g. 50" />
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label" for="itemCategory">Category</label>
+          <select id="itemCategory" class="form-select">
+            <option value="Coffee">Coffee</option>
+            <option value="Tea">Tea</option>
+            <option value="Snacks">Snacks</option>
+            <option value="Desserts">Desserts</option>
+            <option value="Cake">Cake</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="itemDescription">Short Description</label>
+          <textarea id="itemDescription" class="form-textarea" placeholder="e.g. Freshly brewed and served hot"></textarea>
+        </div>
+      </div>
+
+      <button class="btn-primary" onclick="addMenuItem()">
+        <i data-lucide="save" style="width: 14px;"></i>
+        Save Item
+      </button>
+    </div>
+
+    <div class="box">
+      <h2>
+        <i data-lucide="toggle-left" style="width: 16px;"></i>
+        Today's Menu Stock
+      </h2>
+
+      <div id="menuList">
+        <div class="empty-view">
+          <i data-lucide="loader" style="width: 32px; height: 32px;"></i>
+          <h3>Loading Menu</h3>
+          <p>Please wait...</p>
+        </div>
       </div>
     </div>
+
+  </div>
+
+  <div class="tab-panel" id="ordersPanel">
+
+    <div class="filters-row">
+      <button class="filter-chip active" data-filter="Active" onclick="setOrderFilter('Active')">Active</button>
+      <button class="filter-chip" data-filter="New" onclick="setOrderFilter('New')">New</button>
+      <button class="filter-chip" data-filter="Preparing" onclick="setOrderFilter('Preparing')">Preparing</button>
+      <button class="filter-chip" data-filter="Dispatched" onclick="setOrderFilter('Dispatched')">Dispatched</button>
+      <button class="filter-chip" data-filter="Completed" onclick="setOrderFilter('Completed')">Completed</button>
+      <button class="filter-chip" data-filter="Unpaid" onclick="setOrderFilter('Unpaid')">Unpaid</button>
+      <button class="filter-chip" data-filter="Paid" onclick="setOrderFilter('Paid')">Paid</button>
+      <button class="filter-chip" data-filter="All" onclick="setOrderFilter('All')">All</button>
+    </div>
+
+    <div id="ordersList">
+      <div class="empty-view">
+        <i data-lucide="loader" style="width: 32px; height: 32px;"></i>
+        <h3>Loading Orders</h3>
+        <p>Please wait...</p>
+      </div>
+    </div>
+
   </div>
 
 </div>
 
-<!-- Custom Confirmation Dialog markup -->
 <div class="modal-overlay" id="confirmModal">
   <div class="modal-content">
-    <div class="modal-icon warning">
-      <i data-lucide="alert-triangle" style="width: 32px; height: 32px;"></i>
+    <div class="modal-icon">
+      <i data-lucide="alert-triangle" style="width: 26px; height: 26px;"></i>
     </div>
+
     <h3 class="modal-title">Delete Menu Item?</h3>
-    <p class="modal-desc" id="confirmModalDesc">Are you absolutely sure you want to remove this item permanently from Tokyi Cafe database?</p>
+    <p class="modal-desc" id="confirmModalDesc">
+      Are you sure you want to delete this item?
+    </p>
+
     <div class="modal-actions-row">
-      <button class="btn-primary" style="background: var(--text-light);" onclick="closeConfirmModal(false)">Cancel</button>
+      <button class="btn-soft" onclick="closeConfirmModal(false)">Cancel</button>
       <button class="btn-danger" id="confirmModalActionBtn">Delete</button>
     </div>
   </div>
@@ -581,7 +883,6 @@
 
 <div class="toast-container" id="toastContainer"></div>
 
-<!-- JavaScript Database Engine -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
   import {
@@ -610,95 +911,183 @@
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
+  let menuCache = [];
+  let ordersCache = [];
   let currentDeleteId = null;
+  let orderFilter = "Active";
 
-  // Modern Toast Utility
-  window.showToast = function(message, iconName = "check") {
-    const container = document.getElementById("toastContainer");
-    const toast = document.createElement("div");
-    toast.className = "toast";
-    toast.innerHTML = `<i data-lucide="${iconName}"></i> <span>${message}</span>`;
-    container.appendChild(toast);
-    lucide.createIcons();
-
-    setTimeout(() => {
-      toast.style.opacity = '0';
-      toast.style.transition = 'opacity 0.5s ease-out';
-      setTimeout(() => toast.remove(), 500);
-    }, 3000);
+  function cleanPrice(value) {
+    const number = Number(String(value).replace(/[^0-9.]/g, ""));
+    return isNaN(number) ? 0 : number;
   }
 
-  // Confirmation Modal utilities replacing default alert
-  window.triggerConfirmModal = function(id, name) {
-    const modal = document.getElementById("confirmModal");
-    document.getElementById("confirmModalDesc").innerHTML = `Are you absolutely sure you want to remove <strong>"${name}"</strong> from Tokyi Cafe server stock database? This cannot be undone.`;
-    currentDeleteId = id;
-    
-    document.getElementById("confirmModalActionBtn").onclick = async function() {
-      await deleteMenuItem(currentDeleteId);
-      closeConfirmModal(true);
-    };
-
-    modal.classList.add("active");
+  function escapeHTML(value) {
+    return String(value || "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
   }
 
-  window.closeConfirmModal = function(didAction) {
-    document.getElementById("confirmModal").classList.remove("active");
-    if(didAction) {
-      showToast("Menu Item Deleted", "trash-2");
+  function safeCreateIcons() {
+    try {
+      if (typeof lucide !== "undefined" && typeof lucide.createIcons === "function") {
+        lucide.createIcons();
+      }
+    } catch (e) {
+      console.warn("Lucide icons failed:", e);
     }
   }
 
-  // Load menu into Admin stock control panel
+  function formatDate(timestamp) {
+    try {
+      if (timestamp && typeof timestamp.toDate === "function") {
+        return timestamp.toDate().toLocaleString("en-IN", {
+          day: "2-digit",
+          month: "short",
+          hour: "2-digit",
+          minute: "2-digit"
+        });
+      }
+    } catch (e) {}
+
+    return "Just now";
+  }
+
+  window.showToast = function(message, iconName = "check") {
+    const container = document.getElementById("toastContainer");
+    const toast = document.createElement("div");
+
+    toast.className = "toast";
+    toast.innerHTML = `
+      <i data-lucide="${iconName}" style="width: 16px; height: 16px;"></i>
+      <span>${escapeHTML(message)}</span>
+    `;
+
+    container.appendChild(toast);
+    safeCreateIcons();
+
+    setTimeout(() => {
+      toast.style.opacity = "0";
+      toast.style.transition = "opacity 0.5s ease-out";
+      setTimeout(() => toast.remove(), 500);
+    }, 2400);
+  };
+
+  window.switchAdminTab = function(tabName) {
+    document.getElementById("menuTabBtn").classList.toggle("active", tabName === "menu");
+    document.getElementById("ordersTabBtn").classList.toggle("active", tabName === "orders");
+
+    document.getElementById("menuPanel").classList.toggle("active", tabName === "menu");
+    document.getElementById("ordersPanel").classList.toggle("active", tabName === "orders");
+
+    safeCreateIcons();
+  };
+
+  window.refreshAll = async function() {
+    await Promise.all([loadMenuAdmin(), loadOrders()]);
+    showToast("Dashboard refreshed", "refresh-cw");
+  };
+
+  function updateStats() {
+    const totalItems = menuCache.length;
+    const activeOrders = ordersCache.filter(order => String(order.status || "New").toLowerCase() !== "completed").length;
+    const unpaidOrders = ordersCache.filter(order => order.paymentStatus !== "Paid").length;
+
+    document.getElementById("statItems").textContent = totalItems;
+    document.getElementById("statOrders").textContent = activeOrders;
+    document.getElementById("statUnpaid").textContent = unpaidOrders;
+  }
+
   async function loadMenuAdmin() {
     const menuList = document.getElementById("menuList");
 
     try {
-      const querySnapshot = await getDocs(collection(db, "menu"));
-      menuList.innerHTML = "";
+      let querySnapshot;
 
-      if (querySnapshot.empty) {
-        menuList.innerHTML = `
-          <div style="text-align: center; padding: 24px; color: var(--text-light);">
-            <i data-lucide="coffee" style="width: 48px; height: 48px; stroke-width: 1.5; margin: auto;"></i>
-            <p style="margin-top: 10px;">The database menu sheet is completely empty. Create your first delight above!</p>
-          </div>`;
-        lucide.createIcons();
-        return;
+      try {
+        const q = query(collection(db, "menu"), orderBy("createdAt", "desc"));
+        querySnapshot = await getDocs(q);
+      } catch (e) {
+        querySnapshot = await getDocs(collection(db, "menu"));
       }
 
+      menuCache = [];
+
       querySnapshot.forEach((documentSnap) => {
-        const item = documentSnap.data();
-        const id = documentSnap.id;
-
-        const div = document.createElement("div");
-        div.className = "menu-item";
-
-        div.innerHTML = `
-          <div class="menu-info">
-            <h4>${item.name}</h4>
-            <p>${item.category || "General Delight"} &bull; ₹${cleanPrice(item.price)}</p>
-            ${item.description ? `<p style="font-style: italic; color: var(--text-light); font-size:11px; margin-top:2px;">${item.description}</p>` : ''}
-          </div>
-          <div class="menu-actions">
-            <button class="toggle-btn ${item.available ? "on" : "off"}" onclick="toggleAvailability('${id}', ${item.available === true})">
-              <i data-lucide="${item.available ? "check" : "x"}"></i>
-              ${item.available ? "STOCK ON" : "OUT"}
-            </button>
-            <button class="btn-danger" onclick="triggerConfirmModal('${id}', '${item.name}')">
-              <i data-lucide="trash-2" style="width: 14px;"></i>
-            </button>
-          </div>
-        `;
-
-        menuList.appendChild(div);
+        menuCache.push({
+          id: documentSnap.id,
+          ...documentSnap.data()
+        });
       });
-      
-      lucide.createIcons();
-    } catch(err) {
+
+      renderMenuAdmin();
+      updateStats();
+
+    } catch (err) {
       console.error(err);
-      menuList.innerHTML = `<p style="color: var(--danger)">Failure to sync items with Firebase store database.</p>`;
+
+      menuList.innerHTML = `
+        <div class="empty-view">
+          <i data-lucide="alert-triangle" style="width: 32px; height: 32px; color: var(--danger);"></i>
+          <h3>Menu Sync Failed</h3>
+          <p>Please check your Firebase rules.</p>
+        </div>
+      `;
+
+      safeCreateIcons();
     }
+  }
+
+  function renderMenuAdmin() {
+    const menuList = document.getElementById("menuList");
+    menuList.innerHTML = "";
+
+    if (menuCache.length === 0) {
+      menuList.innerHTML = `
+        <div class="empty-view">
+          <i data-lucide="coffee" style="width: 34px; height: 34px;"></i>
+          <h3>No Menu Items</h3>
+          <p>Add your first cafe item above.</p>
+        </div>
+      `;
+
+      safeCreateIcons();
+      return;
+    }
+
+    menuCache.forEach((item) => {
+      const div = document.createElement("div");
+      div.className = "menu-item";
+
+      div.innerHTML = `
+        <div class="menu-info">
+          <h4>${escapeHTML(item.name)}</h4>
+          <p>${escapeHTML(item.category || "General")} &bull; ₹${cleanPrice(item.price).toFixed(0)}</p>
+          ${
+            item.description
+              ? `<p>${escapeHTML(item.description)}</p>`
+              : `<p>No description added</p>`
+          }
+        </div>
+
+        <div class="menu-actions">
+          <button class="toggle-btn ${item.available ? "on" : "off"}" onclick="toggleAvailability('${item.id}', ${item.available === true})">
+            <i data-lucide="${item.available ? "check" : "x"}" style="width: 12px;"></i>
+            ${item.available ? "ON" : "OUT"}
+          </button>
+
+          <button class="btn-danger btn-small" onclick="triggerConfirmModal('${item.id}')">
+            <i data-lucide="trash-2" style="width: 13px;"></i>
+          </button>
+        </div>
+      `;
+
+      menuList.appendChild(div);
+    });
+
+    safeCreateIcons();
   }
 
   window.addMenuItem = async function() {
@@ -708,7 +1097,7 @@
     const description = document.getElementById("itemDescription").value.trim();
 
     if (!name || isNaN(price) || price <= 0) {
-      showToast("Fulfill Name and valid Price", "alert-circle");
+      showToast("Enter item name and valid price", "alert-circle");
       return;
     }
 
@@ -726,11 +1115,12 @@
       document.getElementById("itemPrice").value = "";
       document.getElementById("itemDescription").value = "";
 
-      showToast(`${name} registered in database!`, "check-circle-2");
-      loadMenuAdmin();
+      showToast(`${name} added to menu`, "check-circle");
+      await loadMenuAdmin();
+
     } catch (err) {
       console.error(err);
-      showToast("Failed to save database item.", "alert-triangle");
+      showToast("Failed to save item", "alert-triangle");
     }
   };
 
@@ -739,86 +1129,194 @@
       await updateDoc(doc(db, "menu", id), {
         available: !currentStatus
       });
-      showToast("Stock configuration updated", "toggle-right");
-      loadMenuAdmin();
-    } catch(err) {
-      showToast("Database update lock failure.", "alert-circle");
+
+      showToast("Stock updated", "toggle-right");
+      await loadMenuAdmin();
+
+    } catch (err) {
+      console.error(err);
+      showToast("Failed to update stock", "alert-circle");
+    }
+  };
+
+  window.triggerConfirmModal = function(id) {
+    const item = menuCache.find(menuItem => menuItem.id === id);
+    currentDeleteId = id;
+
+    document.getElementById("confirmModalDesc").innerHTML =
+      `Delete <strong>${escapeHTML(item?.name || "this item")}</strong> from the menu? This cannot be undone.`;
+
+    document.getElementById("confirmModalActionBtn").onclick = async function() {
+      await deleteMenuItem(currentDeleteId);
+      closeConfirmModal(true);
+    };
+
+    document.getElementById("confirmModal").classList.add("active");
+    safeCreateIcons();
+  };
+
+  window.closeConfirmModal = function(didAction) {
+    document.getElementById("confirmModal").classList.remove("active");
+
+    if (didAction) {
+      showToast("Menu item deleted", "trash-2");
     }
   };
 
   async function deleteMenuItem(id) {
     try {
       await deleteDoc(doc(db, "menu", id));
-      loadMenuAdmin();
-    } catch(err) {
-      showToast("Failed to remove catalog item.", "alert-circle");
+      await loadMenuAdmin();
+    } catch (err) {
+      console.error(err);
+      showToast("Failed to delete item", "alert-circle");
     }
   }
 
-  // Load Active Deliveries
   async function loadOrders() {
     const ordersList = document.getElementById("ordersList");
 
-    let querySnapshot;
     try {
-      const q = query(collection(db, "orders"), orderBy("createdAt", "desc"));
-      querySnapshot = await getDocs(q);
-    } catch (error) {
-      querySnapshot = await getDocs(collection(db, "orders"));
+      let querySnapshot;
+
+      try {
+        const q = query(collection(db, "orders"), orderBy("createdAt", "desc"));
+        querySnapshot = await getDocs(q);
+      } catch (e) {
+        querySnapshot = await getDocs(collection(db, "orders"));
+      }
+
+      ordersCache = [];
+
+      querySnapshot.forEach((documentSnap) => {
+        ordersCache.push({
+          id: documentSnap.id,
+          ...documentSnap.data()
+        });
+      });
+
+      renderOrders();
+      updateStats();
+
+    } catch (err) {
+      console.error(err);
+
+      ordersList.innerHTML = `
+        <div class="empty-view">
+          <i data-lucide="alert-triangle" style="width: 32px; height: 32px; color: var(--danger);"></i>
+          <h3>Order Sync Failed</h3>
+          <p>Please check your Firebase rules.</p>
+        </div>
+      `;
+
+      safeCreateIcons();
     }
+  }
+
+  window.setOrderFilter = function(filterName) {
+    orderFilter = filterName;
+
+    document.querySelectorAll(".filter-chip").forEach(chip => {
+      chip.classList.toggle("active", chip.dataset.filter === filterName);
+    });
+
+    renderOrders();
+  };
+
+  function getFilteredOrders() {
+    return ordersCache.filter(order => {
+      const status = String(order.status || "New");
+      const paymentStatus = String(order.paymentStatus || "Pending");
+
+      if (orderFilter === "All") return true;
+      if (orderFilter === "Active") return status.toLowerCase() !== "completed";
+      if (orderFilter === "Paid") return paymentStatus === "Paid";
+      if (orderFilter === "Unpaid") return paymentStatus !== "Paid";
+
+      return status.toLowerCase() === orderFilter.toLowerCase();
+    });
+  }
+
+  function renderOrders() {
+    const ordersList = document.getElementById("ordersList");
+    const filteredOrders = getFilteredOrders();
 
     ordersList.innerHTML = "";
 
-    if (querySnapshot.empty) {
+    if (filteredOrders.length === 0) {
       ordersList.innerHTML = `
-        <div style="text-align: center; padding: 24px; color: var(--text-light);">
-          <i data-lucide="package-open" style="width: 48px; height: 48px; stroke-width: 1.5; margin: auto;"></i>
-          <p style="margin-top: 10px;">Waiting for first delivery orders...</p>
-        </div>`;
-      lucide.createIcons();
+        <div class="empty-view">
+          <i data-lucide="package-open" style="width: 34px; height: 34px;"></i>
+          <h3>No ${escapeHTML(orderFilter)} Orders</h3>
+          <p>Orders will appear here after customers place them.</p>
+        </div>
+      `;
+
+      safeCreateIcons();
       return;
     }
 
-    querySnapshot.forEach((documentSnap) => {
-      const order = documentSnap.data();
-      const id = documentSnap.id;
-
-      // Extract delivery address layout comfortably
+    filteredOrders.forEach((order) => {
+      const id = order.id;
+      const status = order.status || "New";
+      const paymentStatus = order.paymentStatus || "Pending";
       const deliveryLocation = order.deliveryAddress || "Takeaway / Self Pickup";
 
-      const badgeStatusClass = `status-${(order.status || "New").toLowerCase()}`;
-      const paymentBadgeClass = order.paymentStatus === "Paid" ? "paid" : "unpaid";
+      const badgeStatusClass = `status-${String(status).toLowerCase()}`;
+      const paymentBadgeClass = paymentStatus === "Paid" ? "paid" : "unpaid";
+
+      let itemsListHtml = "";
+
+      if (Array.isArray(order.items) && order.items.length > 0) {
+        order.items.forEach(item => {
+          const itemName = escapeHTML(item.name || "Item");
+          const itemQty = Number(item.quantity || 1);
+          const itemPrice = cleanPrice(item.price) * itemQty;
+
+          itemsListHtml += `
+            <div class="order-item-row">
+              <span>${itemName} <strong style="color: var(--primary)">× ${itemQty}</strong></span>
+              <span>₹${itemPrice.toFixed(0)}</span>
+            </div>
+          `;
+        });
+      } else {
+        itemsListHtml = `
+          <div class="order-item-row">
+            <span>No items found</span>
+            <span>₹0</span>
+          </div>
+        `;
+      }
 
       const card = document.createElement("div");
       card.className = "order-card";
 
-      // Formulate items catalog string
-      let itemsListHtml = "";
-      if (order.items) {
-        order.items.forEach(item => {
-          itemsListHtml += `
-            <div class="order-item-row">
-              <span>${item.name} <strong style="color: var(--secondary)">× ${item.quantity}</strong></span>
-              <span>₹${(cleanPrice(item.price) * item.quantity).toFixed(0)}</span>
-            </div>`;
-        });
-      }
-
       card.innerHTML = `
         <div class="order-header">
           <div class="customer-meta">
-            <h3>${order.customerName || "Patron Customer"}</h3>
-            <p><i data-lucide="phone" style="width: 13px;"></i> ${order.phone || "No contact info"}</p>
+            <h3>${escapeHTML(order.customerName || "Customer")}</h3>
+            <p>
+              <i data-lucide="phone" style="width: 13px;"></i>
+              <a href="tel:${escapeHTML(order.phone || "")}" style="color: inherit; text-decoration: none;">
+                ${escapeHTML(order.phone || "No phone")}
+              </a>
+            </p>
+            <p>
+              <i data-lucide="clock" style="width: 13px;"></i>
+              ${escapeHTML(formatDate(order.createdAt))}
+            </p>
           </div>
+
           <div class="order-meta-badges">
-            <span class="badge ${badgeStatusClass}">${order.status || "New"}</span>
-            <span class="badge ${paymentBadgeClass}">${order.paymentStatus || "Unpaid"}</span>
+            <span class="badge ${badgeStatusClass}">${escapeHTML(status)}</span>
+            <span class="badge ${paymentBadgeClass}">${paymentStatus === "Paid" ? "Paid" : "Unpaid"}</span>
           </div>
         </div>
 
         <div class="order-address">
           <i data-lucide="map-pin" style="width: 16px;"></i>
-          <span>${deliveryLocation}</span>
+          <span>${escapeHTML(deliveryLocation)}</span>
         </div>
 
         <div class="order-items-list">
@@ -826,30 +1324,37 @@
         </div>
 
         <div class="order-total-row">
-          <span>Order Value:</span>
-          <span style="font-size: 18px; color: var(--primary)">₹${cleanPrice(order.total).toFixed(0)}</span>
+          <span>Order Value</span>
+          <span>₹${cleanPrice(order.total).toFixed(0)}</span>
         </div>
 
         <div class="order-controls">
-          <button class="btn-primary" style="background: #3182ce" onclick="updateOrderStatus('${id}', 'Preparing')">
-            <i data-lucide="cog"></i> Prepare
+          <button class="btn-primary" style="background:#2b6cb0;" onclick="updateOrderStatus('${id}', 'Preparing')">
+            <i data-lucide="cog" style="width: 13px;"></i>
+            Preparing
           </button>
-          <button class="btn-primary" style="background: var(--secondary)" onclick="updateOrderStatus('${id}', 'Dispatched')">
-            <i data-lucide="navigation"></i> Dispatch
+
+          <button class="btn-primary" style="background: var(--secondary);" onclick="updateOrderStatus('${id}', 'Dispatched')">
+            <i data-lucide="navigation" style="width: 13px;"></i>
+            Dispatch
           </button>
-          <button class="btn-primary" style="background: #2b6cb0" onclick="updateOrderStatus('${id}', 'Completed')">
-            <i data-lucide="check-square"></i> Complete
+
+          <button class="btn-primary" onclick="updateOrderStatus('${id}', 'Completed')">
+            <i data-lucide="check-square" style="width: 13px;"></i>
+            Complete
           </button>
-          <button class="btn-primary" style="background: #2f855a" onclick="markPaid('${id}')">
-            <i data-lucide="dollar-sign"></i> Mark Paid
+
+          <button class="btn-soft" onclick="markPaid('${id}')">
+            <i data-lucide="indian-rupee" style="width: 13px;"></i>
+            Mark Paid
           </button>
         </div>
       `;
 
       ordersList.appendChild(card);
     });
-    
-    lucide.createIcons();
+
+    safeCreateIcons();
   }
 
   window.updateOrderStatus = async function(id, status) {
@@ -857,10 +1362,13 @@
       await updateDoc(doc(db, "orders", id), {
         status: status
       });
-      showToast(`Order status updated to ${status.toUpperCase()}`, "check");
-      loadOrders();
-    } catch(err) {
-      showToast("Order transaction write locked.", "alert-triangle");
+
+      showToast(`Order moved to ${status}`, "check");
+      await loadOrders();
+
+    } catch (err) {
+      console.error(err);
+      showToast("Failed to update order", "alert-triangle");
     }
   };
 
@@ -869,24 +1377,24 @@
       await updateDoc(doc(db, "orders", id), {
         paymentStatus: "Paid"
       });
-      showToast("Order marked as PAID", "dollar-sign");
-      loadOrders();
-    } catch(err) {
-      showToast("Order transaction write locked.", "alert-triangle");
+
+      showToast("Order marked paid", "indian-rupee");
+      await loadOrders();
+
+    } catch (err) {
+      console.error(err);
+      showToast("Failed to mark paid", "alert-triangle");
     }
   };
 
-  function cleanPrice(value) {
-    const number = Number(String(value).replace(/[^0-9.]/g, ""));
-    return isNaN(number) ? 0 : number;
-  }
-
-  // Initial runs
   loadMenuAdmin();
   loadOrders();
+  safeCreateIcons();
+
+  setInterval(() => {
+    loadOrders();
+  }, 30000);
 </script>
 
 </body>
 </html>
-
-```
