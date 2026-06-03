@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tokyi Cafe - Fresh Delivery</title>
+  <title>Tawang Cafe - Fresh Delivery</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -748,17 +748,37 @@
     .qty-actions {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
+      background: rgba(45, 106, 79, 0.06);
+      padding: 4px 6px;
+      border-radius: 10px;
     }
 
     .qty-btn {
-      padding: 2px 7px;
-      border-radius: 5px;
-      background: rgba(45, 106, 79, 0.08);
-      color: var(--primary);
-      font-size: 12px;
+      width: 24px;
+      height: 24px;
+      border-radius: 7px;
+      background: var(--primary);
+      color: white;
+      font-size: 14px;
       border: none;
       cursor: pointer;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    .qty-btn:hover {
+      background: var(--primary-hover);
+    }
+
+    .qty-count {
+      min-width: 16px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--primary);
       font-weight: 800;
     }
 
@@ -775,6 +795,11 @@
       .cart-summary-bar {
         padding: 10px 12px;
       }
+
+      .qty-btn {
+        width: 22px;
+        height: 22px;
+      }
     }
   </style>
 </head>
@@ -789,9 +814,9 @@
   <header>
     <div class="header-logo">
       <i data-lucide="coffee"></i>
-      <span>Tokyi Cafe</span>
+      <span>Tawang Cafe</span>
     </div>
-    <p>Premium micro-lot coffee and delicious warm bakes delivered hot & crisp</p>
+    <p>Fresh coffee, tea, snacks and warm bakes delivered hot & crisp in Tawang</p>
   </header>
 
   <div class="container">
@@ -949,7 +974,7 @@
     const db = getFirestore(app);
 
     const CAFE_UPI_ID = "geliriba11@oksbi";
-    const CAFE_NAME = "Tokyi Cafe";
+    const CAFE_NAME = "Tawang Cafe";
 
     let menuItems = [];
     let cart = [];
@@ -1133,7 +1158,8 @@
       }
 
       filtered.forEach((item) => {
-        const quantityInCart = cart.find(cartItem => cartItem.id === item.id)?.quantity || 0;
+        const cartItem = cart.find(cartItem => cartItem.id === item.id);
+        const quantityInCart = cartItem ? cartItem.quantity : 0;
 
         const card = document.createElement("div");
         card.className = "card";
@@ -1141,7 +1167,7 @@
         card.innerHTML = `
           <div class="card-details">
             <div class="card-meta">
-              <span class="category-tag">${escapeHTML(item.category || "Tokyi Delight")}</span>
+              <span class="category-tag">${escapeHTML(item.category || "Tawang Delight")}</span>
             </div>
             <h3>${escapeHTML(item.name)}</h3>
             <p class="card-desc">${escapeHTML(item.description || "Prepped with fresh ingredients and craft brewed.")}</p>
@@ -1149,10 +1175,23 @@
 
           <div class="card-price-action">
             <span class="price-badge">₹${Number(item.price).toFixed(0)}</span>
-            <button class="btn-add" onclick="animateAddToCart('${item.id}', event)">
-              <i data-lucide="${quantityInCart > 0 ? "check" : "plus"}" style="width: 12px; height: 12px;"></i>
-              ${quantityInCart > 0 ? `Added ×${quantityInCart}` : "Add"}
-            </button>
+
+            ${
+              quantityInCart > 0
+                ? `
+                  <div class="qty-actions">
+                    <button class="qty-btn" onclick="changeMenuQty('${item.id}', -1)">-</button>
+                    <span class="qty-count">${quantityInCart}</span>
+                    <button class="qty-btn" onclick="changeMenuQty('${item.id}', 1)">+</button>
+                  </div>
+                `
+                : `
+                  <button class="btn-add" onclick="animateAddToCart('${item.id}', event)">
+                    <i data-lucide="plus" style="width: 12px; height: 12px;"></i>
+                    Add
+                  </button>
+                `
+            }
           </div>
         `;
 
@@ -1193,6 +1232,30 @@
       showToast(`${item.name} added to cart!`, "shopping-cart");
       updateCartState();
       renderMenu();
+    };
+
+    window.changeMenuQty = function(id, delta) {
+      const existing = cart.find(item => item.id === id);
+
+      if (!existing && delta > 0) {
+        addToCart(id);
+        return;
+      }
+
+      if (!existing) return;
+
+      existing.quantity += delta;
+
+      if (existing.quantity <= 0) {
+        cart = cart.filter(item => item.id !== id);
+      }
+
+      updateCartState();
+      renderMenu();
+
+      if (currentStep === 2) {
+        renderSummary();
+      }
     };
 
     function updateCartState() {
@@ -1399,7 +1462,7 @@
           pn: CAFE_NAME,
           am: finalAmount,
           cu: "INR",
-          tn: `Tokyi Cafe Order ${name}`
+          tn: `Tawang Cafe Order ${name}`
         });
 
         const upiLink = "upi://pay?" + upiParams.toString();
