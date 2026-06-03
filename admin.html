@@ -5,60 +5,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tawang Cafe - Owner Console</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
     :root {
       --primary: #2d6a4f;
-      --primary-hover: #1b4332;
+      --primary-dark: #1b4332;
       --secondary: #52b788;
       --accent: #b89130;
-      --bg-cream: #faf9f5;
-      --card-bg: #ffffff;
-      --text-dark: #1f2c24;
-      --text-light: #6b7c70;
+      --cream: #faf9f5;
+      --white: #ffffff;
+      --dark: #1f2c24;
+      --muted: #6b7c70;
       --danger: #d90429;
-      --success: #2d6a4f;
-      --warning: #b89130;
       --blue: #2b6cb0;
-      --border-soft: rgba(45, 106, 79, 0.08);
+      --soft-border: rgba(45, 106, 79, 0.1);
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: "Plus Jakarta Sans", sans-serif;
       -webkit-tap-highlight-color: transparent;
     }
 
     body {
-      background-color: var(--bg-cream);
-      color: var(--text-dark);
-      line-height: 1.5;
+      background: var(--cream);
+      color: var(--dark);
       font-size: 14px;
+      line-height: 1.5;
       overflow-x: hidden;
     }
 
     header {
-      background: white;
-      padding: 24px 16px;
+      background: var(--white);
+      padding: 22px 16px;
       text-align: center;
-      border-bottom: 1px solid var(--border-soft);
+      border-bottom: 1px solid var(--soft-border);
     }
 
     .header-logo {
-      font-family: 'Playfair Display', serif;
+      font-family: "Playfair Display", serif;
       font-size: 28px;
       font-weight: 800;
       color: var(--primary);
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       gap: 8px;
     }
 
@@ -69,174 +66,178 @@
     }
 
     header p {
+      margin-top: 3px;
+      color: var(--muted);
       font-size: 12px;
-      color: var(--text-light);
-      margin-top: 2px;
     }
 
     header a {
       color: var(--primary);
-      font-weight: 700;
+      font-weight: 800;
       text-decoration: none;
       border-bottom: 1px solid var(--primary);
     }
 
     .container {
       max-width: 760px;
-      margin: auto;
-      padding: 16px;
+      margin: 0 auto;
+      padding: 14px;
     }
 
     .top-bar {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
       gap: 12px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .page-title h1 {
-      font-family: 'Playfair Display', serif;
+      font-family: "Playfair Display", serif;
       color: var(--primary);
-      font-size: 24px;
+      font-size: 25px;
       line-height: 1.1;
     }
 
     .page-title p {
-      font-size: 12px;
-      color: var(--text-light);
       margin-top: 4px;
-    }
-
-    .refresh-btn {
-      background: white;
-      color: var(--primary);
-      border: 1px solid var(--border-soft);
-      padding: 10px 14px;
-      border-radius: 12px;
+      color: var(--muted);
       font-size: 12px;
-      font-weight: 800;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
-      white-space: nowrap;
     }
 
-    .admin-tabs {
-      background: white;
-      border: 1px solid var(--border-soft);
-      border-radius: 18px;
-      padding: 6px;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 6px;
-      margin-bottom: 16px;
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      box-shadow: 0 4px 16px rgba(45, 106, 79, 0.03);
-    }
-
-    .tab-btn {
+    .refresh-btn,
+    .btn-primary,
+    .btn-soft,
+    .btn-danger,
+    .btn-blue,
+    .btn-green,
+    .toggle-btn,
+    .tab-btn,
+    .filter-chip {
       border: none;
-      border-radius: 14px;
-      padding: 11px 10px;
-      background: transparent;
-      color: var(--text-light);
-      font-size: 12px;
-      font-weight: 800;
       cursor: pointer;
+      font-weight: 800;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 6px;
-      transition: all 0.2s ease;
+    }
+
+    .refresh-btn {
+      background: var(--white);
+      color: var(--primary);
+      border: 1px solid var(--soft-border);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .admin-tabs {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      background: var(--white);
+      border: 1px solid var(--soft-border);
+      border-radius: 16px;
+      padding: 6px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 14px rgba(45, 106, 79, 0.04);
+    }
+
+    .tab-btn {
+      background: transparent;
+      color: var(--muted);
+      border-radius: 12px;
+      padding: 11px 6px;
+      font-size: 12px;
     }
 
     .tab-btn.active {
       background: var(--primary);
-      color: white;
-    }
-
-    .tab-panel {
-      display: none;
-      animation: slideIn 0.25s ease;
-    }
-
-    .tab-panel.active {
-      display: block;
-    }
-
-    @keyframes slideIn {
-      from {
-        transform: translateY(8px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
+      color: var(--white);
     }
 
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      margin-bottom: 16px;
+      gap: 9px;
+      margin-bottom: 14px;
+    }
+
+    .stat-card,
+    .box,
+    .order-card {
+      background: var(--white);
+      border: 1px solid var(--soft-border);
+      box-shadow: 0 4px 18px rgba(45, 106, 79, 0.02);
     }
 
     .stat-card {
-      background: white;
-      border: 1px solid var(--border-soft);
-      border-radius: 16px;
-      padding: 14px;
+      border-radius: 14px;
+      padding: 12px;
     }
 
     .stat-card span {
-      font-size: 10px;
-      color: var(--text-light);
-      font-weight: 800;
+      display: block;
+      color: var(--muted);
+      font-size: 9px;
+      font-weight: 900;
       text-transform: uppercase;
+      letter-spacing: 0.2px;
     }
 
     .stat-card strong {
       display: block;
-      font-size: 20px;
+      margin-top: 2px;
       color: var(--primary);
-      margin-top: 3px;
+      font-size: 20px;
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+      animation: fadeUp 0.22s ease;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .box {
-      background: white;
       border-radius: 18px;
-      padding: 18px;
-      border: 1px solid var(--border-soft);
+      padding: 16px;
       margin-bottom: 14px;
-      box-shadow: 0 4px 18px rgba(45, 106, 79, 0.02);
     }
 
     .box h2 {
-      font-size: 15px;
-      font-weight: 800;
       color: var(--primary);
-      margin-bottom: 14px;
+      font-size: 15px;
+      font-weight: 900;
       display: flex;
       align-items: center;
       gap: 7px;
+      margin-bottom: 12px;
     }
 
     .box-note {
+      color: var(--muted);
       font-size: 12px;
-      color: var(--text-light);
       margin-bottom: 12px;
     }
 
     .form-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 12px;
+      gap: 10px;
+      margin-bottom: 10px;
     }
 
     .form-group {
@@ -246,116 +247,77 @@
     }
 
     .form-label {
+      color: var(--muted);
       font-size: 10px;
+      font-weight: 900;
       text-transform: uppercase;
-      font-weight: 800;
-      color: var(--text-light);
-      letter-spacing: 0.4px;
     }
 
     .form-input,
     .form-select,
     .form-textarea {
       width: 100%;
-      padding: 11px 12px;
+      border: 1px solid rgba(45, 106, 79, 0.16);
       border-radius: 10px;
-      border: 1px solid rgba(45, 106, 79, 0.15);
-      background: var(--bg-cream);
+      background: var(--cream);
+      padding: 11px 12px;
       font-size: 13px;
       outline: none;
-      transition: all 0.2s;
+    }
+
+    .form-textarea {
+      min-height: 66px;
+      resize: vertical;
     }
 
     .form-input:focus,
     .form-select:focus,
     .form-textarea:focus {
+      background: var(--white);
       border-color: var(--primary);
-      background: white;
-    }
-
-    .form-textarea {
-      min-height: 64px;
-      resize: vertical;
-    }
-
-    button {
-      font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
     .btn-primary,
-    .btn-danger,
     .btn-soft,
-    .btn-small {
-      border: none;
-      padding: 10px 14px;
+    .btn-danger,
+    .btn-blue,
+    .btn-green {
       border-radius: 10px;
-      font-weight: 800;
+      padding: 10px 12px;
       font-size: 12px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      transition: all 0.2s ease;
     }
 
-    .btn-primary {
-      background: var(--primary);
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background: var(--primary-hover);
-    }
-
-    .btn-danger {
-      background: rgba(217, 4, 41, 0.08);
-      color: var(--danger);
-    }
-
-    .btn-danger:hover {
-      background: var(--danger);
-      color: white;
-    }
-
-    .btn-soft {
-      background: rgba(45, 106, 79, 0.08);
-      color: var(--primary);
-    }
-
-    .btn-small {
-      padding: 7px 10px;
-      font-size: 11px;
-      border-radius: 8px;
-    }
+    .btn-primary { background: var(--primary); color: var(--white); }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-blue { background: var(--blue); color: var(--white); }
+    .btn-green { background: var(--secondary); color: var(--white); }
+    .btn-soft { background: rgba(45, 106, 79, 0.08); color: var(--primary); }
+    .btn-danger { background: rgba(217, 4, 41, 0.08); color: var(--danger); }
+    .btn-danger:hover { background: var(--danger); color: var(--white); }
 
     .menu-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 12px;
-      padding: 14px 0;
-      border-bottom: 1px dashed var(--border-soft);
+      padding: 13px 0;
+      border-bottom: 1px dashed var(--soft-border);
     }
 
-    .menu-item:last-child {
-      border-bottom: none;
-    }
+    .menu-item:last-child { border-bottom: none; }
 
-    .menu-info {
-      min-width: 0;
-    }
+    .menu-info { min-width: 0; }
 
     .menu-info h4 {
+      color: var(--dark);
       font-size: 15px;
-      font-weight: 800;
-      color: var(--text-dark);
+      font-weight: 900;
       word-break: break-word;
     }
 
     .menu-info p {
+      color: var(--muted);
       font-size: 11px;
-      color: var(--text-light);
       margin-top: 2px;
     }
 
@@ -367,95 +329,86 @@
     }
 
     .toggle-btn {
-      border: none;
-      min-width: 78px;
+      min-width: 76px;
       padding: 8px 10px;
-      border-radius: 9px;
-      color: white;
+      border-radius: 10px;
+      color: var(--white);
       font-size: 10px;
-      font-weight: 900;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
     }
 
-    .toggle-btn.on {
-      background: var(--success);
-    }
+    .toggle-btn.on { background: var(--primary); }
+    .toggle-btn.off { background: var(--danger); }
 
-    .toggle-btn.off {
-      background: var(--danger);
+    .icon-delete {
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      border-radius: 12px;
     }
 
     .filters-row {
       display: flex;
       gap: 7px;
       overflow-x: auto;
+      scrollbar-width: none;
       padding-bottom: 8px;
       margin-bottom: 12px;
-      scrollbar-width: none;
     }
 
-    .filters-row::-webkit-scrollbar {
-      display: none;
-    }
+    .filters-row::-webkit-scrollbar { display: none; }
 
     .filter-chip {
-      border: 1px solid var(--border-soft);
-      background: white;
-      color: var(--text-light);
+      background: var(--white);
+      border: 1px solid var(--soft-border);
+      color: var(--muted);
       padding: 8px 12px;
       border-radius: 999px;
       font-size: 11px;
-      font-weight: 800;
       white-space: nowrap;
-      cursor: pointer;
     }
 
     .filter-chip.active {
       background: var(--primary);
-      color: white;
+      color: var(--white);
       border-color: var(--primary);
     }
 
     .order-card {
-      background: white;
-      border: 1px solid var(--border-soft);
       border-radius: 18px;
-      padding: 16px;
+      padding: 15px;
       margin-bottom: 12px;
-      box-shadow: 0 4px 18px rgba(45, 106, 79, 0.02);
     }
 
-    .order-card.cancelled {
-      opacity: 0.78;
-    }
+    .order-card.cancelled { opacity: 0.82; }
 
     .order-header {
       display: flex;
       justify-content: space-between;
       gap: 10px;
-      border-bottom: 1px dashed var(--border-soft);
-      padding-bottom: 12px;
-      margin-bottom: 12px;
+      border-bottom: 1px dashed var(--soft-border);
+      padding-bottom: 11px;
+      margin-bottom: 11px;
     }
 
     .customer-meta h3 {
-      font-family: 'Playfair Display', serif;
+      font-family: "Playfair Display", serif;
       color: var(--primary);
       font-size: 19px;
       line-height: 1.1;
     }
 
     .customer-meta p {
+      color: var(--muted);
       font-size: 12px;
-      color: var(--text-light);
       display: flex;
       align-items: center;
       gap: 5px;
       margin-top: 4px;
+    }
+
+    .customer-meta a {
+      color: inherit;
+      text-decoration: none;
     }
 
     .order-meta-badges {
@@ -467,62 +420,31 @@
     }
 
     .badge {
+      border-radius: 999px;
+      padding: 4px 8px;
       font-size: 10px;
       font-weight: 900;
       text-transform: uppercase;
-      padding: 4px 8px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
       white-space: nowrap;
     }
 
-    .badge.status-new {
-      background: rgba(49, 130, 206, 0.12);
-      color: #2b6cb0;
-    }
-
-    .badge.status-preparing {
-      background: rgba(184, 145, 48, 0.15);
-      color: #9a721d;
-    }
-
-    .badge.status-dispatched {
-      background: rgba(82, 183, 136, 0.16);
-      color: #2d6a4f;
-    }
-
-    .badge.status-completed {
-      background: rgba(45, 106, 79, 0.1);
-      color: var(--primary);
-    }
-
-    .badge.status-cancelled {
-      background: rgba(217, 4, 41, 0.08);
-      color: var(--danger);
-    }
-
-    .badge.paid {
-      background: rgba(82, 183, 136, 0.16);
-      color: #2d6a4f;
-    }
-
-    .badge.unpaid,
-    .badge.cancelled-pay {
-      background: rgba(217, 4, 41, 0.08);
-      color: var(--danger);
-    }
+    .status-new { background: rgba(43,108,176,0.12); color: var(--blue); }
+    .status-preparing { background: rgba(184,145,48,0.15); color: #9a721d; }
+    .status-dispatched { background: rgba(82,183,136,0.18); color: var(--primary); }
+    .status-completed { background: rgba(45,106,79,0.1); color: var(--primary); }
+    .status-cancelled { background: rgba(217,4,41,0.08); color: var(--danger); }
+    .paid { background: rgba(82,183,136,0.18); color: var(--primary); }
+    .unpaid, .cancelled-pay { background: rgba(217,4,41,0.08); color: var(--danger); }
 
     .order-address {
-      background: var(--bg-cream);
-      border: 1px solid var(--border-soft);
+      background: var(--cream);
+      border: 1px solid var(--soft-border);
       border-radius: 12px;
-      padding: 10px 12px;
-      font-size: 12px;
-      color: var(--text-dark);
+      color: var(--dark);
       display: flex;
       gap: 7px;
+      padding: 10px 12px;
+      font-size: 12px;
       margin-bottom: 10px;
     }
 
@@ -532,27 +454,24 @@
       margin-top: 2px;
     }
 
-    .order-items-list {
-      margin-bottom: 10px;
-    }
-
-    .order-item-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      font-size: 13px;
-      padding: 4px 0;
-      color: var(--text-dark);
-    }
-
+    .order-item-row,
     .order-total-row {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      border-top: 1px dashed var(--border-soft);
-      padding-top: 10px;
-      font-weight: 800;
+      gap: 8px;
+    }
+
+    .order-item-row {
+      font-size: 13px;
+      padding: 4px 0;
+    }
+
+    .order-total-row {
+      border-top: 1px dashed var(--soft-border);
       margin-top: 8px;
+      padding-top: 10px;
+      font-weight: 900;
+      align-items: center;
     }
 
     .order-total-row span:last-child {
@@ -568,47 +487,45 @@
     }
 
     .record-controls {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 8px;
       margin-top: 12px;
+      display: grid;
     }
 
-    .expired-note {
+    .note-danger {
       margin-top: 10px;
       background: rgba(217, 4, 41, 0.06);
-      color: var(--danger);
       border: 1px solid rgba(217, 4, 41, 0.12);
+      color: var(--danger);
       padding: 8px 10px;
       border-radius: 10px;
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .empty-view {
       text-align: center;
-      background: white;
-      border: 1px solid var(--border-soft);
-      border-radius: 18px;
+      background: var(--white);
+      border: 1px solid var(--soft-border);
+      border-radius: 16px;
       padding: 28px 16px;
-      color: var(--text-light);
+      color: var(--muted);
     }
 
     .empty-view h3 {
-      font-size: 16px;
       color: var(--primary);
-      margin-top: 8px;
+      margin-top: 7px;
+      font-size: 16px;
     }
 
     .empty-view p {
       font-size: 12px;
-      margin-top: 4px;
+      margin-top: 3px;
     }
 
     .toast-container {
       position: fixed;
-      top: 16px;
-      right: 16px;
+      top: 14px;
+      right: 14px;
       z-index: 3000;
       display: flex;
       flex-direction: column;
@@ -618,82 +535,35 @@
 
     .toast {
       background: var(--primary);
-      color: white;
-      padding: 10px 16px;
+      color: var(--white);
+      padding: 10px 14px;
       border-radius: 10px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       font-size: 13px;
-      font-weight: 700;
-      animation: slideInRight 0.25s ease;
+      font-weight: 800;
       pointer-events: auto;
     }
 
-    @keyframes slideInRight {
-      from {
-        transform: translateX(100%);
-        opacity: 0;
-      }
-      to {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
-
     @media (max-width: 600px) {
-      .container {
-        padding: 14px;
-      }
-
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .top-bar {
-        align-items: flex-start;
-      }
-
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
-      }
-
-      .stat-card {
-        padding: 11px;
-      }
-
-      .stat-card strong {
-        font-size: 18px;
-      }
-
-      .admin-tabs {
-        grid-template-columns: 1fr;
-      }
-
-      .menu-item {
-        align-items: flex-start;
-      }
-
-      .menu-actions {
-        flex-direction: column;
-      }
-
-      .order-controls {
-        grid-template-columns: 1fr;
-      }
-
-      .toast-container {
-        left: 16px;
-        right: 16px;
-      }
+      .container { padding: 12px; }
+      .top-bar { flex-direction: column; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .form-grid { grid-template-columns: 1fr; }
+      .admin-tabs { grid-template-columns: repeat(3, 1fr); }
+      .tab-btn { font-size: 11px; padding: 10px 4px; }
+      .tab-btn i { display: none; }
+      .menu-item { align-items: flex-start; }
+      .menu-actions { flex-direction: column; }
+      .order-controls { grid-template-columns: 1fr; }
+      .toast-container { left: 12px; right: 12px; }
     }
   </style>
 </head>
 
 <body>
-
   <header>
     <div class="header-logo">
       <i data-lucide="coffee"></i>
@@ -702,94 +572,54 @@
     <p>Owner Console &bull; <a href="index.html">Open Customer Website</a></p>
   </header>
 
-  <div class="container">
-
+  <main class="container">
     <div class="top-bar">
       <div class="page-title">
         <h1>Owner Dashboard</h1>
         <p>Manage today’s bakes, menu stock, payments and delivery orders.</p>
       </div>
-
       <button class="refresh-btn" onclick="refreshAll()">
-        <i data-lucide="refresh-cw" style="width: 14px;"></i>
-        Refresh
+        <i data-lucide="refresh-cw" style="width:14px"></i> Refresh
       </button>
     </div>
 
-    <div class="admin-tabs">
+    <nav class="admin-tabs">
       <button class="tab-btn active" id="menuTabBtn" onclick="switchAdminTab('menu')">
-        <i data-lucide="cake-slice" style="width: 15px;"></i>
-        Menu
+        <i data-lucide="cake-slice" style="width:15px"></i> Menu
       </button>
-
       <button class="tab-btn" id="ordersTabBtn" onclick="switchAdminTab('orders')">
-        <i data-lucide="truck" style="width: 15px;"></i>
-        Orders
+        <i data-lucide="truck" style="width:15px"></i> Orders
       </button>
-
       <button class="tab-btn" id="recordsTabBtn" onclick="switchAdminTab('records')">
-        <i data-lucide="archive" style="width: 15px;"></i>
-        Records
+        <i data-lucide="archive" style="width:15px"></i> Records
       </button>
-    </div>
+    </nav>
 
-    <div class="stats-grid">
-      <div class="stat-card">
-        <span>Total Items</span>
-        <strong id="statItems">0</strong>
-      </div>
+    <section class="stats-grid">
+      <div class="stat-card"><span>Total Items</span><strong id="statItems">0</strong></div>
+      <div class="stat-card"><span>Today’s Bakes</span><strong id="statBakes">0</strong></div>
+      <div class="stat-card"><span>Active Orders</span><strong id="statOrders">0</strong></div>
+      <div class="stat-card"><span>Unpaid</span><strong id="statUnpaid">0</strong></div>
+    </section>
 
-      <div class="stat-card">
-        <span>Today’s Bakes</span>
-        <strong id="statBakes">0</strong>
-      </div>
-
-      <div class="stat-card">
-        <span>Active Orders</span>
-        <strong id="statOrders">0</strong>
-      </div>
-
-      <div class="stat-card">
-        <span>Unpaid</span>
-        <strong id="statUnpaid">0</strong>
-      </div>
-    </div>
-
-    <div class="tab-panel active" id="menuPanel">
-
+    <section class="tab-panel active" id="menuPanel">
       <div class="box">
-        <h2>
-          <i data-lucide="cake-slice" style="width: 16px;"></i>
-          Today's Bakes
-        </h2>
-
-        <div id="bakesList">
-          <div class="empty-view">
-            <i data-lucide="loader" style="width: 32px; height: 32px;"></i>
-            <h3>Loading Today’s Bakes</h3>
-            <p>Only cake items will appear here.</p>
-          </div>
-        </div>
+        <h2><i data-lucide="cake-slice" style="width:16px"></i> Today's Bakes</h2>
+        <div id="bakesList"></div>
       </div>
 
       <div class="box">
-        <h2>
-          <i data-lucide="plus-circle" style="width: 16px;"></i>
-          Add New Item
-        </h2>
-
+        <h2><i data-lucide="plus-circle" style="width:16px"></i> Add New Item</h2>
         <div class="form-grid">
           <div class="form-group">
             <label class="form-label" for="itemName">Item Name</label>
-            <input id="itemName" class="form-input" placeholder="e.g. Chocolate Cake" />
+            <input id="itemName" class="form-input" placeholder="e.g. Banana Cake" />
           </div>
-
           <div class="form-group">
             <label class="form-label" for="itemPrice">Price INR</label>
             <input id="itemPrice" type="number" class="form-input" placeholder="e.g. 120" />
           </div>
         </div>
-
         <div class="form-grid">
           <div class="form-group">
             <label class="form-label" for="itemCategory">Category</label>
@@ -801,38 +631,23 @@
               <option value="Desserts">Desserts</option>
             </select>
           </div>
-
           <div class="form-group">
             <label class="form-label" for="itemDescription">Short Description</label>
             <textarea id="itemDescription" class="form-textarea" placeholder="e.g. Freshly baked today"></textarea>
           </div>
         </div>
-
         <button class="btn-primary" onclick="addMenuItem()">
-          <i data-lucide="save" style="width: 14px;"></i>
-          Save Item
+          <i data-lucide="save" style="width:14px"></i> Save Item
         </button>
       </div>
 
       <div class="box">
-        <h2>
-          <i data-lucide="toggle-left" style="width: 16px;"></i>
-          Full Menu Stock
-        </h2>
-
-        <div id="menuList">
-          <div class="empty-view">
-            <i data-lucide="loader" style="width: 32px; height: 32px;"></i>
-            <h3>Loading Menu</h3>
-            <p>Please wait...</p>
-          </div>
-        </div>
+        <h2><i data-lucide="toggle-left" style="width:16px"></i> Full Menu Stock</h2>
+        <div id="menuList"></div>
       </div>
+    </section>
 
-    </div>
-
-    <div class="tab-panel" id="ordersPanel">
-
+    <section class="tab-panel" id="ordersPanel">
       <div class="filters-row">
         <button class="filter-chip active" data-filter="Active" onclick="setOrderFilter('Active')">Active</button>
         <button class="filter-chip" data-filter="New" onclick="setOrderFilter('New')">New</button>
@@ -843,41 +658,17 @@
         <button class="filter-chip" data-filter="Cancelled" onclick="setOrderFilter('Cancelled')">Cancelled</button>
         <button class="filter-chip" data-filter="All" onclick="setOrderFilter('All')">All</button>
       </div>
+      <div id="ordersList"></div>
+    </section>
 
-      <div id="ordersList">
-        <div class="empty-view">
-          <i data-lucide="loader" style="width: 32px; height: 32px;"></i>
-          <h3>Loading Orders</h3>
-          <p>Please wait...</p>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="tab-panel" id="recordsPanel">
-
+    <section class="tab-panel" id="recordsPanel">
       <div class="box">
-        <h2>
-          <i data-lucide="archive" style="width: 16px;"></i>
-          Order Records
-        </h2>
-
-        <p class="box-note">
-          Every order detail is stored here, including completed, cancelled, paid and unpaid orders. Old records can be deleted manually.
-        </p>
-
-        <div id="recordsList">
-          <div class="empty-view">
-            <i data-lucide="loader" style="width: 32px; height: 32px;"></i>
-            <h3>Loading Records</h3>
-            <p>Please wait...</p>
-          </div>
-        </div>
+        <h2><i data-lucide="archive" style="width:16px"></i> Order Records</h2>
+        <p class="box-note">All orders are saved here. You can delete old records manually.</p>
+        <div id="recordsList"></div>
       </div>
-
-    </div>
-
-  </div>
+    </section>
+  </main>
 
   <div class="toast-container" id="toastContainer"></div>
 
@@ -912,13 +703,7 @@
     let menuCache = [];
     let ordersCache = [];
     let orderFilter = "Active";
-
     const PAYMENT_EXPIRY_MINUTES = 15;
-
-    function cleanPrice(value) {
-      const number = Number(String(value).replace(/[^0-9.]/g, ""));
-      return isNaN(number) ? 0 : number;
-    }
 
     function escapeHTML(value) {
       return String(value || "")
@@ -929,31 +714,66 @@
         .replaceAll("'", "&#039;");
     }
 
+    function cleanPrice(value) {
+      const number = Number(String(value).replace(/[^0-9.]/g, ""));
+      return isNaN(number) ? 0 : number;
+    }
+
     function safeCreateIcons() {
       try {
-        if (typeof lucide !== "undefined" && typeof lucide.createIcons === "function") {
-          lucide.createIcons();
+        if (window.lucide && typeof window.lucide.createIcons === "function") {
+          window.lucide.createIcons();
         }
       } catch (e) {
-        console.warn("Lucide icons failed:", e);
+        console.warn("Lucide failed", e);
       }
     }
 
-    function getDateFromTimestamp(timestamp) {
-      try {
-        if (timestamp && typeof timestamp.toDate === "function") {
-          return timestamp.toDate();
-        }
-      } catch (e) {}
+    function showEmpty(targetId, icon, title, text) {
+      const target = document.getElementById(targetId);
+      target.innerHTML = `
+        <div class="empty-view">
+          <i data-lucide="${icon}" style="width:34px;height:34px"></i>
+          <h3>${escapeHTML(title)}</h3>
+          <p>${escapeHTML(text)}</p>
+        </div>
+      `;
+      safeCreateIcons();
+    }
 
+    window.showToast = function(message, icon = "check") {
+      const container = document.getElementById("toastContainer");
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.innerHTML = `<i data-lucide="${icon}" style="width:16px;height:16px"></i><span>${escapeHTML(message)}</span>`;
+      container.appendChild(toast);
+      safeCreateIcons();
+      setTimeout(() => {
+        toast.style.opacity = "0";
+        toast.style.transition = "opacity .4s ease";
+        setTimeout(() => toast.remove(), 450);
+      }, 2300);
+    };
+
+    window.switchAdminTab = function(tabName) {
+      ["menu", "orders", "records"].forEach(name => {
+        document.getElementById(`${name}TabBtn`).classList.toggle("active", name === tabName);
+        document.getElementById(`${name}Panel`).classList.toggle("active", name === tabName);
+      });
+      if (tabName === "records") renderRecords();
+      safeCreateIcons();
+    };
+
+    function getDate(timestamp) {
+      try {
+        if (timestamp && typeof timestamp.toDate === "function") return timestamp.toDate();
+      } catch (e) {}
       return null;
     }
 
     function formatDate(timestamp) {
-      const date = getDateFromTimestamp(timestamp);
-
+      const date = getDate(timestamp);
       if (!date) return "Just now";
-
       return date.toLocaleString("en-IN", {
         day: "2-digit",
         month: "short",
@@ -963,109 +783,46 @@
       });
     }
 
-    function isPaymentExpired(order) {
-      const status = String(order.status || "New");
-      const paymentStatus = String(order.paymentStatus || "Pending");
-
-      if (paymentStatus === "Paid") return false;
-      if (status === "Completed") return false;
-      if (status === "Cancelled") return false;
-
-      const createdDate = getDateFromTimestamp(order.createdAt);
-      if (!createdDate) return false;
-
-      const now = new Date();
-      const diffMinutes = (now - createdDate) / 60000;
-
-      return diffMinutes > PAYMENT_EXPIRY_MINUTES;
+    function isExpired(order) {
+      const status = String(order.status || "New").toLowerCase();
+      const payment = String(order.paymentStatus || "Pending").toLowerCase();
+      if (payment === "paid" || status === "completed" || status === "cancelled") return false;
+      const created = getDate(order.createdAt);
+      if (!created) return false;
+      return (new Date() - created) / 60000 > PAYMENT_EXPIRY_MINUTES;
     }
 
-    async function autoCancelExpiredOrders() {
-      const expiredOrders = ordersCache.filter(isPaymentExpired);
-
-      if (expiredOrders.length === 0) return;
-
-      await Promise.all(
-        expiredOrders.map(order => {
-          return updateDoc(doc(db, "orders", order.id), {
-            status: "Cancelled",
-            paymentStatus: "Cancelled",
-            cancelReason: "Payment not completed within 15 minutes",
-            cancelledAt: serverTimestamp()
-          });
-        })
-      );
-
-      ordersCache = ordersCache.map(order => {
-        if (expiredOrders.some(expired => expired.id === order.id)) {
-          return {
-            ...order,
-            status: "Cancelled",
-            paymentStatus: "Cancelled",
-            cancelReason: "Payment not completed within 15 minutes"
-          };
+    async function cancelExpiredOrders() {
+      const expired = ordersCache.filter(isExpired);
+      if (!expired.length) return;
+      await Promise.all(expired.map(order => updateDoc(doc(db, "orders", order.id), {
+        status: "Cancelled",
+        paymentStatus: "Cancelled",
+        cancelReason: "Payment not completed within 15 minutes",
+        cancelledAt: serverTimestamp()
+      })));
+      expired.forEach(exp => {
+        const local = ordersCache.find(o => o.id === exp.id);
+        if (local) {
+          local.status = "Cancelled";
+          local.paymentStatus = "Cancelled";
+          local.cancelReason = "Payment not completed within 15 minutes";
         }
-
-        return order;
       });
-
-      showToast(`${expiredOrders.length} unpaid order cancelled after 15 minutes`, "clock");
+      showToast(`${expired.length} unpaid order cancelled`, "clock");
     }
-
-    window.showToast = function(message, iconName = "check") {
-      const container = document.getElementById("toastContainer");
-      const toast = document.createElement("div");
-
-      toast.className = "toast";
-      toast.innerHTML = `
-        <i data-lucide="${iconName}" style="width: 16px; height: 16px;"></i>
-        <span>${escapeHTML(message)}</span>
-      `;
-
-      container.appendChild(toast);
-      safeCreateIcons();
-
-      setTimeout(() => {
-        toast.style.opacity = "0";
-        toast.style.transition = "opacity 0.5s ease-out";
-        setTimeout(() => toast.remove(), 500);
-      }, 2400);
-    };
-
-    window.switchAdminTab = function(tabName) {
-      document.getElementById("menuTabBtn").classList.toggle("active", tabName === "menu");
-      document.getElementById("ordersTabBtn").classList.toggle("active", tabName === "orders");
-      document.getElementById("recordsTabBtn").classList.toggle("active", tabName === "records");
-
-      document.getElementById("menuPanel").classList.toggle("active", tabName === "menu");
-      document.getElementById("ordersPanel").classList.toggle("active", tabName === "orders");
-      document.getElementById("recordsPanel").classList.toggle("active", tabName === "records");
-
-      if (tabName === "records") {
-        renderRecords();
-      }
-
-      safeCreateIcons();
-    };
-
-    window.refreshAll = async function() {
-      await Promise.all([loadMenuAdmin(), loadOrders()]);
-      showToast("Dashboard refreshed", "refresh-cw");
-    };
 
     function updateStats() {
       const totalItems = menuCache.length;
       const totalBakes = menuCache.filter(item => String(item.category || "").toLowerCase() === "cake").length;
-
       const activeOrders = ordersCache.filter(order => {
         const status = String(order.status || "New").toLowerCase();
         return status !== "completed" && status !== "cancelled";
       }).length;
-
       const unpaidOrders = ordersCache.filter(order => {
         const status = String(order.status || "New").toLowerCase();
-        const paymentStatus = String(order.paymentStatus || "Pending");
-        return paymentStatus !== "Paid" && status !== "cancelled";
+        const payment = String(order.paymentStatus || "Pending").toLowerCase();
+        return payment !== "paid" && status !== "cancelled";
       }).length;
 
       document.getElementById("statItems").textContent = totalItems;
@@ -1074,129 +831,87 @@
       document.getElementById("statUnpaid").textContent = unpaidOrders;
     }
 
-    async function loadMenuAdmin() {
-      const menuList = document.getElementById("menuList");
-      const bakesList = document.getElementById("bakesList");
-
+    async function getCollectionDocs(collectionName) {
       try {
-        let querySnapshot;
-
-        try {
-          const q = query(collection(db, "menu"), orderBy("createdAt", "desc"));
-          querySnapshot = await getDocs(q);
-        } catch (e) {
-          querySnapshot = await getDocs(collection(db, "menu"));
-        }
-
-        menuCache = [];
-
-        querySnapshot.forEach((documentSnap) => {
-          menuCache.push({
-            id: documentSnap.id,
-            ...documentSnap.data()
-          });
-        });
-
-        renderBakesOnly();
-        renderMenuAdmin();
-        updateStats();
-
-      } catch (err) {
-        console.error(err);
-
-        const errorHTML = `
-          <div class="empty-view">
-            <i data-lucide="alert-triangle" style="width: 32px; height: 32px; color: var(--danger);"></i>
-            <h3>Menu Sync Failed</h3>
-            <p>Please check your Firebase rules.</p>
-          </div>
-        `;
-
-        menuList.innerHTML = errorHTML;
-        bakesList.innerHTML = errorHTML;
-
-        safeCreateIcons();
+        const q = query(collection(db, collectionName), orderBy("createdAt", "desc"));
+        const snapshot = await getDocs(q);
+        return snapshot;
+      } catch (e) {
+        return await getDocs(collection(db, collectionName));
       }
     }
 
-    function createMenuItemHTML(item) {
+    async function loadMenuAdmin() {
+      try {
+        showEmpty("bakesList", "loader", "Loading Today’s Bakes", "Please wait...");
+        showEmpty("menuList", "loader", "Loading Menu", "Please wait...");
+
+        const snapshot = await getCollectionDocs("menu");
+        menuCache = [];
+        snapshot.forEach(snap => menuCache.push({ id: snap.id, ...snap.data() }));
+
+        renderBakesOnly();
+        renderFullMenu();
+        updateStats();
+      } catch (error) {
+        console.error(error);
+        showEmpty("bakesList", "alert-triangle", "Menu Sync Failed", "Please check Firebase rules.");
+        showEmpty("menuList", "alert-triangle", "Menu Sync Failed", "Please check Firebase rules.");
+      }
+    }
+
+    function menuItemTemplate(item) {
+      const available = item.available === true;
       return `
         <div class="menu-info">
           <h4>${escapeHTML(item.name)}</h4>
           <p>${escapeHTML(item.category || "General")} &bull; ₹${cleanPrice(item.price).toFixed(0)}</p>
-          ${
-            item.description
-              ? `<p>${escapeHTML(item.description)}</p>`
-              : `<p>No description added</p>`
-          }
+          <p>${escapeHTML(item.description || "No description added")}</p>
         </div>
-
         <div class="menu-actions">
-          <button class="toggle-btn ${item.available ? "on" : "off"}" onclick="toggleAvailability('${item.id}', ${item.available === true})">
-            <i data-lucide="${item.available ? "check" : "x"}" style="width: 12px;"></i>
-            ${item.available ? "ON" : "OUT"}
+          <button class="toggle-btn ${available ? "on" : "off"}" onclick="toggleAvailability('${item.id}', ${available})">
+            <i data-lucide="${available ? "check" : "x"}" style="width:12px"></i>
+            ${available ? "ON" : "OUT"}
           </button>
-
-          <button class="btn-danger btn-small" onclick="deleteMenuItemWithConfirm('${item.id}')">
-            <i data-lucide="trash-2" style="width: 13px;"></i>
+          <button class="btn-danger icon-delete" onclick="deleteMenuItem('${item.id}')">
+            <i data-lucide="trash-2" style="width:16px"></i>
           </button>
         </div>
       `;
     }
 
     function renderBakesOnly() {
-      const bakesList = document.getElementById("bakesList");
-      bakesList.innerHTML = "";
-
+      const target = document.getElementById("bakesList");
+      target.innerHTML = "";
       const cakes = menuCache.filter(item => String(item.category || "").toLowerCase() === "cake");
 
-      if (cakes.length === 0) {
-        bakesList.innerHTML = `
-          <div class="empty-view">
-            <i data-lucide="cake-slice" style="width: 34px; height: 34px;"></i>
-            <h3>No Cakes Added</h3>
-            <p>Add cake items below and they will appear in Today’s Bakes.</p>
-          </div>
-        `;
-
-        safeCreateIcons();
+      if (!cakes.length) {
+        showEmpty("bakesList", "cake-slice", "No Cakes Added", "Cake items will appear here.");
         return;
       }
 
-      cakes.forEach((item) => {
-        const div = document.createElement("div");
-        div.className = "menu-item";
-        div.innerHTML = createMenuItemHTML(item);
-        bakesList.appendChild(div);
+      cakes.forEach(item => {
+        const row = document.createElement("div");
+        row.className = "menu-item";
+        row.innerHTML = menuItemTemplate(item);
+        target.appendChild(row);
       });
-
       safeCreateIcons();
     }
 
-    function renderMenuAdmin() {
-      const menuList = document.getElementById("menuList");
-      menuList.innerHTML = "";
-
-      if (menuCache.length === 0) {
-        menuList.innerHTML = `
-          <div class="empty-view">
-            <i data-lucide="coffee" style="width: 34px; height: 34px;"></i>
-            <h3>No Menu Items</h3>
-            <p>Add your first cafe item above.</p>
-          </div>
-        `;
-
-        safeCreateIcons();
+    function renderFullMenu() {
+      const target = document.getElementById("menuList");
+      target.innerHTML = "";
+      if (!menuCache.length) {
+        showEmpty("menuList", "coffee", "No Menu Items", "Add your first item above.");
         return;
       }
-
-      menuCache.forEach((item) => {
-        const div = document.createElement("div");
-        div.className = "menu-item";
-        div.innerHTML = createMenuItemHTML(item);
-        menuList.appendChild(div);
+      menuCache.forEach(item => {
+        const row = document.createElement("div");
+        row.className = "menu-item";
+        row.innerHTML = menuItemTemplate(item);
+        target.appendChild(row);
       });
-
       safeCreateIcons();
     }
 
@@ -1206,2806 +921,263 @@
       const category = document.getElementById("itemCategory").value;
       const description = document.getElementById("itemDescription").value.trim();
 
-      if (!name || isNaN(price) || price <= 0) {
+      if (!name || !price || price <= 0) {
         showToast("Enter item name and valid price", "alert-circle");
         return;
       }
 
       try {
         await addDoc(collection(db, "menu"), {
-          name: name,
-          price: price,
-          category: category,
-          description: description,
+          name,
+          price,
+          category,
+          description,
           available: true,
           createdAt: serverTimestamp()
         });
-
         document.getElementById("itemName").value = "";
         document.getElementById("itemPrice").value = "";
         document.getElementById("itemDescription").value = "";
-
-        showToast(`${name} added to menu`, "check-circle");
+        showToast(`${name} added`, "check-circle");
         await loadMenuAdmin();
-
-      } catch (err) {
-        console.error(err);
+      } catch (error) {
+        console.error(error);
         showToast("Failed to save item", "alert-triangle");
       }
     };
 
     window.toggleAvailability = async function(id, currentStatus) {
       try {
-        await updateDoc(doc(db, "menu", id), {
-          available: !currentStatus
-        });
-
+        await updateDoc(doc(db, "menu", id), { available: !currentStatus });
         showToast("Stock updated", "toggle-right");
         await loadMenuAdmin();
-
-      } catch (err) {
-        console.error(err);
+      } catch (error) {
+        console.error(error);
         showToast("Failed to update stock", "alert-circle");
       }
     };
 
-    window.deleteMenuItemWithConfirm = async function(id) {
-      const item = menuCache.find(menuItem => menuItem.id === id);
-      const itemName = item?.name || "this item";
-
-      const confirmDelete = confirm(`Delete "${itemName}" from the menu? This cannot be undone.`);
-
-      if (!confirmDelete) return;
-
+    window.deleteMenuItem = async function(id) {
+      const item = menuCache.find(i => i.id === id);
+      if (!confirm(`Delete "${item?.name || "this item"}" from menu?`)) return;
       try {
         await deleteDoc(doc(db, "menu", id));
         showToast("Menu item deleted", "trash-2");
         await loadMenuAdmin();
-      } catch (err) {
-        console.error(err);
+      } catch (error) {
+        console.error(error);
         showToast("Failed to delete item", "alert-circle");
       }
     };
 
     async function loadOrders() {
-      const ordersList = document.getElementById("ordersList");
-
       try {
-        let querySnapshot;
-
-        try {
-          const q = query(collection(db, "orders"), orderBy("createdAt", "desc"));
-          querySnapshot = await getDocs(q);
-        } catch (e) {
-          querySnapshot = await getDocs(collection(db, "orders"));
-        }
-
+        showEmpty("ordersList", "loader", "Loading Orders", "Please wait...");
+        const snapshot = await getCollectionDocs("orders");
         ordersCache = [];
-
-        querySnapshot.forEach((documentSnap) => {
-          ordersCache.push({
-            id: documentSnap.id,
-            ...documentSnap.data()
-          });
-        });
-
-        await autoCancelExpiredOrders();
-
+        snapshot.forEach(snap => ordersCache.push({ id: snap.id, ...snap.data() }));
+        await cancelExpiredOrders();
         renderOrders();
         renderRecords();
         updateStats();
-
-      } catch (err) {
-        console.error(err);
-
-        ordersList.innerHTML = `
-          <div class="empty-view">
-            <i data-lucide="alert-triangle" style="width: 32px; height: 32px; color: var(--danger);"></i>
-            <h3>Order Sync Failed</h3>
-            <p>Please check your Firebase rules.</p>
-          </div>
-        `;
-
-        safeCreateIcons();
+      } catch (error) {
+        console.error(error);
+        showEmpty("ordersList", "alert-triangle", "Order Sync Failed", "Please check Firebase rules.");
       }
     }
 
     window.setOrderFilter = function(filterName) {
       orderFilter = filterName;
-
       document.querySelectorAll(".filter-chip").forEach(chip => {
         chip.classList.toggle("active", chip.dataset.filter === filterName);
       });
-
       renderOrders();
     };
 
-    function getFilteredOrders() {
+    function filteredOrders() {
       return ordersCache.filter(order => {
-        const status = String(order.status || "New");
-        const paymentStatus = String(order.paymentStatus || "Pending");
+        const status = String(order.status || "New").toLowerCase();
+        const payment = String(order.paymentStatus || "Pending").toLowerCase();
 
         if (orderFilter === "All") return true;
-
-        if (orderFilter === "Active") {
-          return status.toLowerCase() !== "completed" && status.toLowerCase() !== "cancelled";
-        }
-
-        if (orderFilter === "Paid") return paymentStatus === "Paid";
-
-        if (orderFilter === "Unpaid") {
-          return paymentStatus !== "Paid" && status.toLowerCase() !== "cancelled";
-        }
-
-        return status.toLowerCase() === orderFilter.toLowerCase();
+        if (orderFilter === "Active") return status !== "completed" && status !== "cancelled";
+        if (orderFilter === "Paid") return payment === "paid";
+        if (orderFilter === "Unpaid") return payment !== "paid" && status !== "cancelled";
+        return status === orderFilter.toLowerCase();
       });
     }
 
-    function getOrderCardHTML(order, options = {}) {
+    function orderCardHTML(order, recordMode = false) {
       const id = order.id;
       const status = order.status || "New";
-      const paymentStatus = order.paymentStatus || "Pending";
-      const deliveryLocation = order.deliveryAddress || "Takeaway / Self Pickup";
+      const payment = order.paymentStatus || "Pending";
       const statusLower = String(status).toLowerCase();
+      const paymentLower = String(payment).toLowerCase();
+      const isClosed = statusLower === "completed" || statusLower === "cancelled";
+      const paymentClass = paymentLower === "paid" ? "paid" : paymentLower === "cancelled" ? "cancelled-pay" : "unpaid";
 
-      const badgeStatusClass = `status-${statusLower}`;
-
-      let paymentBadgeClass = "unpaid";
-
-      if (paymentStatus === "Paid") {
-        paymentBadgeClass = "paid";
-      }
-
-      if (paymentStatus === "Cancelled") {
-        paymentBadgeClass = "cancelled-pay";
-      }
-
-      let itemsListHtml = "";
-
-      if (Array.isArray(order.items) && order.items.length > 0) {
+      let itemsHTML = "";
+      if (Array.isArray(order.items) && order.items.length) {
         order.items.forEach(item => {
-          const itemName = escapeHTML(item.name || "Item");
-          const itemQty = Number(item.quantity || 1);
-          const itemPrice = cleanPrice(item.price) * itemQty;
-
-          itemsListHtml += `
+          const qty = Number(item.quantity || 1);
+          const itemTotal = cleanPrice(item.price) * qty;
+          itemsHTML += `
             <div class="order-item-row">
-              <span>${itemName} <strong style="color: var(--primary)">× ${itemQty}</strong></span>
-              <span>₹${itemPrice.toFixed(0)}</span>
+              <span>${escapeHTML(item.name || "Item")} <strong style="color:var(--primary)">× ${qty}</strong></span>
+              <span>₹${itemTotal.toFixed(0)}</span>
             </div>
           `;
         });
       } else {
-        itemsListHtml = `
-          <div class="order-item-row">
-            <span>No items found</span>
-            <span>₹0</span>
-          </div>
-        `;
+        itemsHTML = `<div class="order-item-row"><span>No items found</span><span>₹0</span></div>`;
       }
 
-      let controlsHTML = "";
-
-      if (options.recordMode) {
-        controlsHTML = `
+      let controls = "";
+      if (recordMode) {
+        controls = `
           <div class="record-controls">
             <button class="btn-danger" onclick="deleteOrderRecord('${id}')">
-              <i data-lucide="trash-2" style="width: 13px;"></i>
-              Delete This Record
+              <i data-lucide="trash-2" style="width:13px"></i> Delete This Record
+            </button>
+          </div>
+        `;
+      } else if (!isClosed) {
+        controls = `
+          <div class="order-controls">
+            <button class="btn-blue" onclick="updateOrderStatus('${id}', 'Preparing')">
+              <i data-lucide="cog" style="width:13px"></i> Preparing
+            </button>
+            <button class="btn-green" onclick="updateOrderStatus('${id}', 'Dispatched')">
+              <i data-lucide="navigation" style="width:13px"></i> Dispatch
+            </button>
+            <button class="btn-primary" onclick="updateOrderStatus('${id}', 'Completed')">
+              <i data-lucide="check-square" style="width:13px"></i> Complete
+            </button>
+            <button class="btn-soft" onclick="markPaid('${id}')">
+              <i data-lucide="indian-rupee" style="width:13px"></i> Mark Paid
             </button>
           </div>
         `;
       } else {
-        if (statusLower !== "completed" && statusLower !== "cancelled") {
-          controlsHTML = `
-            <div class="order-controls">
-              <button class="btn-primary" style="background:#2b6cb0;" onclick="updateOrderStatus('${id}', 'Preparing')">
-                <i data-lucide="cog" style="width: 13px;"></i>
-                Preparing
-              </button>
-
-              <button class="btn-primary" style="background: var(--secondary);" onclick="updateOrderStatus('${id}', 'Dispatched')">
-                <i data-lucide="navigation" style="width: 13px;"></i>
-                Dispatch
-              </button>
-
-              <button class="btn-primary" onclick="updateOrderStatus('${id}', 'Completed')">
-                <i data-lucide="check-square" style="width: 13px;"></i>
-                Complete
-              </button>
-
-              <button class="btn-soft" onclick="markPaid('${id}')">
-                <i data-lucide="indian-rupee" style="width: 13px;"></i>
-                Mark Paid
-              </button>
-            </div>
-          `;
-        } else {
-          controlsHTML = `
-            <div class="expired-note">
-              This order is ${escapeHTML(status)} and has been moved out of active orders. See Records tab for full history.
-            </div>
-          `;
-        }
+        controls = `<div class="note-danger">This order is ${escapeHTML(status)} and is stored in Records.</div>`;
       }
 
-      const cancelledNote = statusLower === "cancelled"
-        ? `
-          <div class="expired-note">
-            ${escapeHTML(order.cancelReason || "Order cancelled.")}
-          </div>
-        `
+      const cancelNote = statusLower === "cancelled"
+        ? `<div class="note-danger">${escapeHTML(order.cancelReason || "Order cancelled.")}</div>`
         : "";
 
       return `
         <div class="order-header">
           <div class="customer-meta">
             <h3>${escapeHTML(order.customerName || "Customer")}</h3>
-            <p>
-              <i data-lucide="phone" style="width: 13px;"></i>
-              <a href="tel:${escapeHTML(order.phone || "")}" style="color: inherit; text-decoration: none;">
-                ${escapeHTML(order.phone || "No phone")}
-              </a>
-            </p>
-            <p>
-              <i data-lucide="clock" style="width: 13px;"></i>
-              ${escapeHTML(formatDate(order.createdAt))}
-            </p>
+            <p><i data-lucide="phone" style="width:13px"></i><a href="tel:${escapeHTML(order.phone || "")}">${escapeHTML(order.phone || "No phone")}</a></p>
+            <p><i data-lucide="clock" style="width:13px"></i>${escapeHTML(formatDate(order.createdAt))}</p>
           </div>
-
           <div class="order-meta-badges">
-            <span class="badge ${badgeStatusClass}">${escapeHTML(status)}</span>
-            <span class="badge ${paymentBadgeClass}">
-              ${paymentStatus === "Paid" ? "Paid" : paymentStatus === "Cancelled" ? "Payment Cancelled" : "Unpaid"}
-            </span>
+            <span class="badge status-${statusLower}">${escapeHTML(status)}</span>
+            <span class="badge ${paymentClass}">${paymentLower === "paid" ? "Paid" : paymentLower === "cancelled" ? "Payment Cancelled" : "Unpaid"}</span>
           </div>
         </div>
 
         <div class="order-address">
-          <i data-lucide="map-pin" style="width: 16px;"></i>
-          <span>${escapeHTML(deliveryLocation)}</span>
+          <i data-lucide="map-pin" style="width:16px"></i>
+          <span>${escapeHTML(order.deliveryAddress || "Takeaway / Self Pickup")}</span>
         </div>
 
-        <div class="order-items-list">
-          ${itemsListHtml}
-        </div>
+        <div class="order-items-list">${itemsHTML}</div>
 
         <div class="order-total-row">
           <span>Order Value</span>
           <span>₹${cleanPrice(order.total).toFixed(0)}</span>
         </div>
 
-        ${cancelledNote}
-        ${controlsHTML}
+        ${cancelNote}
+        ${controls}
       `;
     }
 
     function renderOrders() {
-      const ordersList = document.getElementById("ordersList");
-      const filteredOrders = getFilteredOrders();
+      const target = document.getElementById("ordersList");
+      const list = filteredOrders();
+      target.innerHTML = "";
 
-      ordersList.innerHTML = "";
-
-      if (filteredOrders.length === 0) {
-        ordersList.innerHTML = `
-          <div class="empty-view">
-            <i data-lucide="package-open" style="width: 34px; height: 34px;"></i>
-            <h3>No ${escapeHTML(orderFilter)} Orders</h3>
-            <p>Completed orders are removed from Active Orders and stored in Records.</p>
-          </div>
-        `;
-
-        safeCreateIcons();
+      if (!list.length) {
+        showEmpty("ordersList", "package-open", `No ${orderFilter} Orders`, "Completed orders are kept in Records.");
         return;
       }
 
-      filteredOrders.forEach((order) => {
+      list.forEach(order => {
         const card = document.createElement("div");
         card.className = `order-card ${String(order.status || "").toLowerCase() === "cancelled" ? "cancelled" : ""}`;
-        card.innerHTML = getOrderCardHTML(order);
-        ordersList.appendChild(card);
+        card.innerHTML = orderCardHTML(order, false);
+        target.appendChild(card);
       });
-
       safeCreateIcons();
     }
 
     function renderRecords() {
-      const recordsList = document.getElementById("recordsList");
-      if (!recordsList) return;
+      const target = document.getElementById("recordsList");
+      if (!target) return;
+      target.innerHTML = "";
 
-      recordsList.innerHTML = "";
-
-      if (ordersCache.length === 0) {
-        recordsList.innerHTML = `
-          <div class="empty-view">
-            <i data-lucide="archive" style="width: 34px; height: 34px;"></i>
-            <h3>No Order Records</h3>
-            <p>All order details will be saved here after customers place orders.</p>
-          </div>
-        `;
-
-        safeCreateIcons();
+      if (!ordersCache.length) {
+        showEmpty("recordsList", "archive", "No Order Records", "All order details will appear here.");
         return;
       }
 
       ordersCache.forEach(order => {
         const card = document.createElement("div");
         card.className = `order-card ${String(order.status || "").toLowerCase() === "cancelled" ? "cancelled" : ""}`;
-        card.innerHTML = getOrderCardHTML(order, { recordMode: true });
-        recordsList.appendChild(card);
+        card.innerHTML = orderCardHTML(order, true);
+        target.appendChild(card);
       });
-
       safeCreateIcons();
     }
 
     window.updateOrderStatus = async function(id, status) {
       try {
-        await updateDoc(doc(db, "orders", id), {
-          status: status
-        });
-
+        await updateDoc(doc(db, "orders", id), { status });
         showToast(`Order moved to ${status}`, "check");
         await loadOrders();
-
-      } catch (err) {
-        console.error(err);
+      } catch (error) {
+        console.error(error);
         showToast("Failed to update order", "alert-triangle");
       }
     };
 
     window.markPaid = async function(id) {
       try {
-        await updateDoc(doc(db, "orders", id), {
-          paymentStatus: "Paid"
-        });
-
+        await updateDoc(doc(db, "orders", id), { paymentStatus: "Paid" });
         showToast("Order marked paid", "indian-rupee");
         await loadOrders();
-
-      } catch (err) {
-        console.error(err);
+      } catch (error) {
+        console.error(error);
         showToast("Failed to mark paid", "alert-triangle");
       }
     };
 
     window.deleteOrderRecord = async function(id) {
-      const order = ordersCache.find(orderItem => orderItem.id === id);
-      const customerName = order?.customerName || "this customer";
-
-      const confirmDelete = confirm(`Delete the order record of "${customerName}"? This will permanently remove it from Firestore.`);
-
-      if (!confirmDelete) return;
-
+      const order = ordersCache.find(o => o.id === id);
+      if (!confirm(`Delete order record of "${order?.customerName || "this customer"}"?`)) return;
       try {
         await deleteDoc(doc(db, "orders", id));
         showToast("Order record deleted", "trash-2");
         await loadOrders();
-      } catch (err) {
-        console.error(err);
+      } catch (error) {
+        console.error(error);
         showToast("Failed to delete record", "alert-circle");
       }
+    };
+
+    window.refreshAll = async function() {
+      await Promise.all([loadMenuAdmin(), loadOrders()]);
+      showToast("Dashboard refreshed", "refresh-cw");
     };
 
     loadMenuAdmin();
     loadOrders();
     safeCreateIcons();
-
-    setInterval(() => {
-      loadOrders();
-    }, 30000);
+    setInterval(loadOrders, 30000);
   </script>
-
-</body>
-</html>      font-weight: 800;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      transition: all 0.2s ease;
-    }
-
-    .tab-btn.active {
-      background: var(--primary);
-      color: white;
-    }
-
-    .tab-panel {
-      display: none;
-      animation: slideIn 0.25s ease;
-    }
-
-    .tab-panel.active {
-      display: block;
-    }
-
-    @keyframes slideIn {
-      from {
-        transform: translateY(8px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-
-    .stat-card {
-      background: white;
-      border: 1px solid var(--border-soft);
-      border-radius: 16px;
-      padding: 14px;
-    }
-
-    .stat-card span {
-      font-size: 10px;
-      color: var(--text-light);
-      font-weight: 800;
-      text-transform: uppercase;
-    }
-
-    .stat-card strong {
-      display: block;
-      font-size: 20px;
-      color: var(--primary);
-      margin-top: 3px;
-    }
-
-    .box {
-      background: white;
-      border-radius: 18px;
-      padding: 18px;
-      border: 1px solid var(--border-soft);
-      margin-bottom: 14px;
-      box-shadow: 0 4px 18px rgba(45, 106, 79, 0.02);
-    }
-
-    .box h2 {
-      font-size: 15px;
-      font-weight: 800;
-      color: var(--primary);
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      gap: 7px;
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-
-    .form-label {
-      font-size: 10px;
-      text-transform: uppercase;
-      font-weight: 800;
-      color: var(--text-light);
-      letter-spacing: 0.4px;
-    }
-
-    .form-input,
-    .form-select,
-    .form-textarea {
-      width: 100%;
-      padding: 11px 12px;
-      border-radius: 10px;
-      border: 1px solid rgba(45, 106, 79, 0.15);
-      background: var(--bg-cream);
-      font-size: 13px;
-      outline: none;
-      transition: all 0.2s;
-    }
-
-    .form-input:focus,
-    .form-select:focus,
-    .form-textarea:focus {
-      border-color: var(--primary);
-      background: white;
-    }
-
-    .form-textarea {
-      min-height: 64px;
-      resize: vertical;
-    }
-
-    button {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
-
-    .btn-primary,
-    .btn-danger,
-    .btn-soft,
-    .btn-small,
-    .btn-warning {
-      border: none;
-      padding: 10px 14px;
-      border-radius: 10px;
-      font-weight: 800;
-      font-size: 12px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      transition: all 0.2s ease;
-    }
-
-    .btn-primary {
-      background: var(--primary);
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background: var(--primary-hover);
-    }
-
-    .btn-danger {
-      background: rgba(217, 4, 41, 0.08);
-      color: var(--danger);
-    }
-
-    .btn-danger:hover {
-      background: var(--danger);
-      color: white;
-    }
-
-    .btn-soft {
-      background: rgba(45, 106, 79, 0.08);
-      color: var(--primary);
-    }
-
-    .btn-warning {
-      background: rgba(184, 145, 48, 0.12);
-      color: var(--warning);
-    }
-
-    .btn-small {
-      padding: 7px 10px;
-      font-size: 11px;
-      border-radius: 8px;
-    }
-
-    .menu-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 0;
-      border-bottom: 1px dashed var(--border-soft);
-    }
-
-    .menu-item:last-child {
-      border-bottom: none;
-    }
-
-    .menu-info {
-      min-width: 0;
-    }
-
-    .menu-info h4 {
-      font-size: 15px;
-      font-weight: 800;
-      color: var(--text-dark);
-      word-break: break-word;
-    }
-
-    .menu-info p {
-      font-size: 11px;
-      color: var(--text-light);
-      margin-top: 2px;
-    }
-
-    .menu-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-shrink: 0;
-    }
-
-    .toggle-btn {
-      border: none;
-      min-width: 78px;
-      padding: 8px 10px;
-      border-radius: 9px;
-      color: white;
-      font-size: 10px;
-      font-weight: 900;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-    }
-
-    .toggle-btn.on {
-      background: var(--success);
-    }
-
-    .toggle-btn.off {
-      background: var(--danger);
-    }
-
-    .filters-row {
-      display: flex;
-      gap: 7px;
-      overflow-x: auto;
-      padding-bottom: 8px;
-      margin-bottom: 12px;
-      scrollbar-width: none;
-    }
-
-    .filters-row::-webkit-scrollbar {
-      display: none;
-    }
-
-    .filter-chip {
-      border: 1px solid var(--border-soft);
-      background: white;
-      color: var(--text-light);
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-size: 11px;
-      font-weight: 800;
-      white-space: nowrap;
-      cursor: pointer;
-    }
-
-    .filter-chip.active {
-      background: var(--primary);
-      color: white;
-      border-color: var(--primary);
-    }
-
-    .order-card {
-      background: white;
-      border: 1px solid var(--border-soft);
-      border-radius: 18px;
-      padding: 16px;
-      margin-bottom: 12px;
-      box-shadow: 0 4px 18px rgba(45, 106, 79, 0.02);
-    }
-
-    .order-card.cancelled {
-      opacity: 0.78;
-    }
-
-    .order-header {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      border-bottom: 1px dashed var(--border-soft);
-      padding-bottom: 12px;
-      margin-bottom: 12px;
-    }
-
-    .customer-meta h3 {
-      font-family: 'Playfair Display', serif;
-      color: var(--primary);
-      font-size: 19px;
-      line-height: 1.1;
-    }
-
-    .customer-meta p {
-      font-size: 12px;
-      color: var(--text-light);
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      margin-top: 4px;
-    }
-
-    .order-meta-badges {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 6px;
-      flex-shrink: 0;
-    }
-
-    .badge {
-      font-size: 10px;
-      font-weight: 900;
-      text-transform: uppercase;
-      padding: 4px 8px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      white-space: nowrap;
-    }
-
-    .badge.status-new {
-      background: rgba(49, 130, 206, 0.12);
-      color: #2b6cb0;
-    }
-
-    .badge.status-preparing {
-      background: rgba(184, 145, 48, 0.15);
-      color: #9a721d;
-    }
-
-    .badge.status-dispatched {
-      background: rgba(82, 183, 136, 0.16);
-      color: #2d6a4f;
-    }
-
-    .badge.status-completed {
-      background: rgba(45, 106, 79, 0.1);
-      color: var(--primary);
-    }
-
-    .badge.status-cancelled {
-      background: rgba(217, 4, 41, 0.08);
-      color: var(--danger);
-    }
-
-    .badge.paid {
-      background: rgba(82, 183, 136, 0.16);
-      color: #2d6a4f;
-    }
-
-    .badge.unpaid {
-      background: rgba(217, 4, 41, 0.08);
-      color: var(--danger);
-    }
-
-    .badge.cancelled-pay {
-      background: rgba(217, 4, 41, 0.08);
-      color: var(--danger);
-    }
-
-    .order-address {
-      background: var(--bg-cream);
-      border: 1px solid var(--border-soft);
-      border-radius: 12px;
-      padding: 10px 12px;
-      font-size: 12px;
-      color: var(--text-dark);
-      display: flex;
-      gap: 7px;
-      margin-bottom: 10px;
-    }
-
-    .order-address i {
-      color: var(--accent);
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .order-items-list {
-      margin-bottom: 10px;
-    }
-
-    .order-item-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      font-size: 13px;
-      padding: 4px 0;
-      color: var(--text-dark);
-    }
-
-    .order-total-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px dashed var(--border-soft);
-      padding-top: 10px;
-      font-weight: 800;
-      margin-top: 8px;
-    }
-
-    .order-total-row span:last-child {
-      color: var(--primary);
-      font-size: 18px;
-    }
-
-    .order-controls {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    .record-controls {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    .expired-note {
-      margin-top: 10px;
-      background: rgba(217, 4, 41, 0.06);
-      color: var(--danger);
-      border: 1px solid rgba(217, 4, 41, 0.12);
-      padding: 8px 10px;
-      border-radius: 10px;
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    .empty-view {
-      text-align: center;
-      background: white;
-      border: 1px solid var(--border-soft);
-      border-radius: 18px;
-      padding: 28px 16px;
-      color: var(--text-light);
-    }
-
-    .empty-view h3 {
-      font-size: 16px;
-      color: var(--primary);
-      margin-top: 8px;
-    }
-
-    .empty-view p {
-      font-size: 12px;
-      margin-top: 4px;
-    }
-
-    .toast-container {
-      position: fixed;
-      top: 16px;
-      right: 16px;
-      z-index: 3000;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      pointer-events: none;
-    }
-
-    .toast {
-      background: var(--primary);
-      color: white;
-      padding: 10px 16px;
-      border-radius: 10px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 13px;
-      font-weight: 700;
-      animation: slideInRight 0.25s ease;
-      pointer-events: auto;
-    }
-
-    @keyframes slideInRight {
-      from {
-        transform: translateX(100%);
-        opacity: 0;
-      }
-      to {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        padding: 14px;
-      }
-
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .top-bar {
-        align-items: flex-start;
-      }
-
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
-      }
-
-      .stat-card {
-        padding: 11px;
-      }
-
-      .stat-card strong {
-        font-size: 18px;
-      }
-
-      .admin-tabs {
-        grid-template-columns: 1fr;
-      }
-
-      .menu-item {
-        align-items: flex-start;
-      }
-
-      .menu-actions {
-        flex-direction: column;
-      }
-
-      .order-controls {
-        grid-template-columns: 1fr;
-      }
-
-      .toast-container {
-        left: 16px;
-        right: 16px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-<header>
-  <div class="header-logo">
-    <i data-lucide="coffee"></i>
-    <span>Tawang Cafe</span>
-  </div>
-  <p>Owner Console &bull; <a href="index.html">Open Customer Website</a></p>
-</header>
-
-<div class="container">
-
-  <div class="top-bar">
-    <div class="page-title">
-      <h1>Owner Dashboard</h1>
-      <p>Manage today’s bakes, menu stock, payments and delivery orders.</p>
-    </div>
-
-    <button class="refresh-btn" onclick="refreshAll()">
-      <i data-lucide="refresh-cw" style="width: 14px;"></i>
-      Refresh
-    </button>
-  </div>
-
-  <div class="admin-tabs">
-    <button class="tab-btn active" id="menuTabBtn" onclick="switchAdminTab('menu')">
-      <i data-lucide="cake-slice" style="width: 15px;"></i>
-      Menu
-    </button>
-
-    <button class="tab-btn" id="ordersTabBtn" onclick="switchAdminTab('orders')">
-      <i data-lucide="truck" style="width: 15px;"></i>
-      Orders
-    </button>
-
-    <button class="tab-btn" id="recordsTabBtn" onclick="switchAdminTab('records')">
-      <i data-lucide="archive" style="width: 15px;"></i>
-      Records
-    </button>
-  </div>
-
-  <div class="stats-grid">
-    <div class="stat-card">
-      <span>Total Items</span>
-      <strong id="statItems">0</strong>
-    </div>
-
-    <div class="stat-card">
-      <span>Today’s Bakes</span>
-      <strong id="statBakes">0</strong>
-    </div>
-
-    <div class="stat-card">
-      <span>Active Orders</span>
-      <strong id="statOrders">0</strong>
-    </div>
-
-    <div class="stat-card">
-      <span>Unpaid</span>
-      <strong id="statUnpaid">0</strong>
-    </div>
-  </div>
-
-  <div class="tab-panel active" id="menuPanel">
-
-    <div class="box">
-      <h2>
-        <i data-lucide="cake-slice" style="width: 16px;"></i>
-        Today's Bakes
-      </h2>
-
-      <div id="bakesList">
-        <div class="empty-view">
-          <i data-lucide="loader" style="width: 32px; height: 32px;"></i>
-          <h3>Loading Today’s Bakes</h3>
-          <p>Only cake items will appear here.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="box">
-      <h2>
-        <i data-lucide="plus-circle" style="width: 16px;"></i>
-        Add New Item
-      </h2>
-
-      <div class="form-grid">
-        <div class="form-group">
-          <label class="form-label" for="itemName">Item Name</label>
-          <input id="itemName" class="form-input" placeholder="e.g. Chocolate Cake" />
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="itemPrice">Price INR</label>
-          <input id="itemPrice" type="number" class="form-input" placeholder="e.g. 120" />
-        </div>
-      </div>
-
-      <div class="form-grid">
-        <div class="form-group">
-          <label class="form-label" for="itemCategory">Category</label>
-          <select id="itemCategory" class="form-select">
-            <option value="Cake">Cake</option>
-            <option value="Coffee">Coffee</option>
-            <option value="Tea">Tea</option>
-            <option value="Snacks">Snacks</option>
-            <option value="Desserts">Desserts</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="itemDescription">Short Description</label>
-          <textarea id="itemDescription" class="form-textarea" placeholder="e.g. Freshly baked today"></textarea>
-        </div>
-      </div>
-
-      <button class="btn-primary" onclick="addMenuItem()">
-        <i data-lucide="save" style="width: 14px;"></i>
-        Save Item
-      </button>
-    </div>
-
-    <div class="box">
-      <h2>
-        <i data-lucide="toggle-left" style="width: 16px;"></i>
-        Full Menu Stock
-      </h2>
-
-      <div id="menuList">
-        <div class="empty-view">
-          <i data-lucide="loader" style="width: 32px; height: 32px;"></i>
-          <h3>Loading Menu</h3>
-          <p>Please wait...</p>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="tab-panel" id="ordersPanel">
-
-    <div class="filters-row">
-      <button class="filter-chip active" data-filter="Active" onclick="setOrderFilter('Active')">Active</button>
-      <button class="filter-chip" data-filter="New" onclick="setOrderFilter('New')">New</button>
-      <button class="filter-chip" data-filter="Preparing" onclick="setOrderFilter('Preparing')">Preparing</button>
-      <button class="filter-chip" data-filter="Dispatched" onclick="setOrderFilter('Dispatched')">Dispatched</button>
-      <button class="filter-chip" data-filter="Unpaid" onclick="setOrderFilter('Unpaid')">Unpaid</button>
-      <button class="filter-chip" data-filter="Paid" onclick="setOrderFilter('Paid')">Paid</button>
-      <button class="filter-chip" data-filter="Cancelled" onclick="setOrderFilter('Cancelled')">Cancelled</button>
-      <button class="filter-chip" data-filter="All" onclick="setOrderFilter('All')">All</button>
-    </div>
-
-    <div id="ordersList">
-      <div class="empty-view">
-        <i data-lucide="loader" style="width: 32px; height: 32px;"></i>
-        <h3>Loading Orders</h3>
-        <p>Please wait...</p>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="tab-panel" id="recordsPanel">
-
-    <div class="box">
-      <h2>
-        <i data-lucide="archive" style="width: 16px;"></i>
-        Order Records
-      </h2>
-      <p style="font-size: 12px; color: var(--text-light); margin-bottom: 12px;">
-        This keeps every order detail including completed, cancelled, paid and unpaid orders. You can delete old records manually.
-      </p>
-
-      <div id="recordsList">
-        <div class="empty-view">
-          <i data-lucide="loader" style="width: 32px; height: 32px;"></i>
-          <h3>Loading Records</h3>
-          <p>Please wait...</p>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-</div>
-
-<div class="toast-container" id="toastContainer"></div>
-
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import {
-    getFirestore,
-    collection,
-    getDocs,
-    addDoc,
-    updateDoc,
-    deleteDoc,
-    doc,
-    query,
-    orderBy,
-    serverTimestamp
-  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyAYonKe7d9rNp59LOkzEbBowQrcsFH32ts",
-    authDomain: "cafe-b80ce.firebaseapp.com",
-    projectId: "cafe-b80ce",
-    storageBucket: "cafe-b80ce.firebasestorage.app",
-    messagingSenderId: "110426428527",
-    appId: "1:110426428527:web:d91f0d414bd13a61ea699a",
-    measurementId: "G-0JVCTK651G"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  let menuCache = [];
-  let ordersCache = [];
-  let orderFilter = "Active";
-
-  const PAYMENT_EXPIRY_MINUTES = 15;
-
-  function cleanPrice(value) {
-    const number = Number(String(value).replace(/[^0-9.]/g, ""));
-    return isNaN(number) ? 0 : number;
-  }
-
-  function escapeHTML(value) {
-    return String(value || "")
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#039;");
-  }
-
-  function safeCreateIcons() {
-    try {
-      if (typeof lucide !== "undefined" && typeof lucide.createIcons === "function") {
-        lucide.createIcons();
-      }
-    } catch (e) {
-      console.warn("Lucide icons failed:", e);
-    }
-  }
-
-  function getDateFromTimestamp(timestamp) {
-    try {
-      if (timestamp && typeof timestamp.toDate === "function") {
-        return timestamp.toDate();
-      }
-    } catch (e) {}
-
-    return null;
-  }
-
-  function formatDate(timestamp) {
-    const date = getDateFromTimestamp(timestamp);
-
-    if (!date) return "Just now";
-
-    return date.toLocaleString("en-IN", {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit"
-    });
-  }
-
-  function isPaymentExpired(order) {
-    const status = String(order.status || "New");
-    const paymentStatus = String(order.paymentStatus || "Pending");
-
-    if (paymentStatus === "Paid") return false;
-    if (status === "Completed") return false;
-    if (status === "Cancelled") return false;
-
-    const createdDate = getDateFromTimestamp(order.createdAt);
-    if (!createdDate) return false;
-
-    const now = new Date();
-    const diffMinutes = (now - createdDate) / 60000;
-
-    return diffMinutes > PAYMENT_EXPIRY_MINUTES;
-  }
-
-  async function autoCancelExpiredOrders() {
-    const expiredOrders = ordersCache.filter(isPaymentExpired);
-
-    if (expiredOrders.length === 0) return;
-
-    await Promise.all(
-      expiredOrders.map(order => {
-        return updateDoc(doc(db, "orders", order.id), {
-          status: "Cancelled",
-          paymentStatus: "Cancelled",
-          cancelReason: "Payment not completed within 15 minutes",
-          cancelledAt: serverTimestamp()
-        });
-      })
-    );
-
-    ordersCache = ordersCache.map(order => {
-      if (expiredOrders.some(expired => expired.id === order.id)) {
-        return {
-          ...order,
-          status: "Cancelled",
-          paymentStatus: "Cancelled",
-          cancelReason: "Payment not completed within 15 minutes"
-        };
-      }
-
-      return order;
-    });
-
-    showToast(`${expiredOrders.length} unpaid order cancelled after 15 minutes`, "clock");
-  }
-
-  window.showToast = function(message, iconName = "check") {
-    const container = document.getElementById("toastContainer");
-    const toast = document.createElement("div");
-
-    toast.className = "toast";
-    toast.innerHTML = `
-      <i data-lucide="${iconName}" style="width: 16px; height: 16px;"></i>
-      <span>${escapeHTML(message)}</span>
-    `;
-
-    container.appendChild(toast);
-    safeCreateIcons();
-
-    setTimeout(() => {
-      toast.style.opacity = "0";
-      toast.style.transition = "opacity 0.5s ease-out";
-      setTimeout(() => toast.remove(), 500);
-    }, 2400);
-  };
-
-  window.switchAdminTab = function(tabName) {
-    document.getElementById("menuTabBtn").classList.toggle("active", tabName === "menu");
-    document.getElementById("ordersTabBtn").classList.toggle("active", tabName === "orders");
-    document.getElementById("recordsTabBtn").classList.toggle("active", tabName === "records");
-
-    document.getElementById("menuPanel").classList.toggle("active", tabName === "menu");
-    document.getElementById("ordersPanel").classList.toggle("active", tabName === "orders");
-    document.getElementById("recordsPanel").classList.toggle("active", tabName === "records");
-
-    if (tabName === "records") {
-      renderRecords();
-    }
-
-    safeCreateIcons();
-  };
-
-  window.refreshAll = async function() {
-    await Promise.all([loadMenuAdmin(), loadOrders()]);
-    showToast("Dashboard refreshed", "refresh-cw");
-  };
-
-  function updateStats() {
-    const totalItems = menuCache.length;
-    const totalBakes = menuCache.filter(item => String(item.category || "").toLowerCase() === "cake").length;
-
-    const activeOrders = ordersCache.filter(order => {
-      const status = String(order.status || "New").toLowerCase();
-      return status !== "completed" && status !== "cancelled";
-    }).length;
-
-    const unpaidOrders = ordersCache.filter(order => {
-      const status = String(order.status || "New").toLowerCase();
-      const paymentStatus = String(order.paymentStatus || "Pending");
-      return paymentStatus !== "Paid" && status !== "cancelled";
-    }).length;
-
-    document.getElementById("statItems").textContent = totalItems;
-    document.getElementById("statBakes").textContent = totalBakes;
-    document.getElementById("statOrders").textContent = activeOrders;
-    document.getElementById("statUnpaid").textContent = unpaidOrders;
-  }
-
-  async function loadMenuAdmin() {
-    const menuList = document.getElementById("menuList");
-    const bakesList = document.getElementById("bakesList");
-
-    try {
-      let querySnapshot;
-
-      try {
-        const q = query(collection(db, "menu"), orderBy("createdAt", "desc"));
-        querySnapshot = await getDocs(q);
-      } catch (e) {
-        querySnapshot = await getDocs(collection(db, "menu"));
-      }
-
-      menuCache = [];
-
-      querySnapshot.forEach((documentSnap) => {
-        menuCache.push({
-          id: documentSnap.id,
-          ...documentSnap.data()
-        });
-      });
-
-      renderBakesOnly();
-      renderMenuAdmin();
-      updateStats();
-
-    } catch (err) {
-      console.error(err);
-
-      const errorHTML = `
-        <div class="empty-view">
-          <i data-lucide="alert-triangle" style="width: 32px; height: 32px; color: var(--danger);"></i>
-          <h3>Menu Sync Failed</h3>
-          <p>Please check your Firebase rules.</p>
-        </div>
-      `;
-
-      menuList.innerHTML = errorHTML;
-      bakesList.innerHTML = errorHTML;
-
-      safeCreateIcons();
-    }
-  }
-
-  function createMenuItemHTML(item) {
-    return `
-      <div class="menu-info">
-        <h4>${escapeHTML(item.name)}</h4>
-        <p>${escapeHTML(item.category || "General")} &bull; ₹${cleanPrice(item.price).toFixed(0)}</p>
-        ${
-          item.description
-            ? `<p>${escapeHTML(item.description)}</p>`
-            : `<p>No description added</p>`
-        }
-      </div>
-
-      <div class="menu-actions">
-        <button class="toggle-btn ${item.available ? "on" : "off"}" onclick="toggleAvailability('${item.id}', ${item.available === true})">
-          <i data-lucide="${item.available ? "check" : "x"}" style="width: 12px;"></i>
-          ${item.available ? "ON" : "OUT"}
-        </button>
-
-        <button class="btn-danger btn-small" onclick="deleteMenuItemWithConfirm('${item.id}')">
-          <i data-lucide="trash-2" style="width: 13px;"></i>
-        </button>
-      </div>
-    `;
-  }
-
-  function renderBakesOnly() {
-    const bakesList = document.getElementById("bakesList");
-    bakesList.innerHTML = "";
-
-    const cakes = menuCache.filter(item => String(item.category || "").toLowerCase() === "cake");
-
-    if (cakes.length === 0) {
-      bakesList.innerHTML = `
-        <div class="empty-view">
-          <i data-lucide="cake-slice" style="width: 34px; height: 34px;"></i>
-          <h3>No Cakes Added</h3>
-          <p>Add cake items below and they will appear in Today’s Bakes.</p>
-        </div>
-      `;
-
-      safeCreateIcons();
-      return;
-    }
-
-    cakes.forEach((item) => {
-      const div = document.createElement("div");
-      div.className = "menu-item";
-      div.innerHTML = createMenuItemHTML(item);
-      bakesList.appendChild(div);
-    });
-
-    safeCreateIcons();
-  }
-
-  function renderMenuAdmin() {
-    const menuList = document.getElementById("menuList");
-    menuList.innerHTML = "";
-
-    if (menuCache.length === 0) {
-      menuList.innerHTML = `
-        <div class="empty-view">
-          <i data-lucide="coffee" style="width: 34px; height: 34px;"></i>
-          <h3>No Menu Items</h3>
-          <p>Add your first cafe item above.</p>
-        </div>
-      `;
-
-      safeCreateIcons();
-      return;
-    }
-
-    menuCache.forEach((item) => {
-      const div = document.createElement("div");
-      div.className = "menu-item";
-      div.innerHTML = createMenuItemHTML(item);
-      menuList.appendChild(div);
-    });
-
-    safeCreateIcons();
-  }
-
-  window.addMenuItem = async function() {
-    const name = document.getElementById("itemName").value.trim();
-    const price = Number(document.getElementById("itemPrice").value);
-    const category = document.getElementById("itemCategory").value;
-    const description = document.getElementById("itemDescription").value.trim();
-
-    if (!name || isNaN(price) || price <= 0) {
-      showToast("Enter item name and valid price", "alert-circle");
-      return;
-    }
-
-    try {
-      await addDoc(collection(db, "menu"), {
-        name: name,
-        price: price,
-        category: category,
-        description: description,
-        available: true,
-        createdAt: serverTimestamp()
-      });
-
-      document.getElementById("itemName").value = "";
-      document.getElementById("itemPrice").value = "";
-      document.getElementById("itemDescription").value = "";
-
-      showToast(`${name} added to menu`, "check-circle");
-      await loadMenuAdmin();
-
-    } catch (err) {
-      console.error(err);
-      showToast("Failed to save item", "alert-triangle");
-    }
-  };
-
-  window.toggleAvailability = async function(id, currentStatus) {
-    try {
-      await updateDoc(doc(db, "menu", id), {
-        available: !currentStatus
-      });
-
-      showToast("Stock updated", "toggle-right");
-      await loadMenuAdmin();
-
-    } catch (err) {
-      console.error(err);
-      showToast("Failed to update stock", "alert-circle");
-    }
-  };
-
-  window.deleteMenuItemWithConfirm = async function(id) {
-    const item = menuCache.find(menuItem => menuItem.id === id);
-    const itemName = item?.name || "this item";
-
-    const confirmDelete = confirm(`Delete "${itemName}" from the menu? This cannot be undone.`);
-
-    if (!confirmDelete) return;
-
-    try {
-      await deleteDoc(doc(db, "menu", id));
-      showToast("Menu item deleted", "trash-2");
-      await loadMenuAdmin();
-    } catch (err) {
-      console.error(err);
-      showToast("Failed to delete item", "alert-circle");
-    }
-  };
-
-  async function loadOrders() {
-    const ordersList = document.getElementById("ordersList");
-
-    try {
-      let querySnapshot;
-
-      try {
-        const q = query(collection(db, "orders"), orderBy("createdAt", "desc"));
-        querySnapshot = await getDocs(q);
-      } catch (e) {
-        querySnapshot = await getDocs(collection(db, "orders"));
-      }
-
-      ordersCache = [];
-
-      querySnapshot.forEach((documentSnap) => {
-        ordersCache.push({
-          id: documentSnap.id,
-          ...documentSnap.data()
-        });
-      });
-
-      await autoCancelExpiredOrders();
-
-      renderOrders();
-      renderRecords();
-      updateStats();
-
-    } catch (err) {
-      console.error(err);
-
-      ordersList.innerHTML = `
-        <div class="empty-view">
-          <i data-lucide="alert-triangle" style="width: 32px; height: 32px; color: var(--danger);"></i>
-          <h3>Order Sync Failed</h3>
-          <p>Please check your Firebase rules.</p>
-        </div>
-      `;
-
-      safeCreateIcons();
-    }
-  }
-
-  window.setOrderFilter = function(filterName) {
-    orderFilter = filterName;
-
-    document.querySelectorAll(".filter-chip").forEach(chip => {
-      chip.classList.toggle("active", chip.dataset.filter === filterName);
-    });
-
-    renderOrders();
-  };
-
-  function getFilteredOrders() {
-    return ordersCache.filter(order => {
-      const status = String(order.status || "New");
-      const paymentStatus = String(order.paymentStatus || "Pending");
-
-      if (orderFilter === "All") return true;
-
-      if (orderFilter === "Active") {
-        return status.toLowerCase() !== "completed" && status.toLowerCase() !== "cancelled";
-      }
-
-      if (orderFilter === "Paid") return paymentStatus === "Paid";
-      if (orderFilter === "Unpaid") {
-        return paymentStatus !== "Paid" && status.toLowerCase() !== "cancelled";
-      }
-
-      return status.toLowerCase() === orderFilter.toLowerCase();
-    });
-  }
-
-  function getOrderCardHTML(order, options = {}) {
-    const id = order.id;
-    const status = order.status || "New";
-    const paymentStatus = order.paymentStatus || "Pending";
-    const deliveryLocation = order.deliveryAddress || "Takeaway / Self Pickup";
-    const statusLower = String(status).toLowerCase();
-
-    const badgeStatusClass = `status-${statusLower}`;
-    let paymentBadgeClass = "unpaid";
-
-    if (paymentStatus === "Paid") {
-      paymentBadgeClass = "paid";
-    }
-
-    if (paymentStatus === "Cancelled") {
-      paymentBadgeClass = "cancelled-pay";
-    }
-
-    let itemsListHtml = "";
-
-    if (Array.isArray(order.items) && order.items.length > 0) {
-      order.items.forEach(item => {
-        const itemName = escapeHTML(item.name || "Item");
-        const itemQty = Number(item.quantity || 1);
-        const itemPrice = cleanPrice(item.price) * itemQty;
-
-        itemsListHtml += `
-          <div class="order-item-row">
-            <span>${itemName} <strong style="color: var(--primary)">× ${itemQty}</strong></span>
-            <span>₹${itemPrice.toFixed(0)}</span>
-          </div>
-        `;
-      });
-    } else {
-      itemsListHtml = `
-        <div class="order-item-row">
-          <span>No items found</span>
-          <span>₹0</span>
-        </div>
-      `;
-    }
-
-    let controlsHTML = "";
-
-    if (options.recordMode) {
-      controlsHTML = `
-        <div class="record-controls">
-          <button class="btn-danger" onclick="deleteOrderRecord('${id}')">
-            <i data-lucide="trash-2" style="width: 13px;"></i>
-            Delete This Record
-          </button>
-        </div>
-      `;
-    } else {
-      if (statusLower !== "completed" && statusLower !== "cancelled") {
-        controlsHTML = `
-          <div class="order-controls">
-            <button class="btn-primary" style="background:#2b6cb0;" onclick="updateOrderStatus('${id}', 'Preparing')">
-              <i data-lucide="cog" style="width: 13px;"></i>
-              Preparing
-            </button>
-
-            <button class="btn-primary" style="background: var(--secondary);" onclick="updateOrderStatus('${id}', 'Dispatched')">
-              <i data-lucide="navigation" style="width: 13px;"></i>
-              Dispatch
-            </button>
-
-            <button class="btn-primary" onclick="updateOrderStatus('${id}', 'Completed')">
-              <i data-lucide="check-square" style="width: 13px;"></i>
-              Complete
-            </button>
-
-            <button class="btn-soft" onclick="markPaid('${id}')">
-              <i data-lucide="indian-rupee" style="width: 13px;"></i>
-              Mark Paid
-            </button>
-          </div>
-        `;
-      } else {
-        controlsHTML = `
-          <div class="expired-note">
-            This order is ${escapeHTML(status)} and has been moved out of active orders. See Records tab for full history.
-          </div>
-        `;
-      }
-    }
-
-    const cancelledNote = statusLower === "cancelled"
-      ? `
-        <div class="expired-note">
-          ${escapeHTML(order.cancelReason || "Order cancelled.")}
-        </div>
-      `
-      : "";
-
-    return `
-      <div class="order-header">
-        <div class="customer-meta">
-          <h3>${escapeHTML(order.customerName || "Customer")}</h3>
-          <p>
-            <i data-lucide="phone" style="width: 13px;"></i>
-            <a href="tel:${escapeHTML(order.phone || "")}" style="color: inherit; text-decoration: none;">
-              ${escapeHTML(order.phone || "No phone")}
-            </a>
-          </p>
-          <p>
-            <i data-lucide="clock" style="width: 13px;"></i>
-            ${escapeHTML(formatDate(order.createdAt))}
-          </p>
-        </div>
-
-        <div class="order-meta-badges">
-          <span class="badge ${badgeStatusClass}">${escapeHTML(status)}</span>
-          <span class="badge ${paymentBadgeClass}">
-            ${paymentStatus === "Paid" ? "Paid" : paymentStatus === "Cancelled" ? "Payment Cancelled" : "Unpaid"}
-          </span>
-        </div>
-      </div>
-
-      <div class="order-address">
-        <i data-lucide="map-pin" style="width: 16px;"></i>
-        <span>${escapeHTML(deliveryLocation)}</span>
-      </div>
-
-      <div class="order-items-list">
-        ${itemsListHtml}
-      </div>
-
-      <div class="order-total-row">
-        <span>Order Value</span>
-        <span>₹${cleanPrice(order.total).toFixed(0)}</span>
-      </div>
-
-      ${cancelledNote}
-      ${controlsHTML}
-    `;
-  }
-
-  function renderOrders() {
-    const ordersList = document.getElementById("ordersList");
-    const filteredOrders = getFilteredOrders();
-
-    ordersList.innerHTML = "";
-
-    if (filteredOrders.length === 0) {
-      ordersList.innerHTML = `
-        <div class="empty-view">
-          <i data-lucide="package-open" style="width: 34px; height: 34px;"></i>
-          <h3>No ${escapeHTML(orderFilter)} Orders</h3>
-          <p>Completed orders are removed from Active Orders and stored in Records.</p>
-        </div>
-      `;
-
-      safeCreateIcons();
-      return;
-    }
-
-    filteredOrders.forEach((order) => {
-      const card = document.createElement("div");
-      card.className = `order-card ${String(order.status || "").toLowerCase() === "cancelled" ? "cancelled" : ""}`;
-      card.innerHTML = getOrderCardHTML(order);
-      ordersList.appendChild(card);
-    });
-
-    safeCreateIcons();
-  }
-
-  function renderRecords() {
-    const recordsList = document.getElementById("recordsList");
-    if (!recordsList) return;
-
-    recordsList.innerHTML = "";
-
-    if (ordersCache.length === 0) {
-      recordsList.innerHTML = `
-        <div class="empty-view">
-          <i data-lucide="archive" style="width: 34px; height: 34px;"></i>
-          <h3>No Order Records</h3>
-          <p>All order details will be saved here after customers place orders.</p>
-        </div>
-      `;
-
-      safeCreateIcons();
-      return;
-    }
-
-    ordersCache.forEach(order => {
-      const card = document.createElement("div");
-      card.className = `order-card ${String(order.status || "").toLowerCase() === "cancelled" ? "cancelled" : ""}`;
-      card.innerHTML = getOrderCardHTML(order, { recordMode: true });
-      recordsList.appendChild(card);
-    });
-
-    safeCreateIcons();
-  }
-
-  window.updateOrderStatus = async function(id, status) {
-    try {
-      await updateDoc(doc(db, "orders", id), {
-        status: status
-      });
-
-      showToast(`Order moved to ${status}`, "check");
-      await loadOrders();
-
-    } catch (err) {
-      console.error(err);
-      showToast("Failed to update order", "alert-triangle");
-    }
-  };
-
-  window.markPaid = async function(id) {
-    try {
-      await updateDoc(doc(db, "orders", id), {
-        paymentStatus: "Paid"
-      });
-
-      showToast("Order marked paid", "indian-rupee");
-      await loadOrders();
-
-    } catch (err) {
-      console.error(err);
-      showToast("Failed to mark paid", "alert-triangle");
-    }
-  };
-
-  window.deleteOrderRecord = async function(id) {
-    const order = ordersCache.find(orderItem => orderItem.id === id);
-    const customerName = order?.customerName || "this customer";
-
-    const confirmDelete = confirm(`Delete the order record of "${customerName}"? This will permanently remove it from Firestore.`);
-
-    if (!confirmDelete) return;
-
-    try {
-      await deleteDoc(doc(db, "orders", id));
-      showToast("Order record deleted", "trash-2");
-      await loadOrders();
-    } catch (err) {
-      console.error(err);
-      showToast("Failed to delete record", "alert-circle");
-    }
-  };
-
-  loadMenuAdmin();
-  loadOrders();
-  safeCreateIcons();
-
-  setInterval(() => {
-    loadOrders();
-  }, 30000);
-</script>
-
-</body>
-</html>
-    .customer-meta p {
-      font-size: 12px;
-      color: var(--text-light);
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      margin-top: 4px;
-    }
-
-    .order-meta-badges {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 6px;
-      flex-shrink: 0;
-    }
-
-    .badge {
-      font-size: 10px;
-      font-weight: 900;
-      text-transform: uppercase;
-      padding: 4px 8px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      white-space: nowrap;
-    }
-
-    .badge.status-new {
-      background: rgba(49, 130, 206, 0.12);
-      color: #2b6cb0;
-    }
-
-    .badge.status-preparing {
-      background: rgba(184, 145, 48, 0.15);
-      color: #9a721d;
-    }
-
-    .badge.status-dispatched {
-      background: rgba(82, 183, 136, 0.16);
-      color: #2d6a4f;
-    }
-
-    .badge.status-completed {
-      background: rgba(45, 106, 79, 0.1);
-      color: var(--primary);
-    }
-
-    .badge.paid {
-      background: rgba(82, 183, 136, 0.16);
-      color: #2d6a4f;
-    }
-
-    .badge.unpaid {
-      background: rgba(217, 4, 41, 0.08);
-      color: var(--danger);
-    }
-
-    .order-address {
-      background: var(--bg-cream);
-      border: 1px solid var(--border-soft);
-      border-radius: 12px;
-      padding: 10px 12px;
-      font-size: 12px;
-      color: var(--text-dark);
-      display: flex;
-      gap: 7px;
-      margin-bottom: 10px;
-    }
-
-    .order-address i {
-      color: var(--accent);
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .order-items-list {
-      margin-bottom: 10px;
-    }
-
-    .order-item-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      font-size: 13px;
-      padding: 4px 0;
-      color: var(--text-dark);
-    }
-
-    .order-total-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px dashed var(--border-soft);
-      padding-top: 10px;
-      font-weight: 800;
-      margin-top: 8px;
-    }
-
-    .order-total-row span:last-child {
-      color: var(--primary);
-      font-size: 18px;
-    }
-
-    .order-controls {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    .empty-view {
-      text-align: center;
-      background: white;
-      border: 1px solid var(--border-soft);
-      border-radius: 18px;
-      padding: 28px 16px;
-      color: var(--text-light);
-    }
-
-    .empty-view h3 {
-      font-size: 16px;
-      color: var(--primary);
-      margin-top: 8px;
-    }
-
-    .empty-view p {
-      font-size: 12px;
-      margin-top: 4px;
-    }
-
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(15, 42, 29, 0.45);
-      backdrop-filter: blur(8px);
-      z-index: 2000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-      padding: 16px;
-    }
-
-    .modal-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .modal-content {
-      background: white;
-      border-radius: 20px;
-      max-width: 390px;
-      width: 100%;
-      padding: 24px;
-      box-shadow: 0 15px 45px rgba(15, 42, 29, 0.12);
-      transform: scale(0.9);
-      transition: transform 0.3s ease;
-      text-align: center;
-      border: 1px solid var(--border-soft);
-    }
-
-    .modal-overlay.active .modal-content {
-      transform: scale(1);
-    }
-
-    .modal-icon {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 12px;
-      background: rgba(217, 4, 41, 0.08);
-      color: var(--danger);
-    }
-
-    .modal-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 20px;
-      color: var(--primary);
-      margin-bottom: 6px;
-    }
-
-    .modal-desc {
-      font-size: 13px;
-      color: var(--text-light);
-      margin-bottom: 18px;
-    }
-
-    .modal-actions-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .toast-container {
-      position: fixed;
-      top: 16px;
-      right: 16px;
-      z-index: 3000;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      pointer-events: none;
-    }
-
-    .toast {
-      background: var(--primary);
-      color: white;
-      padding: 10px 16px;
-      border-radius: 10px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 13px;
-      font-weight: 700;
-      animation: slideInRight 0.25s ease;
-      pointer-events: auto;
-    }
-
-    @keyframes slideInRight {
-      from {
-        transform: translateX(100%);
-        opacity: 0;
-      }
-      to {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        padding: 14px;
-      }
-
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .top-bar {
-        align-items: flex-start;
-      }
-
-      .stats-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-      }
-
-      .stat-card {
-        padding: 11px;
-      }
-
-      .stat-card strong {
-        font-size: 18px;
-      }
-
-      .menu-item {
-        align-items: flex-start;
-      }
-
-      .menu-actions {
-        flex-direction: column;
-      }
-
-      .order-controls {
-        grid-template-columns: 1fr;
-      }
-
-      .toast-container {
-        left: 16px;
-        right: 16px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-<header>
-  <div class="header-logo">
-    <i data-lucide="coffee"></i>
-    <span>Tokyi Cafe</span>
-  </div>
-  <p>Owner Console &bull; <a href="index.html">Open Customer Website</a></p>
-</header>
-
-<div class="container">
-
-  <div class="top-bar">
-    <div class="page-title">
-      <h1>Owner Dashboard</h1>
-      <p>Manage menu, stock, payments and delivery orders.</p>
-    </div>
-
-    <button class="refresh-btn" onclick="refreshAll()">
-      <i data-lucide="refresh-cw" style="width: 14px;"></i>
-      Refresh
-    </button>
-  </div>
-
-  <div class="admin-tabs">
-    <button class="tab-btn active" id="menuTabBtn" onclick="switchAdminTab('menu')">
-      <i data-lucide="utensils" style="width: 15px;"></i>
-      Menu
-    </button>
-
-    <button class="tab-btn" id="ordersTabBtn" onclick="switchAdminTab('orders')">
-      <i data-lucide="truck" style="width: 15px;"></i>
-      Orders
-    </button>
-  </div>
-
-  <div class="stats-grid">
-    <div class="stat-card">
-      <span>Total Items</span>
-      <strong id="statItems">0</strong>
-    </div>
-
-    <div class="stat-card">
-      <span>Active Orders</span>
-      <strong id="statOrders">0</strong>
-    </div>
-
-    <div class="stat-card">
-      <span>Unpaid</span>
-      <strong id="statUnpaid">0</strong>
-    </div>
-  </div>
-
-  <div class="tab-panel active" id="menuPanel">
-
-    <div class="box">
-      <h2>
-        <i data-lucide="plus-circle" style="width: 16px;"></i>
-        Add New Item
-      </h2>
-
-      <div class="form-grid">
-        <div class="form-group">
-          <label class="form-label" for="itemName">Item Name</label>
-          <input id="itemName" class="form-input" placeholder="e.g. Black Coffee" />
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="itemPrice">Price INR</label>
-          <input id="itemPrice" type="number" class="form-input" placeholder="e.g. 50" />
-        </div>
-      </div>
-
-      <div class="form-grid">
-        <div class="form-group">
-          <label class="form-label" for="itemCategory">Category</label>
-          <select id="itemCategory" class="form-select">
-            <option value="Coffee">Coffee</option>
-            <option value="Tea">Tea</option>
-            <option value="Snacks">Snacks</option>
-            <option value="Desserts">Desserts</option>
-            <option value="Cake">Cake</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="itemDescription">Short Description</label>
-          <textarea id="itemDescription" class="form-textarea" placeholder="e.g. Freshly brewed and served hot"></textarea>
-        </div>
-      </div>
-
-      <button class="btn-primary" onclick="addMenuItem()">
-        <i data-lucide="save" style="width: 14px;"></i>
-        Save Item
-      </button>
-    </div>
-
-    <div class="box">
-      <h2>
-        <i data-lucide="toggle-left" style="width: 16px;"></i>
-        Today's Menu Stock
-      </h2>
-
-      <div id="menuList">
-        <div class="empty-view">
-          <i data-lucide="loader" style="width: 32px; height: 32px;"></i>
-          <h3>Loading Menu</h3>
-          <p>Please wait...</p>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="tab-panel" id="ordersPanel">
-
-    <div class="filters-row">
-      <button class="filter-chip active" data-filter="Active" onclick="setOrderFilter('Active')">Active</button>
-      <button class="filter-chip" data-filter="New" onclick="setOrderFilter('New')">New</button>
-      <button class="filter-chip" data-filter="Preparing" onclick="setOrderFilter('Preparing')">Preparing</button>
-      <button class="filter-chip" data-filter="Dispatched" onclick="setOrderFilter('Dispatched')">Dispatched</button>
-      <button class="filter-chip" data-filter="Completed" onclick="setOrderFilter('Completed')">Completed</button>
-      <button class="filter-chip" data-filter="Unpaid" onclick="setOrderFilter('Unpaid')">Unpaid</button>
-      <button class="filter-chip" data-filter="Paid" onclick="setOrderFilter('Paid')">Paid</button>
-      <button class="filter-chip" data-filter="All" onclick="setOrderFilter('All')">All</button>
-    </div>
-
-    <div id="ordersList">
-      <div class="empty-view">
-        <i data-lucide="loader" style="width: 32px; height: 32px;"></i>
-        <h3>Loading Orders</h3>
-        <p>Please wait...</p>
-      </div>
-    </div>
-
-  </div>
-
-</div>
-
-<div class="modal-overlay" id="confirmModal">
-  <div class="modal-content">
-    <div class="modal-icon">
-      <i data-lucide="alert-triangle" style="width: 26px; height: 26px;"></i>
-    </div>
-
-    <h3 class="modal-title">Delete Menu Item?</h3>
-    <p class="modal-desc" id="confirmModalDesc">
-      Are you sure you want to delete this item?
-    </p>
-
-    <div class="modal-actions-row">
-      <button class="btn-soft" onclick="closeConfirmModal(false)">Cancel</button>
-      <button class="btn-danger" id="confirmModalActionBtn">Delete</button>
-    </div>
-  </div>
-</div>
-
-<div class="toast-container" id="toastContainer"></div>
-
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import {
-    getFirestore,
-    collection,
-    getDocs,
-    addDoc,
-    updateDoc,
-    deleteDoc,
-    doc,
-    query,
-    orderBy,
-    serverTimestamp
-  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyAYonKe7d9rNp59LOkzEbBowQrcsFH32ts",
-    authDomain: "cafe-b80ce.firebaseapp.com",
-    projectId: "cafe-b80ce",
-    storageBucket: "cafe-b80ce.firebasestorage.app",
-    messagingSenderId: "110426428527",
-    appId: "1:110426428527:web:d91f0d414bd13a61ea699a",
-    measurementId: "G-0JVCTK651G"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  let menuCache = [];
-  let ordersCache = [];
-  let currentDeleteId = null;
-  let orderFilter = "Active";
-
-  function cleanPrice(value) {
-    const number = Number(String(value).replace(/[^0-9.]/g, ""));
-    return isNaN(number) ? 0 : number;
-  }
-
-  function escapeHTML(value) {
-    return String(value || "")
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#039;");
-  }
-
-  function safeCreateIcons() {
-    try {
-      if (typeof lucide !== "undefined" && typeof lucide.createIcons === "function") {
-        lucide.createIcons();
-      }
-    } catch (e) {
-      console.warn("Lucide icons failed:", e);
-    }
-  }
-
-  function formatDate(timestamp) {
-    try {
-      if (timestamp && typeof timestamp.toDate === "function") {
-        return timestamp.toDate().toLocaleString("en-IN", {
-          day: "2-digit",
-          month: "short",
-          hour: "2-digit",
-          minute: "2-digit"
-        });
-      }
-    } catch (e) {}
-
-    return "Just now";
-  }
-
-  window.showToast = function(message, iconName = "check") {
-    const container = document.getElementById("toastContainer");
-    const toast = document.createElement("div");
-
-    toast.className = "toast";
-    toast.innerHTML = `
-      <i data-lucide="${iconName}" style="width: 16px; height: 16px;"></i>
-      <span>${escapeHTML(message)}</span>
-    `;
-
-    container.appendChild(toast);
-    safeCreateIcons();
-
-    setTimeout(() => {
-      toast.style.opacity = "0";
-      toast.style.transition = "opacity 0.5s ease-out";
-      setTimeout(() => toast.remove(), 500);
-    }, 2400);
-  };
-
-  window.switchAdminTab = function(tabName) {
-    document.getElementById("menuTabBtn").classList.toggle("active", tabName === "menu");
-    document.getElementById("ordersTabBtn").classList.toggle("active", tabName === "orders");
-
-    document.getElementById("menuPanel").classList.toggle("active", tabName === "menu");
-    document.getElementById("ordersPanel").classList.toggle("active", tabName === "orders");
-
-    safeCreateIcons();
-  };
-
-  window.refreshAll = async function() {
-    await Promise.all([loadMenuAdmin(), loadOrders()]);
-    showToast("Dashboard refreshed", "refresh-cw");
-  };
-
-  function updateStats() {
-    const totalItems = menuCache.length;
-    const activeOrders = ordersCache.filter(order => String(order.status || "New").toLowerCase() !== "completed").length;
-    const unpaidOrders = ordersCache.filter(order => order.paymentStatus !== "Paid").length;
-
-    document.getElementById("statItems").textContent = totalItems;
-    document.getElementById("statOrders").textContent = activeOrders;
-    document.getElementById("statUnpaid").textContent = unpaidOrders;
-  }
-
-  async function loadMenuAdmin() {
-    const menuList = document.getElementById("menuList");
-
-    try {
-      let querySnapshot;
-
-      try {
-        const q = query(collection(db, "menu"), orderBy("createdAt", "desc"));
-        querySnapshot = await getDocs(q);
-      } catch (e) {
-        querySnapshot = await getDocs(collection(db, "menu"));
-      }
-
-      menuCache = [];
-
-      querySnapshot.forEach((documentSnap) => {
-        menuCache.push({
-          id: documentSnap.id,
-          ...documentSnap.data()
-        });
-      });
-
-      renderMenuAdmin();
-      updateStats();
-
-    } catch (err) {
-      console.error(err);
-
-      menuList.innerHTML = `
-        <div class="empty-view">
-          <i data-lucide="alert-triangle" style="width: 32px; height: 32px; color: var(--danger);"></i>
-          <h3>Menu Sync Failed</h3>
-          <p>Please check your Firebase rules.</p>
-        </div>
-      `;
-
-      safeCreateIcons();
-    }
-  }
-
-  function renderMenuAdmin() {
-    const menuList = document.getElementById("menuList");
-    menuList.innerHTML = "";
-
-    if (menuCache.length === 0) {
-      menuList.innerHTML = `
-        <div class="empty-view">
-          <i data-lucide="coffee" style="width: 34px; height: 34px;"></i>
-          <h3>No Menu Items</h3>
-          <p>Add your first cafe item above.</p>
-        </div>
-      `;
-
-      safeCreateIcons();
-      return;
-    }
-
-    menuCache.forEach((item) => {
-      const div = document.createElement("div");
-      div.className = "menu-item";
-
-      div.innerHTML = `
-        <div class="menu-info">
-          <h4>${escapeHTML(item.name)}</h4>
-          <p>${escapeHTML(item.category || "General")} &bull; ₹${cleanPrice(item.price).toFixed(0)}</p>
-          ${
-            item.description
-              ? `<p>${escapeHTML(item.description)}</p>`
-              : `<p>No description added</p>`
-          }
-        </div>
-
-        <div class="menu-actions">
-          <button class="toggle-btn ${item.available ? "on" : "off"}" onclick="toggleAvailability('${item.id}', ${item.available === true})">
-            <i data-lucide="${item.available ? "check" : "x"}" style="width: 12px;"></i>
-            ${item.available ? "ON" : "OUT"}
-          </button>
-
-          <button class="btn-danger btn-small" onclick="triggerConfirmModal('${item.id}')">
-            <i data-lucide="trash-2" style="width: 13px;"></i>
-          </button>
-        </div>
-      `;
-
-      menuList.appendChild(div);
-    });
-
-    safeCreateIcons();
-  }
-
-  window.addMenuItem = async function() {
-    const name = document.getElementById("itemName").value.trim();
-    const price = Number(document.getElementById("itemPrice").value);
-    const category = document.getElementById("itemCategory").value;
-    const description = document.getElementById("itemDescription").value.trim();
-
-    if (!name || isNaN(price) || price <= 0) {
-      showToast("Enter item name and valid price", "alert-circle");
-      return;
-    }
-
-    try {
-      await addDoc(collection(db, "menu"), {
-        name: name,
-        price: price,
-        category: category,
-        description: description,
-        available: true,
-        createdAt: serverTimestamp()
-      });
-
-      document.getElementById("itemName").value = "";
-      document.getElementById("itemPrice").value = "";
-      document.getElementById("itemDescription").value = "";
-
-      showToast(`${name} added to menu`, "check-circle");
-      await loadMenuAdmin();
-
-    } catch (err) {
-      console.error(err);
-      showToast("Failed to save item", "alert-triangle");
-    }
-  };
-
-  window.toggleAvailability = async function(id, currentStatus) {
-    try {
-      await updateDoc(doc(db, "menu", id), {
-        available: !currentStatus
-      });
-
-      showToast("Stock updated", "toggle-right");
-      await loadMenuAdmin();
-
-    } catch (err) {
-      console.error(err);
-      showToast("Failed to update stock", "alert-circle");
-    }
-  };
-
-  window.triggerConfirmModal = function(id) {
-    const item = menuCache.find(menuItem => menuItem.id === id);
-    currentDeleteId = id;
-
-    document.getElementById("confirmModalDesc").innerHTML =
-      `Delete <strong>${escapeHTML(item?.name || "this item")}</strong> from the menu? This cannot be undone.`;
-
-    document.getElementById("confirmModalActionBtn").onclick = async function() {
-      await deleteMenuItem(currentDeleteId);
-      closeConfirmModal(true);
-    };
-
-    document.getElementById("confirmModal").classList.add("active");
-    safeCreateIcons();
-  };
-
-  window.closeConfirmModal = function(didAction) {
-    document.getElementById("confirmModal").classList.remove("active");
-
-    if (didAction) {
-      showToast("Menu item deleted", "trash-2");
-    }
-  };
-
-  async function deleteMenuItem(id) {
-    try {
-      await deleteDoc(doc(db, "menu", id));
-      await loadMenuAdmin();
-    } catch (err) {
-      console.error(err);
-      showToast("Failed to delete item", "alert-circle");
-    }
-  }
-
-  async function loadOrders() {
-    const ordersList = document.getElementById("ordersList");
-
-    try {
-      let querySnapshot;
-
-      try {
-        const q = query(collection(db, "orders"), orderBy("createdAt", "desc"));
-        querySnapshot = await getDocs(q);
-      } catch (e) {
-        querySnapshot = await getDocs(collection(db, "orders"));
-      }
-
-      ordersCache = [];
-
-      querySnapshot.forEach((documentSnap) => {
-        ordersCache.push({
-          id: documentSnap.id,
-          ...documentSnap.data()
-        });
-      });
-
-      renderOrders();
-      updateStats();
-
-    } catch (err) {
-      console.error(err);
-
-      ordersList.innerHTML = `
-        <div class="empty-view">
-          <i data-lucide="alert-triangle" style="width: 32px; height: 32px; color: var(--danger);"></i>
-          <h3>Order Sync Failed</h3>
-          <p>Please check your Firebase rules.</p>
-        </div>
-      `;
-
-      safeCreateIcons();
-    }
-  }
-
-  window.setOrderFilter = function(filterName) {
-    orderFilter = filterName;
-
-    document.querySelectorAll(".filter-chip").forEach(chip => {
-      chip.classList.toggle("active", chip.dataset.filter === filterName);
-    });
-
-    renderOrders();
-  };
-
-  function getFilteredOrders() {
-    return ordersCache.filter(order => {
-      const status = String(order.status || "New");
-      const paymentStatus = String(order.paymentStatus || "Pending");
-
-      if (orderFilter === "All") return true;
-      if (orderFilter === "Active") return status.toLowerCase() !== "completed";
-      if (orderFilter === "Paid") return paymentStatus === "Paid";
-      if (orderFilter === "Unpaid") return paymentStatus !== "Paid";
-
-      return status.toLowerCase() === orderFilter.toLowerCase();
-    });
-  }
-
-  function renderOrders() {
-    const ordersList = document.getElementById("ordersList");
-    const filteredOrders = getFilteredOrders();
-
-    ordersList.innerHTML = "";
-
-    if (filteredOrders.length === 0) {
-      ordersList.innerHTML = `
-        <div class="empty-view">
-          <i data-lucide="package-open" style="width: 34px; height: 34px;"></i>
-          <h3>No ${escapeHTML(orderFilter)} Orders</h3>
-          <p>Orders will appear here after customers place them.</p>
-        </div>
-      `;
-
-      safeCreateIcons();
-      return;
-    }
-
-    filteredOrders.forEach((order) => {
-      const id = order.id;
-      const status = order.status || "New";
-      const paymentStatus = order.paymentStatus || "Pending";
-      const deliveryLocation = order.deliveryAddress || "Takeaway / Self Pickup";
-
-      const badgeStatusClass = `status-${String(status).toLowerCase()}`;
-      const paymentBadgeClass = paymentStatus === "Paid" ? "paid" : "unpaid";
-
-      let itemsListHtml = "";
-
-      if (Array.isArray(order.items) && order.items.length > 0) {
-        order.items.forEach(item => {
-          const itemName = escapeHTML(item.name || "Item");
-          const itemQty = Number(item.quantity || 1);
-          const itemPrice = cleanPrice(item.price) * itemQty;
-
-          itemsListHtml += `
-            <div class="order-item-row">
-              <span>${itemName} <strong style="color: var(--primary)">× ${itemQty}</strong></span>
-              <span>₹${itemPrice.toFixed(0)}</span>
-            </div>
-          `;
-        });
-      } else {
-        itemsListHtml = `
-          <div class="order-item-row">
-            <span>No items found</span>
-            <span>₹0</span>
-          </div>
-        `;
-      }
-
-      const card = document.createElement("div");
-      card.className = "order-card";
-
-      card.innerHTML = `
-        <div class="order-header">
-          <div class="customer-meta">
-            <h3>${escapeHTML(order.customerName || "Customer")}</h3>
-            <p>
-              <i data-lucide="phone" style="width: 13px;"></i>
-              <a href="tel:${escapeHTML(order.phone || "")}" style="color: inherit; text-decoration: none;">
-                ${escapeHTML(order.phone || "No phone")}
-              </a>
-            </p>
-            <p>
-              <i data-lucide="clock" style="width: 13px;"></i>
-              ${escapeHTML(formatDate(order.createdAt))}
-            </p>
-          </div>
-
-          <div class="order-meta-badges">
-            <span class="badge ${badgeStatusClass}">${escapeHTML(status)}</span>
-            <span class="badge ${paymentBadgeClass}">${paymentStatus === "Paid" ? "Paid" : "Unpaid"}</span>
-          </div>
-        </div>
-
-        <div class="order-address">
-          <i data-lucide="map-pin" style="width: 16px;"></i>
-          <span>${escapeHTML(deliveryLocation)}</span>
-        </div>
-
-        <div class="order-items-list">
-          ${itemsListHtml}
-        </div>
-
-        <div class="order-total-row">
-          <span>Order Value</span>
-          <span>₹${cleanPrice(order.total).toFixed(0)}</span>
-        </div>
-
-        <div class="order-controls">
-          <button class="btn-primary" style="background:#2b6cb0;" onclick="updateOrderStatus('${id}', 'Preparing')">
-            <i data-lucide="cog" style="width: 13px;"></i>
-            Preparing
-          </button>
-
-          <button class="btn-primary" style="background: var(--secondary);" onclick="updateOrderStatus('${id}', 'Dispatched')">
-            <i data-lucide="navigation" style="width: 13px;"></i>
-            Dispatch
-          </button>
-
-          <button class="btn-primary" onclick="updateOrderStatus('${id}', 'Completed')">
-            <i data-lucide="check-square" style="width: 13px;"></i>
-            Complete
-          </button>
-
-          <button class="btn-soft" onclick="markPaid('${id}')">
-            <i data-lucide="indian-rupee" style="width: 13px;"></i>
-            Mark Paid
-          </button>
-        </div>
-      `;
-
-      ordersList.appendChild(card);
-    });
-
-    safeCreateIcons();
-  }
-
-  window.updateOrderStatus = async function(id, status) {
-    try {
-      await updateDoc(doc(db, "orders", id), {
-        status: status
-      });
-
-      showToast(`Order moved to ${status}`, "check");
-      await loadOrders();
-
-    } catch (err) {
-      console.error(err);
-      showToast("Failed to update order", "alert-triangle");
-    }
-  };
-
-  window.markPaid = async function(id) {
-    try {
-      await updateDoc(doc(db, "orders", id), {
-        paymentStatus: "Paid"
-      });
-
-      showToast("Order marked paid", "indian-rupee");
-      await loadOrders();
-
-    } catch (err) {
-      console.error(err);
-      showToast("Failed to mark paid", "alert-triangle");
-    }
-  };
-
-  loadMenuAdmin();
-  loadOrders();
-  safeCreateIcons();
-
-  setInterval(() => {
-    loadOrders();
-  }, 30000);
-</script>
-
 </body>
 </html>
