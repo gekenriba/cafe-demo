@@ -481,27 +481,6 @@
       margin-bottom: 20px;
     }
 
-    .direct-pay-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      width: 100%;
-      max-width: 320px;
-      margin: 0 auto 16px;
-      padding: 12px 16px;
-      border-radius: 12px;
-      background: var(--primary);
-      color: white;
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    .direct-pay-btn:hover {
-      background: var(--primary-hover);
-    }
-
     .qr-image-wrapper {
       background: white;
       border: 1px solid rgba(45, 106, 79, 0.12);
@@ -890,14 +869,9 @@
           <i data-lucide="shield-check" style="width: 12px;"></i> Secure Transaction
         </span>
 
-        <p>Order registered successfully. Pay the exact amount below to confirm dispatch.</p>
+        <p>Order registered successfully. Scan the QR code below and pay the exact amount to confirm dispatch.</p>
 
         <h1>₹<span id="qrAmount">0.00</span></h1>
-
-        <a href="#" id="directPayBtn" class="direct-pay-btn">
-          <i data-lucide="smartphone" style="width: 15px;"></i>
-          Pay Directly with UPI App
-        </a>
 
         <div class="qr-image-wrapper">
           <img id="qrImage" src="" alt="Scan QR to pay" />
@@ -914,7 +888,7 @@
         </div>
 
         <div class="payment-instruction">
-          Use the direct UPI button above or scan the QR code. After payment, show the transaction receipt to the delivery executive.
+          Scan the QR code using any UPI app. After payment, show the transaction receipt to the delivery executive.
         </div>
       </div>
     </div>
@@ -1472,7 +1446,6 @@
 
         document.getElementById("qrAmount").textContent = finalAmount;
         document.getElementById("qrImage").src = qrCodeUrl;
-        document.getElementById("directPayBtn").href = upiLink;
 
         changeStep(3);
         showToast("Order placed successfully!", "check-circle");
