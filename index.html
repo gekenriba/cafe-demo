@@ -4,28 +4,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tokyi Cafe - Premium Online Delivery</title>
+  <title>Tokyi Cafe - Premium Coffee & Delights Delivery</title>
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
   <!-- Lucide Icons for high fidelity visuals -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
     :root {
-      --primary: #1b4332;       /* Deep Forest Green */
-      --primary-hover: #132a13; /* Darker Forest Green */
-      --secondary: #40916c;     /* Sage / Light Green Accent */
-      --accent: #b89130;        /* Gold / Amber Highlight */
-      --bg-cream: #f9f8f3;      /* Warm Cream Background */
+      --primary: #3d2514;       /* Rich Espresso Dark Brown */
+      --primary-hover: #26160b; /* Intense Roasted Coffee Darkest */
+      --secondary: #8f5c38;     /* Warm Caramel / Roasted Bean */
+      --accent: #d4a373;        /* Latte / Milky Coffee Gold */
+      --bg-cream: #fdfaf6;      /* Warm Latte Cream / Soft White */
       --card-bg: #ffffff;
-      --text-dark: #2d312e;     /* Charcoal Dark */
-      --text-light: #5f6661;    /* Soft Muted Gray */
+      --text-dark: #2c1e18;     /* Dark Espresso Bean Charcoal */
+      --text-light: #7a6b62;    /* Soft Muted Milky Gray-Brown */
       --danger: #b3261e;
-      --success: #2d6a4f;
+      --success: #3d2514;       /* Matches Coffee Theme */
     }
 
     * {
@@ -43,7 +43,7 @@
       padding-bottom: 80px; /* Space for sticky mobile cart bottom bar */
     }
 
-    /* Custom Scrollbar */
+    /* Custom Coffee Scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
     }
@@ -51,32 +51,33 @@
       background: var(--bg-cream);
     }
     ::-webkit-scrollbar-thumb {
-      background: #ccd5ae;
+      background: #e3d5ca;
       border-radius: 4px;
     }
 
     /* Header & Hero Section */
     header {
-      background: linear-gradient(135deg, #0f2a1d, #2d6a4f);
+      background: linear-gradient(135deg, #1f1107, #3d2514);
       color: white;
-      padding: 55px 24px;
+      padding: 60px 24px;
       text-align: center;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 4px 20px rgba(27, 67, 50, 0.15);
+      box-shadow: 0 4px 25px rgba(61, 37, 20, 0.2);
     }
 
+    /* Stylized warm ambient light background detail */
     header::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: radial-gradient(circle at 80% 20%, rgba(184, 145, 48, 0.15) 0%, transparent 60%);
+      background: radial-gradient(circle at 50% 30%, rgba(212, 163, 115, 0.2) 0%, transparent 70%);
       pointer-events: none;
     }
 
     .header-logo {
       font-family: 'Playfair Display', serif;
-      font-size: 42px;
+      font-size: 46px;
       font-weight: 800;
       letter-spacing: -0.5px;
       margin-bottom: 6px;
@@ -88,26 +89,32 @@
 
     .header-logo i {
       color: var(--accent);
+      animation: warmPulse 3s infinite ease-in-out;
     }
 
     header p {
       font-size: 15px;
-      color: #d8f3dc;
+      color: #f5ebe0;
       font-weight: 400;
       max-width: 500px;
       margin: 0 auto;
       letter-spacing: 0.5px;
     }
 
+    @keyframes warmPulse {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0px var(--accent)); }
+      50% { transform: scale(1.08); filter: drop-shadow(0 0 8px rgba(212, 163, 115, 0.6)); }
+    }
+
     /* Delivery Info Bar */
     .delivery-info-banner {
-      background: rgba(184, 145, 48, 0.1);
-      border-bottom: 1px solid rgba(184, 145, 48, 0.2);
-      padding: 10px;
+      background: rgba(143, 92, 56, 0.08);
+      border-bottom: 1px solid rgba(143, 92, 56, 0.15);
+      padding: 12px;
       text-align: center;
       font-size: 13px;
-      font-weight: 600;
-      color: #8c6a12;
+      font-weight: 700;
+      color: var(--secondary);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -136,30 +143,30 @@
 
     .category-btn {
       background: white;
-      border: 1px solid rgba(27, 67, 50, 0.1);
+      border: 1px solid rgba(143, 92, 56, 0.12);
       color: var(--primary);
-      padding: 10px 20px;
+      padding: 10px 22px;
       border-radius: 30px;
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 700;
       white-space: nowrap;
       cursor: pointer;
       transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
     }
 
     .category-btn.active, .category-btn:hover {
       background: var(--primary);
       color: white;
       border-color: var(--primary);
-      box-shadow: 0 4px 12px rgba(27, 67, 50, 0.2);
+      box-shadow: 0 4px 12px rgba(61, 37, 20, 0.25);
       transform: translateY(-1px);
     }
 
     /* Dynamic Menu Grid */
     .section-title {
       font-family: 'Playfair Display', serif;
-      font-size: 26px;
+      font-size: 28px;
       font-weight: 700;
       margin: 15px 0 20px;
       color: var(--primary);
@@ -172,7 +179,7 @@
       content: '';
       flex: 1;
       height: 1px;
-      background: linear-gradient(to right, rgba(27,67,50,0.2), transparent);
+      background: linear-gradient(to right, rgba(143, 92, 56, 0.25), transparent);
     }
 
     .menu-grid {
@@ -181,13 +188,13 @@
       gap: 24px;
     }
 
-    /* Elegant Cards */
+    /* Premium Coffee Cards */
     .card {
       background: var(--card-bg);
       border-radius: 20px;
-      padding: 22px;
-      box-shadow: 0 8px 24px rgba(27, 67, 50, 0.04);
-      border: 1px solid rgba(27, 67, 50, 0.05);
+      padding: 24px;
+      box-shadow: 0 8px 24px rgba(61, 37, 20, 0.03);
+      border: 1px solid rgba(143, 92, 56, 0.08);
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       display: flex;
       flex-direction: column;
@@ -200,7 +207,7 @@
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 4px;
-      background: var(--primary);
+      background: var(--secondary);
       transform: scaleX(0);
       transform-origin: left;
       transition: transform 0.3s ease;
@@ -208,7 +215,7 @@
 
     .card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 30px rgba(27, 67, 50, 0.08);
+      box-shadow: 0 12px 30px rgba(61, 37, 20, 0.08);
     }
 
     .card:hover::before {
@@ -228,7 +235,7 @@
       font-weight: 700;
       letter-spacing: 1px;
       color: var(--secondary);
-      background: rgba(116, 198, 157, 0.15);
+      background: rgba(143, 92, 56, 0.1);
       padding: 4px 10px;
       border-radius: 20px;
     }
@@ -241,7 +248,7 @@
 
     .card h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 20px;
+      font-size: 21px;
       font-weight: 700;
       color: var(--text-dark);
       margin-bottom: 8px;
@@ -270,12 +277,12 @@
       gap: 8px;
       transition: all 0.2s ease;
       width: 100%;
-      box-shadow: 0 4px 12px rgba(27, 67, 50, 0.1);
+      box-shadow: 0 4px 12px rgba(61, 37, 20, 0.15);
     }
 
     .btn-add:hover {
       background: var(--primary-hover);
-      box-shadow: 0 6px 16px rgba(27, 67, 50, 0.2);
+      box-shadow: 0 6px 16px rgba(61, 37, 20, 0.25);
     }
 
     .btn-add:active {
@@ -287,11 +294,11 @@
       position: fixed;
       bottom: 24px;
       right: 24px;
-      background: var(--accent);
+      background: var(--secondary);
       color: white;
       padding: 16px 24px;
       border-radius: 40px;
-      box-shadow: 0 8px 32px rgba(184, 145, 48, 0.4);
+      box-shadow: 0 8px 32px rgba(143, 92, 56, 0.4);
       display: flex;
       align-items: center;
       gap: 12px;
@@ -305,7 +312,7 @@
 
     .cart-anchor-btn:hover {
       transform: translateY(-5px) scale(1.05);
-      background: #cba23e;
+      background: #7a4a28;
     }
 
     .cart-count-badge {
@@ -328,8 +335,8 @@
       margin-top: 40px;
       padding: 30px;
       border-radius: 24px;
-      box-shadow: 0 10px 35px rgba(27, 67, 50, 0.06);
-      border: 1px solid rgba(27, 67, 50, 0.05);
+      box-shadow: 0 10px 35px rgba(61, 37, 20, 0.05);
+      border: 1px solid rgba(143, 92, 56, 0.08);
       scroll-margin-top: 100px;
     }
 
@@ -337,7 +344,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 2px solid rgba(27, 67, 50, 0.06);
+      border-bottom: 2px solid rgba(143, 92, 56, 0.08);
       padding-bottom: 15px;
       margin-bottom: 20px;
     }
@@ -355,7 +362,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid rgba(27, 67, 50, 0.04);
+      border-bottom: 1px solid rgba(143, 92, 56, 0.05);
       padding: 16px 0;
     }
 
@@ -371,7 +378,7 @@
     }
 
     .qty-btn {
-      background: rgba(27,67,50,0.06);
+      background: rgba(143, 92, 56, 0.08);
       border: none;
       width: 28px;
       height: 28px;
@@ -424,7 +431,7 @@
 
     .empty-cart-view i {
       font-size: 48px;
-      color: #ccd5ae;
+      color: #e6ccb2;
       margin-bottom: 12px;
     }
 
@@ -434,6 +441,7 @@
       background: var(--bg-cream);
       padding: 24px;
       border-radius: 20px;
+      border: 1px solid rgba(143, 92, 56, 0.08);
     }
 
     .checkout-form h3 {
@@ -461,7 +469,7 @@
       width: 100%;
       padding: 12px 16px;
       border-radius: 12px;
-      border: 1px solid rgba(27,67,50,0.15);
+      border: 1px solid rgba(143, 92, 56, 0.15);
       background: white;
       font-size: 15px;
       outline: none;
@@ -470,7 +478,7 @@
 
     .form-input:focus {
       border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(27, 67, 50, 0.1);
+      box-shadow: 0 0 0 3px rgba(143, 92, 56, 0.15);
     }
 
     .form-textarea {
@@ -478,7 +486,7 @@
       min-height: 80px;
       padding: 12px 16px;
       border-radius: 12px;
-      border: 1px solid rgba(27,67,50,0.15);
+      border: 1px solid rgba(143, 92, 56, 0.15);
       background: white;
       font-size: 15px;
       outline: none;
@@ -488,7 +496,7 @@
 
     .form-textarea:focus {
       border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(27, 67, 50, 0.1);
+      box-shadow: 0 0 0 3px rgba(143, 92, 56, 0.15);
     }
 
     /* Total and Primary Checkout Actions */
@@ -498,8 +506,8 @@
       align-items: center;
       padding: 15px 0;
       margin: 15px 0;
-      border-top: 2px dashed rgba(27, 67, 50, 0.1);
-      border-bottom: 2px dashed rgba(27, 67, 50, 0.1);
+      border-top: 2px dashed rgba(143, 92, 56, 0.15);
+      border-bottom: 2px dashed rgba(143, 92, 56, 0.15);
     }
 
     .total-label {
@@ -511,13 +519,13 @@
     .total-price {
       font-size: 28px;
       font-weight: 800;
-      color: var(--success);
+      color: var(--primary);
     }
 
     .pay-btn {
       width: 100%;
       padding: 16px;
-      background: var(--success);
+      background: var(--primary);
       color: white;
       border: none;
       border-radius: 16px;
@@ -528,23 +536,23 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      box-shadow: 0 6px 20px rgba(45, 106, 79, 0.25);
+      box-shadow: 0 6px 20px rgba(61, 37, 20, 0.2);
       transition: all 0.2s ease;
     }
 
     .pay-btn:hover {
-      background: #1b4d3e;
+      background: var(--primary-hover);
       transform: translateY(-2px);
     }
 
-    /* Payment Portal Panel Style (Streamlined Direct Payment) */
+    /* Payment Portal Panel Style (QR Focus Only) */
     .payment-box {
       background: white;
-      border: 1px solid rgba(27, 67, 50, 0.08);
+      border: 1px solid rgba(143, 92, 56, 0.15);
       margin-top: 30px;
-      padding: 28px;
+      padding: 35px;
       border-radius: 24px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+      box-shadow: 0 10px 30px rgba(61, 37, 20, 0.05);
       animation: slideUp 0.4s ease-out;
       scroll-margin-top: 100px;
       text-align: center;
@@ -562,7 +570,7 @@
       background: var(--bg-cream);
       border-radius: 20px;
       margin-bottom: 24px;
-      border: 1px solid rgba(27, 67, 50, 0.05);
+      border: 1px solid rgba(143, 92, 56, 0.1);
     }
 
     .pay-amount-hero p {
@@ -574,188 +582,54 @@
     }
 
     .pay-amount-hero h1 {
-      font-size: 42px;
+      font-size: 44px;
       font-weight: 800;
-      color: var(--success);
+      color: var(--primary);
       margin: 4px 0;
     }
 
-    /* Direct Payment Big Hero Button */
-    .btn-direct-pay-hero {
+    /* Centered Premium QR Layout */
+    .qr-container-box {
+      background: white;
+      border: 1px solid rgba(143, 92, 56, 0.15);
+      border-radius: 24px;
+      padding: 24px;
+      max-width: 320px;
+      margin: 0 auto 24px;
+      box-shadow: 0 8px 24px rgba(61, 37, 20, 0.03);
+    }
+
+    .qr-container-box img {
+      max-width: 200px;
       width: 100%;
-      background: linear-gradient(135deg, var(--success), #1b4332);
-      color: white;
-      border: none;
-      padding: 20px 24px;
-      border-radius: 18px;
-      font-size: 18px;
-      font-weight: 800;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      box-shadow: 0 8px 24px rgba(45, 106, 79, 0.3);
-      transition: all 0.25s ease;
-    }
-
-    .btn-direct-pay-hero:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(45, 106, 79, 0.4);
-      background: linear-gradient(135deg, #387a5c, #132a13);
-    }
-
-    .btn-direct-pay-hero:active {
-      transform: scale(0.98);
-    }
-
-    /* Direct Instructions Pop-up Modal CSS */
-    .pay-modal-content {
-      text-align: center;
-      padding: 10px 0;
-    }
-
-    .pay-modal-badge {
-      display: inline-flex;
-      background: #fff8e1;
-      border: 1px solid #ffe082;
-      color: #b78103;
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      padding: 6px 14px;
-      border-radius: 20px;
-      margin-bottom: 16px;
-    }
-
-    .pay-manual-amount-card {
-      background: var(--bg-cream);
-      border: 1px dashed rgba(27, 67, 50, 0.15);
-      border-radius: 18px;
-      padding: 20px;
-      margin: 15px 0 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .pay-instruction-step {
-      font-size: 13px;
-      color: var(--text-light);
-      line-height: 1.4;
-      text-align: left;
-      background: white;
       border-radius: 12px;
-      padding: 12px 14px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border: 1px solid rgba(0,0,0,0.03);
-    }
-
-    .pay-instruction-step strong {
-      color: var(--primary);
-    }
-
-    .pay-instruction-step .step-number {
-      background: var(--primary);
-      color: white;
-      font-size: 11px;
-      font-weight: 800;
-      border-radius: 50%;
-      width: 20px;
-      height: 20px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .modal-copy-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: white;
-      padding: 12px 16px;
-      border-radius: 12px;
+      margin-bottom: 12px;
       border: 1px solid rgba(0,0,0,0.05);
     }
 
-    .modal-copy-label {
+    .qr-label-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fdfaf6;
+      border: 1px solid rgba(143, 92, 56, 0.15);
+      color: var(--secondary);
       font-size: 11px;
-      font-weight: 700;
-      color: var(--text-light);
-      text-transform: uppercase;
-      text-align: left;
-    }
-
-    .modal-copy-value {
-      font-size: 18px;
       font-weight: 800;
-      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 6px 14px;
+      border-radius: 20px;
     }
 
-    .modal-copy-btn {
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      font-size: 11px;
-      font-weight: 700;
-      border-radius: 8px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      transition: background 0.2s;
-    }
-
-    .modal-copy-btn:hover {
-      background: var(--primary-hover);
-    }
-
-    /* Interactive Accordion for Alternative/Backup Options */
-    .backup-accordion {
-      border: 1px solid rgba(27, 67, 50, 0.1);
-      border-radius: 16px;
-      overflow: hidden;
-      margin-top: 15px;
-      background: var(--bg-cream);
-    }
-
-    .backup-header {
-      background: rgba(27, 67, 50, 0.03);
-      padding: 14px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 14px;
-      color: var(--primary);
-      user-select: none;
-    }
-
-    .backup-content {
-      padding: 20px;
-      background: white;
-      display: none;
-      border-top: 1px solid rgba(27, 67, 50, 0.08);
-      animation: fadeIn 0.3s ease;
-    }
-
-    .backup-content.active {
-      display: block;
-    }
-
-    /* Copy UPI ID component */
+    /* UPI ID Card with copy utility */
     .upi-display-card {
-      background: rgba(184, 145, 48, 0.08);
-      border: 1px dashed rgba(184, 145, 48, 0.4);
+      background: #fffbf7;
+      border: 1px dashed rgba(143, 92, 56, 0.3);
       border-radius: 16px;
       padding: 16px;
-      margin-bottom: 20px;
+      margin: 20px auto 24px;
+      max-width: 480px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -799,36 +673,54 @@
       background: var(--primary-hover);
     }
 
-    .pay-qr-column {
+    .instruction-steps-box {
+      max-width: 480px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .instruction-step {
+      font-size: 13px;
+      color: var(--text-light);
+      line-height: 1.5;
+      background: white;
+      border-radius: 14px;
+      padding: 12px 16px;
+      margin-bottom: 8px;
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid rgba(143, 92, 56, 0.08);
+    }
+
+    .instruction-step strong {
+      color: var(--primary);
+    }
+
+    .step-badge {
+      background: var(--primary);
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      background: var(--bg-cream);
-      border-radius: 16px;
-      padding: 20px;
-      margin-top: 12px;
+      flex-shrink: 0;
     }
 
-    .pay-qr-column img {
-      max-width: 160px;
-      width: 100%;
-      border-radius: 12px;
-      padding: 6px;
-      background: white;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-    }
-
-    /* Fly-to-Cart Particle style */
+    /* Fly-to-Cart Particle style - Styled to Caramel Coffee */
     .cart-fly-particle {
       position: fixed;
-      width: 16px;
-      height: 16px;
+      width: 18px;
+      height: 18px;
       background-color: var(--accent);
       border-radius: 50%;
       z-index: 9999;
       pointer-events: none;
-      box-shadow: 0 0 10px rgba(184, 145, 48, 0.5);
+      box-shadow: 0 0 12px rgba(212, 163, 115, 0.6);
     }
 
     /* Admin link style */
@@ -852,15 +744,15 @@
     }
 
     .admin-link:hover {
-      color: var(--accent);
-      border-color: var(--accent);
+      color: var(--secondary);
+      border-color: var(--secondary);
     }
 
-    /* Beautiful custom Modal replace */
+    /* Premium Coffee Modal Replace UI */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(15, 42, 29, 0.6);
+      background: rgba(31, 17, 7, 0.6);
       backdrop-filter: blur(5px);
       z-index: 2000;
       display: flex;
@@ -882,11 +774,12 @@
       border-radius: 24px;
       max-width: 450px;
       width: 100%;
-      padding: 24px;
-      box-shadow: 0 15px 45px rgba(0,0,0,0.2);
+      padding: 28px;
+      box-shadow: 0 15px 45px rgba(31, 17, 7, 0.15);
       transform: scale(0.9);
       transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       text-align: center;
+      border: 1px solid rgba(143, 92, 56, 0.1);
     }
 
     .modal-overlay.active .modal-content {
@@ -904,12 +797,12 @@
     }
 
     .modal-icon.success {
-      background: rgba(45, 106, 79, 0.15);
-      color: var(--success);
+      background: rgba(143, 92, 56, 0.12);
+      color: var(--primary);
     }
 
     .modal-icon.warning {
-      background: rgba(179, 38, 30, 0.15);
+      background: rgba(179, 38, 30, 0.12);
       color: var(--danger);
     }
 
@@ -995,7 +888,7 @@
 
   <div class="delivery-info-banner">
     <i data-lucide="truck" style="width: 16px;"></i>
-    <span>Delivering delicious warmth direct to your doorstep in 30-45 mins</span>
+    <span>Brewing and delivering exquisite coffee direct to your door in 25-35 mins</span>
   </div>
 
   <header>
@@ -1003,33 +896,33 @@
       <i data-lucide="coffee"></i>
       <span>Tokyi Cafe</span>
     </div>
-    <p>Fresh organic coffee, local Himalayan tea, and exquisite bakes delivered hot & fresh to you</p>
+    <p>Artisanal espresso craft, local micro-lot brews, and delicious fresh bakeries delivered warm & crisp</p>
   </header>
 
   <div class="container">
     
-    <!-- Custom Search / Categories Selector -->
+    <!-- Custom Coffee Filter categories selector -->
     <div class="categories-bar" id="categoriesBar">
-      <button class="category-btn active" onclick="filterMenu('All')">All Delights</button>
-      <button class="category-btn" onclick="filterMenu('Coffee')">Coffee</button>
-      <button class="category-btn" onclick="filterMenu('Tea')">Tea</button>
-      <button class="category-btn" onclick="filterMenu('Snacks')">Snacks</button>
-      <button class="category-btn" onclick="filterMenu('Desserts')">Desserts</button>
+      <button class="category-btn active" onclick="filterMenu('All')">All Roasts</button>
+      <button class="category-btn" onclick="filterMenu('Coffee')">Espresso Craft</button>
+      <button class="category-btn" onclick="filterMenu('Tea')">Specialty Tea</button>
+      <button class="category-btn" onclick="filterMenu('Snacks')">Sweet Snacks</button>
+      <button class="category-btn" onclick="filterMenu('Desserts')">Artisan Desserts</button>
     </div>
 
-    <!-- Today's Menu Section -->
+    <!-- Today's Specialty Menu -->
     <h2 class="section-title">
       <i data-lucide="sparkles" style="color: var(--accent); width: 22px;"></i>
-      Today's Menu
+      Today's Roasts & Delights
     </h2>
     <div id="menu" class="menu-grid"></div>
 
-    <!-- Active Cart Display Drawer -->
+    <!-- Delivery Order Drawer Container -->
     <div class="cart-section" id="cartSection">
       <div class="cart-header">
         <h2>
           <i data-lucide="shopping-bag" style="color: var(--primary);"></i>
-          Your Delivery Order
+          Your Order Drawer
         </h2>
         <span id="cartCountBadge" class="cart-count-badge">0</span>
       </div>
@@ -1037,60 +930,60 @@
       <div id="cartItems"></div>
 
       <div class="total-box">
-        <span class="total-label">Subtotal</span>
+        <span class="total-label">Delivery Subtotal</span>
         <span class="total-price">₹<span id="total">0.00</span></span>
       </div>
 
       <div class="checkout-form">
-        <h3>Delivery Details</h3>
+        <h3>Delivery Information</h3>
         <div class="form-group">
           <label class="form-label" for="customerName">Your Name</label>
           <input id="customerName" class="form-input" placeholder="e.g. Tendzin Wangmo" />
         </div>
         <div class="form-group">
-          <label class="form-label" for="phone">Phone Number</label>
+          <label class="form-label" for="phone">Active Mobile Number</label>
           <input id="phone" type="tel" class="form-input" placeholder="e.g. 9876543210" />
         </div>
         <div class="form-group">
-          <label class="form-label" for="deliveryAddress">Complete Delivery Address</label>
-          <textarea id="deliveryAddress" class="form-textarea" placeholder="e.g. Apartment No, Street Address, Landmark near Tawang Monastery"></textarea>
+          <label class="form-label" for="deliveryAddress">Detailed Delivery Address</label>
+          <textarea id="deliveryAddress" class="form-textarea" placeholder="e.g. House No., Apartment Block, Street, nearest Landmark in Tawang"></textarea>
         </div>
 
         <button class="pay-btn" onclick="placeOrder()">
-          <i data-lucide="truck"></i>
+          <i data-lucide="coffee"></i>
           Place Delivery Order
         </button>
       </div>
     </div>
 
-    <!-- Secure Modern Payment Interface Box -->
+    <!-- Exclusively QR Code-Based Secure Payment Section -->
     <div id="paymentArea"></div>
 
     <div class="admin-footer">
       <a href="admin.html" class="admin-link">
-        <i data-lucide="settings" style="width: 14px;"></i>
-        Owner Admin Console
+        <i data-lucide="sliders" style="width: 14px;"></i>
+        Tokyi Cafe Admin Console
       </a>
     </div>
 
   </div>
 
-  <!-- Sticky Bottom Cart Trigger for Mobile UX -->
+  <!-- Sticky Bottom Cart Button for Instant Mobile Checkouts -->
   <div class="cart-anchor-btn" onclick="scrollToCart()" id="floatingCartBtn">
     <i data-lucide="shopping-cart"></i>
-    <span>View Cart</span>
-    <div id="floatingCartCount" class="cart-count-badge" style="background: white; color: var(--accent);">0</div>
+    <span>Order Basket</span>
+    <div id="floatingCartCount" class="cart-count-badge" style="background: white; color: var(--secondary);">0</div>
   </div>
 
-  <!-- Main System Modal Overlay -->
+  <!-- System Dialog / Notification Modal overlay -->
   <div class="modal-overlay" id="customModal">
     <div class="modal-content">
       <div id="modalIcon" class="modal-icon success">
         <i id="modalIconSymbol" data-lucide="check-circle" style="width: 32px; height: 32px;"></i>
       </div>
-      <h3 id="modalTitle" class="modal-title">Order Complete</h3>
-      <div id="modalCustomMarkup" class="pay-modal-content">
-        <p id="modalDesc" class="modal-desc">Your delivery order has been saved successfully.</p>
+      <h3 id="modalTitle" class="modal-title">Order Saved</h3>
+      <div id="modalCustomMarkup" style="text-align: center; margin-top: 10px;">
+        <p id="modalDesc" class="modal-desc">Order has been saved securely.</p>
       </div>
       <button class="modal-btn" onclick="closeModal()">Got it</button>
     </div>
@@ -1099,12 +992,11 @@
   <!-- Toast Container -->
   <div class="toast-container" id="toastContainer"></div>
 
-  <!-- Firebase Setup & App Logic -->
+  <!-- Firebase Setup & Coffee Order Flow Logic -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import { getFirestore, collection, getDocs, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-    // Re-bind to user's provided Firebase Instance Config safely
     const firebaseConfig = { 
       apiKey: "AIzaSyAYonKe7d9rNp59LOkzEbBowQrcsFH32ts", 
       authDomain: "cafe-b80ce.firebaseapp.com", 
@@ -1118,7 +1010,7 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    // Business payment values
+    // Dynamic configuration variables
     const CAFE_UPI_ID = "geliriba11@oksbi";
     const CAFE_NAME = "Tokyi Cafe";
 
@@ -1126,13 +1018,12 @@
     let cart = [];
     let activeFilter = 'All';
 
-    // Helper functions
     function cleanPrice(value) {
       const number = Number(String(value).replace(/[^0-9.]/g, ""));
       return isNaN(number) ? 0 : number;
     }
 
-    // Modal Manager
+    // Modal UI manager
     window.showModal = function(title, description, isSuccess = true, customMarkup = '') {
       const modal = document.getElementById("customModal");
       const modalIcon = document.getElementById("modalIcon");
@@ -1163,7 +1054,7 @@
       document.getElementById("customModal").classList.remove("active");
     }
 
-    // Toast Manager
+    // Toast notifications
     window.showToast = function(message, iconName = "check") {
       const container = document.getElementById("toastContainer");
       const toast = document.createElement("div");
@@ -1179,11 +1070,9 @@
       }, 3000);
     }
 
-    // Dynamic Filter System
+    // Filters implementation
     window.filterMenu = function(category) {
       activeFilter = category;
-      
-      // Update Active Button states
       const buttons = document.querySelectorAll("#categoriesBar .category-btn");
       buttons.forEach(btn => {
         if(btn.innerText.includes(category)) {
@@ -1192,17 +1081,16 @@
           btn.classList.remove("active");
         }
       });
-
       renderMenu();
     };
 
-    // Load menu from Firestore with robust styling
+    // Database loaders
     async function loadMenu() {
       const menuDiv = document.getElementById("menu");
       menuDiv.innerHTML = `
         <div style="grid-column: 1 / -1; text-align: center; padding: 40px;">
-          <i data-lucide="loader" class="animate-spin" style="width: 48px; height: 48px; color: var(--primary); margin: auto;"></i>
-          <p style="margin-top: 10px; color: var(--text-light)">Brewing your menu delights...</p>
+          <i data-lucide="coffee" class="animate-spin" style="width: 48px; height: 48px; color: var(--primary); margin: auto;"></i>
+          <p style="margin-top: 14px; color: var(--text-light); font-weight: 500;">Roasting fresh coffee menu delights...</p>
         </div>`;
       lucide.createIcons();
 
@@ -1224,14 +1112,13 @@
         menuDiv.innerHTML = `
           <div class="empty-cart-view" style="grid-column: 1 / -1;">
             <i data-lucide="alert-triangle" style="color: var(--danger)"></i>
-            <h3>Unable to retrieve menu</h3>
-            <p>Please check your internet connection or check Firestore rules.</p>
+            <h3>Database connection error</h3>
+            <p>Could not load the cafe menu. Check connection configurations or Firestore rules.</p>
           </div>`;
         lucide.createIcons();
       }
     }
 
-    // Render filtered items
     function renderMenu() {
       const menuDiv = document.getElementById("menu");
       menuDiv.innerHTML = "";
@@ -1245,8 +1132,8 @@
         menuDiv.innerHTML = `
           <div class="empty-cart-view" style="grid-column: 1 / -1; width: 100%;">
             <i data-lucide="meh"></i>
-            <h3>No items available today</h3>
-            <p>We are currently prepping fresh items. Check back shortly!</p>
+            <h3>No roasts available in this category</h3>
+            <p>Try exploring another brewing selection on our filters above.</p>
           </div>`;
         lucide.createIcons();
         return;
@@ -1259,13 +1146,13 @@
 
         card.innerHTML = `
           <div class="card-meta">
-            <span class="category-tag">${item.category || "Cafe Item"}</span>
+            <span class="category-tag">${item.category || "Tokyi Roast"}</span>
             <span class="price-badge">₹${item.price.toFixed(0)}</span>
           </div>
           <h3>${item.name}</h3>
-          <p class="card-desc">${item.description || 'Prepared fresh by local artisans using the best ingredients.'}</p>
+          <p class="card-desc">${item.description || 'Finest artisanal selection hand-roasted and delivered fresh in Tawang.'}</p>
           <button class="btn-add" onclick="animateAddToCart('${item.id}', event)">
-            <i data-lucide="plus"></i> Add to Cart
+            <i data-lucide="coffee"></i> Add to Drawer
           </button>`;
 
         menuDiv.appendChild(card);
@@ -1274,7 +1161,7 @@
       lucide.createIcons();
     }
 
-    // Curved flying dot particle animation
+    // Flying caramel dot animation directly to cart badge
     window.animateAddToCart = function(id, event) {
       const button = event.currentTarget;
       const cartIcon = document.getElementById("floatingCartBtn");
@@ -1298,20 +1185,20 @@
       particle.style.top = `${startY}px`;
 
       let progress = 0;
-      const speed = 0.05;
+      const speed = 0.055;
       
       function animate() {
         progress += speed;
         if (progress <= 1) {
-          const controlX = (startX + endX) / 2 + 100;
-          const controlY = Math.min(startY, endY) - 150;
+          const controlX = (startX + endX) / 2 + 120;
+          const controlY = Math.min(startY, endY) - 180;
 
           const currentX = (1 - progress) * (1 - progress) * startX + 2 * (1 - progress) * progress * controlX + progress * progress * endX;
           const currentY = (1 - progress) * (1 - progress) * startY + 2 * (1 - progress) * progress * controlY + progress * progress * endY;
 
           particle.style.left = `${currentX}px`;
           particle.style.top = `${currentY}px`;
-          particle.style.transform = `scale(${1 - progress * 0.5})`;
+          particle.style.transform = `scale(${1 - progress * 0.4})`;
 
           requestAnimationFrame(animate);
         } else {
@@ -1362,8 +1249,8 @@
       if (cart.length === 0) {
         cartDiv.innerHTML = `
           <div class="empty-cart-view">
-            <i data-lucide="truck"></i>
-            <p>Your delivery cart is empty. Select appetizing items from the menu above to get started.</p>
+            <i data-lucide="coffee"></i>
+            <p>Your delivery cart is empty. Select fresh coffee roasts and delights above to construct your delivery order.</p>
           </div>`;
         totalSpan.textContent = "0.00";
         lucide.createIcons();
@@ -1386,7 +1273,7 @@
             <button class="qty-btn" onclick="updateQty(${index}, -1)">-</button>
             <span class="cart-item-qty">${item.quantity}</span>
             <button class="qty-btn" onclick="updateQty(${index}, 1)">+</button>
-            <span style="font-weight:700; width:65px; text-align:right;">₹${itemTotal.toFixed(0)}</span>
+            <span style="font-weight:700; width:65px; text-align:right; color: var(--primary);">₹${itemTotal.toFixed(0)}</span>
             <button class="remove-btn" onclick="removeItem(${index})">
               <i data-lucide="trash-2" style="width: 16px; height: 16px;"></i>
             </button>
@@ -1409,7 +1296,7 @@
     }
 
     window.removeItem = function(index) {
-      showToast(`${cart[index].name} removed from your delivery order.`, "trash-2");
+      showToast(`${cart[index].name} removed from your delivery basket.`, "trash-2");
       cart.splice(index, 1);
       renderCart();
       document.getElementById("paymentArea").innerHTML = "";
@@ -1419,84 +1306,6 @@
       document.getElementById("cartSection").scrollIntoView({ behavior: "smooth" });
     }
 
-    window.toggleBackupPayments = function() {
-      const element = document.getElementById("backupOptionsContent");
-      const icon = document.getElementById("backupAccordionIcon");
-      if (element.classList.contains("active")) {
-        element.classList.remove("active");
-        icon.style.transform = "rotate(0deg)";
-      } else {
-        element.classList.add("active");
-        icon.style.transform = "rotate(180deg)";
-      }
-    }
-
-    // Triggers the fail-proof manual typing popup and handles app launch
-    window.launchUnifiedPaymentPortal = function(amount, standardManualUPI) {
-      const modalMarkup = `
-        <div class="pay-modal-content">
-          <span class="pay-modal-badge">Direct Payment Safe-Mode</span>
-          <p style="font-size: 14px; margin-bottom: 12px; color: var(--text-dark); line-height: 1.4;">
-            To complete your order, you must <strong>manually enter</strong> the exact amount below in your UPI app:
-          </p>
-
-          <div class="pay-manual-amount-card">
-            
-            <div class="modal-copy-row">
-              <div style="text-align: left;">
-                <div class="modal-copy-label">Amount to Enter</div>
-                <div class="modal-copy-value">₹${amount}</div>
-              </div>
-              <button class="modal-copy-btn" onclick="copyValueToClipboard('${amount}', 'Amount')">
-                <i data-lucide="copy" style="width:12px;"></i> Copy
-              </button>
-            </div>
-
-            <div class="modal-copy-row">
-              <div style="text-align: left;">
-                <div class="modal-copy-label">Payee UPI ID</div>
-                <div class="modal-copy-value" style="font-size:14px;">${CAFE_UPI_ID}</div>
-              </div>
-              <button class="modal-copy-btn" onclick="copyValueToClipboard('${CAFE_UPI_ID}', 'UPI ID')">
-                <i data-lucide="copy" style="width:12px;"></i> Copy
-              </button>
-            </div>
-
-          </div>
-
-          <div class="pay-instruction-step" style="margin-bottom: 8px;">
-            <span class="step-number">1</span>
-            <span>Tap <strong>Launch UPI App</strong> below.</span>
-          </div>
-
-          <div class="pay-instruction-step" style="margin-bottom: 16px;">
-            <span class="step-number">2</span>
-            <span>Type exactly <strong>₹${amount}</strong> manually and confirm payment.</span>
-          </div>
-
-          <button class="pay-btn" onclick="openDirectUPIApp('${standardManualUPI}')" style="background: var(--primary); box-shadow: 0 4px 12px rgba(27,67,50,0.25);">
-            <i data-lucide="external-link"></i> Launch UPI App
-          </button>
-        </div>
-      `;
-
-      showModal("Enter Exact Amount Manually", "", true, modalMarkup);
-    };
-
-    window.openDirectUPIApp = function(upiUrl) {
-      window.location.href = upiUrl;
-    };
-
-    window.copyValueToClipboard = function(text, label) {
-      const el = document.createElement('textarea');
-      el.value = text;
-      document.body.appendChild(el);
-      el.select();
-      document.execCommand('copy');
-      document.body.removeChild(el);
-      showToast(`${label} Copied!`, "copy");
-    };
-
     // Save order data to Firestore and trigger UPI Payment Engine
     window.placeOrder = async function() {
       const name = document.getElementById("customerName").value.trim();
@@ -1504,19 +1313,19 @@
       const address = document.getElementById("deliveryAddress").value.trim();
 
       if (cart.length === 0) {
-        showModal("Cart is Empty", "Please select items from our menu before placing your delivery order.", false);
+        showModal("Basket is Empty", "Select premium items from our fresh menu before initiating checkout.", false);
         return;
       }
 
       if (!name || !phone || !address) {
-        showModal("Details Missing", "Please provide your Name, Phone Number, and Delivery Address to place the order.", false);
+        showModal("Details Missing", "Please fulfill your Name, Active Mobile Number, and Detailed Delivery Address to complete checkout.", false);
         return;
       }
 
       const total = cart.reduce((sum, item) => sum + cleanPrice(item.price) * item.quantity, 0);
 
       if (!total || isNaN(total) || total <= 0) {
-        showModal("Checkout Error", "Invalid order total amount calculated. Please inspect your cart.", false);
+        showModal("Checkout Error", "Invalid order amount total encountered. Review your basket values.", false);
         return;
       }
 
@@ -1537,11 +1346,7 @@
       try {
         await addDoc(collection(db, "orders"), orderData);
 
-        // Blank-Amount Deep Link configuration to guarantee limit bypass
-        const backupParams = new URLSearchParams({ pa: CAFE_UPI_ID, pn: CAFE_NAME, cu: "INR" });
-        const standardManualUPI = "upi://pay?" + backupParams.toString();
-
-        // Exact pre-filled parameter QR Code configuration for backup scanning
+        // Pre-filled parameter QR Code configuration for scan payment link
         const exactParams = new URLSearchParams({ pa: CAFE_UPI_ID, pn: CAFE_NAME, am: finalAmount, cu: "INR" });
         const standardExactUPI = "upi://pay?" + exactParams.toString();
         const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(standardExactUPI)}`;
@@ -1550,1468 +1355,73 @@
 
         paymentArea.innerHTML = `
           <div class="payment-box" id="paymentViewPort">
-            <h2>Instant UPI Payment</h2>
-            <p style="color: var(--text-light); margin-bottom: 20px; font-size: 14px;">
-              Your delivery order has been saved. Tap below to pay directly.
+            <h2>Scan & Pay to Confirm</h2>
+            <p style="color: var(--text-light); margin-bottom: 24px; font-size: 14px;">
+              Your order is registered on our servers. Scan the high-fidelity secure code below to fulfill the payment and release delivery.
             </p>
 
             <div class="pay-amount-hero">
-              <p>Amount to Pay</p>
+              <p>Delivery Order Total</p>
               <h1>₹${finalAmount}</h1>
-              <span style="font-size: 11px; font-weight: 700; color: var(--primary); background: rgba(45,106,79,0.1); padding: 4px 10px; border-radius: 20px;">
-                Securing Delivery Order
+              <span class="qr-label-status">
+                <i data-lucide="shield-check" style="width: 14px;"></i> Secure Transaction
               </span>
             </div>
 
-            <!-- Single Premium Direct Action Button -->
-            <button class="btn-direct-pay-hero" onclick="launchUnifiedPaymentPortal('${finalAmount}', '${standardManualUPI}')">
-              <i data-lucide="zap" style="fill: white; width: 22px; height: 22px;"></i>
-              ⚡ Pay ₹${finalAmount} Now
-            </button>
+            <!-- Highly aesthetic center QR block -->
+            <div class="qr-container-box">
+              <img src="${qrCodeUrl}" alt="Scan QR Code to Pay" onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=${CAFE_UPI_ID}'" />
+              <p style="font-size: 11px; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px;">
+                Scan with any UPI App
+              </p>
+            </div>
 
-            <!-- Clean Accordion Interface for Desk & QR Fallbacks -->
-            <div class="backup-accordion">
-              <div class="backup-header" onclick="toggleBackupPayments()">
-                <span>Desktop Scan, Copy UPI ID, or Manual Backup</span>
-                <i id="backupAccordionIcon" data-lucide="chevron-down" style="width: 16px; transition: transform 0.3s;"></i>
+            <div class="instruction-steps-box">
+              <div class="instruction-step">
+                <span class="step-badge">1</span>
+                <span>Open **GPay, Paytm, PhonePe, or BHIM** on your mobile device.</span>
               </div>
-              <div class="backup-content" id="backupOptionsContent">
-                
-                <p style="font-size: 13px; color: var(--text-light); margin-bottom: 12px; text-align: left;">
-                  If paying from a desktop, scan this QR code using GPay, Paytm, PhonePe, or BHIM:
-                </p>
-
-                <!-- Centered QR Box -->
-                <div class="pay-qr-column">
-                  <img src="${qrCodeUrl}" alt="Scan QR Code to Pay" onerror="this.style.display='none'" />
-                  <p style="font-size:11px; font-weight:700; color:var(--primary); margin-top:10px;">
-                    Scan using any UPI App
-                  </p>
-                </div>
-
-                <p style="font-size: 13px; color: var(--text-light); margin: 20px 0 8px; text-align: left;">
-                  Or copy our UPI ID to transfer manually:
-                </p>
-
-                <div class="upi-display-card">
-                  <div class="upi-info">
-                    <span>Direct UPI ID</span>
-                    <span>${CAFE_UPI_ID}</span>
-                  </div>
-                  <button class="btn-copy" onclick="copyUPI()">
-                    <i data-lucide="copy" style="width:14px;"></i> Copy
-                  </button>
-                </div>
-
-                <div class="notice-box">
-                  <i data-lucide="alert-circle" style="color: #b89130; width: 18px;"></i>
-                  <div>
-                    <strong>Having transaction limit errors?</strong><br>
-                    If standard payment apps decline due to merchant limits, use this link to launch your UPI client with blank totals, then input exactly <strong>₹${finalAmount}</strong>:
-                    <a href="${standardManualUPI}" style="display:block; margin-top:8px; font-weight:700; color: var(--primary);">
-                      🔗 Launch UPI App Without Preset Total
-                    </a>
-                  </div>
-                </div>
-
+              <div class="instruction-step">
+                <span class="step-badge">2</span>
+                <span>Scan the QR code displayed above or take a **screenshot** if ordering on your phone.</span>
+              </div>
+              <div class="instruction-step">
+                <span class="step-badge">3</span>
+                <span>Verify that the recipient is **${CAFE_NAME}** and pay exact sum of **₹${finalAmount}**.</span>
               </div>
             </div>
 
-            <p style="font-size: 12px; text-align: center; color: var(--text-light); margin-top: 24px; line-height: 1.5;">
-              Kindly show or send the payment receipt screenshot to our delivery driver when they reach your location.
-            </p>
-          </div>`;
-
-        lucide.createIcons();
-        
-        // Launch instructions modal immediately
-        launchUnifiedPaymentPortal(finalAmount, standardManualUPI);
-
-        // Smoothly bring the payment module into view
-        setTimeout(() => {
-          document.getElementById("paymentViewPort").scrollIntoView({ behavior: "smooth" });
-        }, 300);
-
-      } catch (error) {
-        console.error(error);
-        showModal("Order Submission Failed", "Could not sync delivery details with our cloud database. Please verify your connection and try again.", false);
-      }
-    };
-
-    // Absolute fail-proof copy function
-    window.copyUPI = function() {
-      copyValueToClipboard(CAFE_UPI_ID, "UPI ID");
-    }
-
-    // Initial Execution
-    loadMenu();
-    renderCart();
-  </script>
-</body>
-</html>
-
-```
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-    }
-
-    .category-btn.active, .category-btn:hover {
-      background: var(--primary);
-      color: white;
-      border-color: var(--primary);
-      box-shadow: 0 4px 12px rgba(27, 67, 50, 0.2);
-      transform: translateY(-1px);
-    }
-
-    /* Dynamic Menu Grid */
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 26px;
-      font-weight: 700;
-      margin: 15px 0 20px;
-      color: var(--primary);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .section-title::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(to right, rgba(27,67,50,0.2), transparent);
-    }
-
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 24px;
-    }
-
-    /* Elegant Cards */
-    .card {
-      background: var(--card-bg);
-      border-radius: 20px;
-      padding: 22px;
-      box-shadow: 0 8px 24px rgba(27, 67, 50, 0.04);
-      border: 1px solid rgba(27, 67, 50, 0.05);
-      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 4px;
-      background: var(--primary);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 30px rgba(27, 67, 50, 0.08);
-    }
-
-    .card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .card-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 12px;
-    }
-
-    .category-tag {
-      font-size: 11px;
-      text-transform: uppercase;
-      font-weight: 700;
-      letter-spacing: 1px;
-      color: var(--secondary);
-      background: rgba(116, 198, 157, 0.15);
-      padding: 4px 10px;
-      border-radius: 20px;
-    }
-
-    .price-badge {
-      font-size: 19px;
-      font-weight: 800;
-      color: var(--primary);
-    }
-
-    .card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--text-dark);
-      margin-bottom: 8px;
-    }
-
-    .card-desc {
-      font-size: 13px;
-      color: var(--text-light);
-      margin-bottom: 20px;
-      flex-grow: 1;
-    }
-
-    /* Button Animations */
-    .btn-add {
-      border: none;
-      padding: 12px 18px;
-      border-radius: 14px;
-      background: var(--primary);
-      color: white;
-      font-weight: 700;
-      font-size: 14px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: all 0.2s ease;
-      width: 100%;
-      box-shadow: 0 4px 12px rgba(27, 67, 50, 0.1);
-    }
-
-    .btn-add:hover {
-      background: var(--primary-hover);
-      box-shadow: 0 6px 16px rgba(27, 67, 50, 0.2);
-    }
-
-    .btn-add:active {
-      transform: scale(0.97);
-    }
-
-    /* Cart Floating / Sticky Bar on Desktop & Mobile */
-    .cart-anchor-btn {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: var(--accent);
-      color: white;
-      padding: 16px 24px;
-      border-radius: 40px;
-      box-shadow: 0 8px 32px rgba(184, 145, 48, 0.4);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 700;
-      text-decoration: none;
-      z-index: 100;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      border: 1px solid rgba(255,255,255,0.2);
-    }
-
-    .cart-anchor-btn:hover {
-      transform: translateY(-5px) scale(1.05);
-      background: #cba23e;
-    }
-
-    .cart-count-badge {
-      background: var(--primary);
-      color: white;
-      border-radius: 50%;
-      width: 24px;
-      height: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: 800;
-      transition: transform 0.3s ease;
-    }
-
-    /* Cart & Checkouts Section */
-    .cart-section {
-      background: white;
-      margin-top: 40px;
-      padding: 30px;
-      border-radius: 24px;
-      box-shadow: 0 10px 35px rgba(27, 67, 50, 0.06);
-      border: 1px solid rgba(27, 67, 50, 0.05);
-      scroll-margin-top: 100px;
-    }
-
-    .cart-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 2px solid rgba(27, 67, 50, 0.06);
-      padding-bottom: 15px;
-      margin-bottom: 20px;
-    }
-
-    .cart-header h2 {
-      font-family: 'Playfair Display', serif;
-      color: var(--primary);
-      font-size: 24px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .cart-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid rgba(27, 67, 50, 0.04);
-      padding: 16px 0;
-    }
-
-    .cart-item-name {
-      font-weight: 600;
-      font-size: 15px;
-    }
-
-    .cart-item-controls {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .qty-btn {
-      background: rgba(27,67,50,0.06);
-      border: none;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--primary);
-      font-weight: 700;
-      transition: all 0.2s;
-    }
-
-    .qty-btn:hover {
-      background: var(--primary);
-      color: white;
-    }
-
-    .cart-item-qty {
-      font-weight: 700;
-      min-width: 20px;
-      text-align: center;
-    }
-
-    .remove-btn {
-      background: transparent;
-      border: none;
-      color: var(--danger);
-      cursor: pointer;
-      padding: 4px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s;
-    }
-
-    .remove-btn:hover {
-      background: rgba(179, 38, 30, 0.1);
-    }
-
-    .empty-cart-view {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 40px 20px;
-      color: var(--text-light);
-    }
-
-    .empty-cart-view i {
-      font-size: 48px;
-      color: #ccd5ae;
-      margin-bottom: 12px;
-    }
-
-    /* Checkout Customer Form */
-    .checkout-form {
-      margin-top: 25px;
-      background: var(--bg-cream);
-      padding: 24px;
-      border-radius: 20px;
-    }
-
-    .checkout-form h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 18px;
-      color: var(--primary);
-      margin-bottom: 16px;
-    }
-
-    .form-group {
-      margin-bottom: 16px;
-    }
-
-    .form-label {
-      display: block;
-      font-size: 12px;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: var(--text-light);
-      margin-bottom: 6px;
-      letter-spacing: 0.5px;
-    }
-
-    .form-input {
-      width: 100%;
-      padding: 12px 16px;
-      border-radius: 12px;
-      border: 1px solid rgba(27,67,50,0.15);
-      background: white;
-      font-size: 15px;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    .form-input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(27, 67, 50, 0.1);
-    }
-
-    .form-textarea {
-      width: 100%;
-      min-height: 80px;
-      padding: 12px 16px;
-      border-radius: 12px;
-      border: 1px solid rgba(27,67,50,0.15);
-      background: white;
-      font-size: 15px;
-      outline: none;
-      resize: vertical;
-      transition: border-color 0.2s;
-    }
-
-    .form-textarea:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(27, 67, 50, 0.1);
-    }
-
-    /* Total and Primary Checkout Actions */
-    .total-box {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 0;
-      margin: 15px 0;
-      border-top: 2px dashed rgba(27, 67, 50, 0.1);
-      border-bottom: 2px dashed rgba(27, 67, 50, 0.1);
-    }
-
-    .total-label {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--text-light);
-    }
-
-    .total-price {
-      font-size: 28px;
-      font-weight: 800;
-      color: var(--success);
-    }
-
-    .pay-btn {
-      width: 100%;
-      padding: 16px;
-      background: var(--success);
-      color: white;
-      border: none;
-      border-radius: 16px;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      box-shadow: 0 6px 20px rgba(45, 106, 79, 0.25);
-      transition: all 0.2s ease;
-    }
-
-    .pay-btn:hover {
-      background: #1b4d3e;
-      transform: translateY(-2px);
-    }
-
-    /* Payment Portal Panel Style (Streamlined Direct Payment) */
-    .payment-box {
-      background: white;
-      border: 1px solid rgba(27, 67, 50, 0.08);
-      margin-top: 30px;
-      padding: 28px;
-      border-radius: 24px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-      animation: slideUp 0.4s ease-out;
-      scroll-margin-top: 100px;
-      text-align: center;
-    }
-
-    .payment-box h2 {
-      font-family: 'Playfair Display', serif;
-      color: var(--primary);
-      margin-bottom: 8px;
-    }
-
-    .pay-amount-hero {
-      text-align: center;
-      padding: 24px;
-      background: var(--bg-cream);
-      border-radius: 20px;
-      margin-bottom: 24px;
-      border: 1px solid rgba(27, 67, 50, 0.05);
-    }
-
-    .pay-amount-hero p {
-      font-size: 12px;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: var(--text-light);
-      letter-spacing: 1px;
-    }
-
-    .pay-amount-hero h1 {
-      font-size: 42px;
-      font-weight: 800;
-      color: var(--success);
-      margin: 4px 0;
-    }
-
-    /* Direct Payment Big Hero Button */
-    .direct-pay-anchor {
-      text-decoration: none;
-      display: block;
-      margin-bottom: 20px;
-    }
-
-    .btn-direct-pay-hero {
-      width: 100%;
-      background: linear-gradient(135deg, var(--success), #1b4332);
-      color: white;
-      border: none;
-      padding: 20px 24px;
-      border-radius: 18px;
-      font-size: 18px;
-      font-weight: 800;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      box-shadow: 0 8px 24px rgba(45, 106, 79, 0.3);
-      transition: all 0.25s ease;
-    }
-
-    .btn-direct-pay-hero:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(45, 106, 79, 0.4);
-      background: linear-gradient(135deg, #387a5c, #132a13);
-    }
-
-    .btn-direct-pay-hero:active {
-      transform: scale(0.98);
-    }
-
-    /* Interactive Accordion for Alternative/Backup Options */
-    .backup-accordion {
-      border: 1px solid rgba(27, 67, 50, 0.1);
-      border-radius: 16px;
-      overflow: hidden;
-      margin-top: 15px;
-      background: var(--bg-cream);
-    }
-
-    .backup-header {
-      background: rgba(27, 67, 50, 0.03);
-      padding: 14px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 14px;
-      color: var(--primary);
-      user-select: none;
-    }
-
-    .backup-content {
-      padding: 20px;
-      background: white;
-      display: none;
-      border-top: 1px solid rgba(27, 67, 50, 0.08);
-      animation: fadeIn 0.3s ease;
-    }
-
-    .backup-content.active {
-      display: block;
-    }
-
-    /* Copy UPI ID component (Absolute fail-proof fallback) */
-    .upi-display-card {
-      background: rgba(184, 145, 48, 0.08);
-      border: 1px dashed rgba(184, 145, 48, 0.4);
-      border-radius: 16px;
-      padding: 16px;
-      margin-bottom: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      text-align: left;
-    }
-
-    .upi-info {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .upi-info span:first-child {
-      font-size: 11px;
-      color: var(--text-light);
-      text-transform: uppercase;
-      font-weight: 700;
-    }
-
-    .upi-info span:last-child {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--primary);
-    }
-
-    .btn-copy {
-      background: var(--primary);
-      color: white;
-      border: none;
-      border-radius: 10px;
-      padding: 8px 14px;
-      font-size: 12px;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: background 0.2s;
-    }
-
-    .btn-copy:hover {
-      background: var(--primary-hover);
-    }
-
-    .pay-qr-column {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: var(--bg-cream);
-      border-radius: 16px;
-      padding: 20px;
-      margin-top: 12px;
-    }
-
-    .pay-qr-column img {
-      max-width: 160px;
-      width: 100%;
-      border-radius: 12px;
-      padding: 6px;
-      background: white;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-    }
-
-    .notice-box {
-      background: #fffbef;
-      border: 1px solid #f2e3b6;
-      border-radius: 14px;
-      padding: 14px;
-      color: #6a5323;
-      font-size: 12px;
-      line-height: 1.5;
-      margin-top: 15px;
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      text-align: left;
-    }
-
-    .notice-box i {
-      margin-top: 2px;
-      flex-shrink: 0;
-    }
-
-    /* Fly-to-Cart Particle style */
-    .cart-fly-particle {
-      position: fixed;
-      width: 16px;
-      height: 16px;
-      background-color: var(--accent);
-      border-radius: 50%;
-      z-index: 9999;
-      pointer-events: none;
-      box-shadow: 0 0 10px rgba(184, 145, 48, 0.5);
-    }
-
-    /* Admin link style */
-    .admin-footer {
-      text-align: center;
-      padding: 30px 0;
-      margin-top: 40px;
-    }
-
-    .admin-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--primary);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 700;
-      border-bottom: 1px solid var(--primary);
-      padding-bottom: 2px;
-      transition: color 0.2s, border-color 0.2s;
-    }
-
-    .admin-link:hover {
-      color: var(--accent);
-      border-color: var(--accent);
-    }
-
-    /* Beautiful custom Modal replace */
-    .modal-overlay {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(15, 42, 29, 0.6);
-      backdrop-filter: blur(5px);
-      z-index: 2000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-      padding: 16px;
-    }
-
-    .modal-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .modal-content {
-      background: white;
-      border-radius: 24px;
-      max-width: 450px;
-      width: 100%;
-      padding: 24px;
-      box-shadow: 0 15px 45px rgba(0,0,0,0.2);
-      transform: scale(0.9);
-      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      text-align: center;
-    }
-
-    .modal-overlay.active .modal-content {
-      transform: scale(1);
-    }
-
-    .modal-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 16px;
-    }
-
-    .modal-icon.success {
-      background: rgba(45, 106, 79, 0.15);
-      color: var(--success);
-    }
-
-    .modal-icon.warning {
-      background: rgba(179, 38, 30, 0.15);
-      color: var(--danger);
-    }
-
-    .modal-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px;
-      color: var(--primary);
-      margin-bottom: 8px;
-    }
-
-    .modal-desc {
-      font-size: 14px;
-      color: var(--text-light);
-      margin-bottom: 20px;
-    }
-
-    .modal-btn {
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 12px;
-      font-weight: 700;
-      cursor: pointer;
-      width: 100%;
-      transition: background 0.2s;
-    }
-
-    .modal-btn:hover {
-      background: var(--primary-hover);
-    }
-
-    /* Toast Notification system */
-    .toast-container {
-      position: fixed;
-      top: 24px;
-      right: 24px;
-      z-index: 3000;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    @media (max-width: 600px) {
-      .toast-container {
-        left: 24px;
-        right: 24px;
-      }
-    }
-
-    .toast {
-      background: var(--primary);
-      color: white;
-      padding: 14px 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 14px;
-      font-weight: 600;
-      animation: slideInRight 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.25);
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes slideInRight {
-      from { transform: translateX(100%); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
-
-    @keyframes slideUp {
-      from { transform: translateY(30px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-  </style>
-</head>
-
-<body>
-
-  <div class="delivery-info-banner">
-    <i data-lucide="truck" style="width: 16px;"></i>
-    <span>Delivering delicious warmth direct to your doorstep in 30-45 mins</span>
-  </div>
-
-  <header>
-    <div class="header-logo">
-      <i data-lucide="coffee"></i>
-      <span>Tokyi Cafe</span>
-    </div>
-    <p>Fresh organic coffee, local Himalayan tea, and exquisite bakes delivered hot & fresh to you</p>
-  </header>
-
-  <div class="container">
-    
-    <!-- Custom Search / Categories Selector -->
-    <div class="categories-bar" id="categoriesBar">
-      <button class="category-btn active" onclick="filterMenu('All')">All Delights</button>
-      <button class="category-btn" onclick="filterMenu('Coffee')">Coffee</button>
-      <button class="category-btn" onclick="filterMenu('Tea')">Tea</button>
-      <button class="category-btn" onclick="filterMenu('Snacks')">Snacks</button>
-      <button class="category-btn" onclick="filterMenu('Desserts')">Desserts</button>
-    </div>
-
-    <!-- Today's Menu Section -->
-    <h2 class="section-title">
-      <i data-lucide="sparkles" style="color: var(--accent); width: 22px;"></i>
-      Today's Menu
-    </h2>
-    <div id="menu" class="menu-grid"></div>
-
-    <!-- Active Cart Display Drawer -->
-    <div class="cart-section" id="cartSection">
-      <div class="cart-header">
-        <h2>
-          <i data-lucide="shopping-bag" style="color: var(--primary);"></i>
-          Your Delivery Order
-        </h2>
-        <span id="cartCountBadge" class="cart-count-badge">0</span>
-      </div>
-
-      <div id="cartItems"></div>
-
-      <div class="total-box">
-        <span class="total-label">Subtotal</span>
-        <span class="total-price">₹<span id="total">0.00</span></span>
-      </div>
-
-      <div class="checkout-form">
-        <h3>Delivery Details</h3>
-        <div class="form-group">
-          <label class="form-label" for="customerName">Your Name</label>
-          <input id="customerName" class="form-input" placeholder="e.g. Tendzin Wangmo" />
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="phone">Phone Number</label>
-          <input id="phone" type="tel" class="form-input" placeholder="e.g. 9876543210" />
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="deliveryAddress">Complete Delivery Address</label>
-          <textarea id="deliveryAddress" class="form-textarea" placeholder="e.g. Apartment No, Street Address, Landmark near Tawang Monastery"></textarea>
-        </div>
-
-        <button class="pay-btn" onclick="placeOrder()">
-          <i data-lucide="truck"></i>
-          Place Delivery Order
-        </button>
-      </div>
-    </div>
-
-    <!-- Secure Modern Payment Interface Box -->
-    <div id="paymentArea"></div>
-
-    <div class="admin-footer">
-      <a href="admin.html" class="admin-link">
-        <i data-lucide="settings" style="width: 14px;"></i>
-        Owner Admin Console
-      </a>
-    </div>
-
-  </div>
-
-  <!-- Sticky Bottom Cart Trigger for Mobile UX -->
-  <div class="cart-anchor-btn" onclick="scrollToCart()" id="floatingCartBtn">
-    <i data-lucide="shopping-cart"></i>
-    <span>View Cart</span>
-    <div id="floatingCartCount" class="cart-count-badge" style="background: white; color: var(--accent);">0</div>
-  </div>
-
-  <!-- Custom Alert/Modal Markup -->
-  <div class="modal-overlay" id="customModal">
-    <div class="modal-content">
-      <div id="modalIcon" class="modal-icon success">
-        <i id="modalIconSymbol" data-lucide="check-circle" style="width: 32px; height: 32px;"></i>
-      </div>
-      <h3 id="modalTitle" class="modal-title">Order Complete</h3>
-      <p id="modalDesc" class="modal-desc">Your delivery order has been saved successfully.</p>
-      <button class="modal-btn" onclick="closeModal()">Got it</button>
-    </div>
-  </div>
-
-  <!-- Toast Container -->
-  <div class="toast-container" id="toastContainer"></div>
-
-  <!-- Firebase Setup & App Logic -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getFirestore, collection, getDocs, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-    // Re-bind to user's provided Firebase Instance Config safely
-    const firebaseConfig = { 
-      apiKey: "AIzaSyAYonKe7d9rNp59LOkzEbBowQrcsFH32ts", 
-      authDomain: "cafe-b80ce.firebaseapp.com", 
-      projectId: "cafe-b80ce", 
-      storageBucket: "cafe-b80ce.firebasestorage.app", 
-      messagingSenderId: "110426428527", 
-      appId: "1:110426428527:web:d91f0d414bd13a61ea699a", 
-      measurementId: "G-0JVCTK651G" 
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    // Business payment values
-    const CAFE_UPI_ID = "geliriba11@oksbi";
-    const CAFE_NAME = "Tokyi Cafe";
-
-    let menuItems = [];
-    let cart = [];
-    let activeFilter = 'All';
-
-    // Helper functions
-    function cleanPrice(value) {
-      const number = Number(String(value).replace(/[^0-9.]/g, ""));
-      return isNaN(number) ? 0 : number;
-    }
-
-    // Modal Manager
-    window.showModal = function(title, description, isSuccess = true) {
-      const modal = document.getElementById("customModal");
-      const modalIcon = document.getElementById("modalIcon");
-      const modalIconSymbol = document.getElementById("modalIconSymbol");
-      
-      document.getElementById("modalTitle").innerText = title;
-      document.getElementById("modalDesc").innerText = description;
-
-      if(isSuccess) {
-        modalIcon.className = "modal-icon success";
-        modalIconSymbol.setAttribute("data-lucide", "check-circle");
-      } else {
-        modalIcon.className = "modal-icon warning";
-        modalIconSymbol.setAttribute("data-lucide", "alert-circle");
-      }
-      
-      lucide.createIcons();
-      modal.classList.add("active");
-    }
-
-    window.closeModal = function() {
-      document.getElementById("customModal").classList.remove("active");
-    }
-
-    // Toast Manager
-    window.showToast = function(message, iconName = "check") {
-      const container = document.getElementById("toastContainer");
-      const toast = document.createElement("div");
-      toast.className = "toast";
-      toast.innerHTML = `<i data-lucide="${iconName}"></i> <span>${message}</span>`;
-      container.appendChild(toast);
-      lucide.createIcons();
-
-      setTimeout(() => {
-        toast.style.opacity = '0';
-        toast.style.transition = 'opacity 0.5s ease-out';
-        setTimeout(() => toast.remove(), 500);
-      }, 3000);
-    }
-
-    // Dynamic Filter System
-    window.filterMenu = function(category) {
-      activeFilter = category;
-      
-      // Update Active Button states
-      const buttons = document.querySelectorAll("#categoriesBar .category-btn");
-      buttons.forEach(btn => {
-        if(btn.innerText.includes(category)) {
-          btn.classList.add("active");
-        } else {
-          btn.classList.remove("active");
-        }
-      });
-
-      renderMenu();
-    };
-
-    // Load menu from Firestore with robust styling
-    async function loadMenu() {
-      const menuDiv = document.getElementById("menu");
-      menuDiv.innerHTML = `
-        <div style="grid-column: 1 / -1; text-align: center; padding: 40px;">
-          <i data-lucide="loader" class="animate-spin" style="width: 48px; height: 48px; color: var(--primary); margin: auto;"></i>
-          <p style="margin-top: 10px; color: var(--text-light)">Brewing your menu delights...</p>
-        </div>`;
-      lucide.createIcons();
-
-      try {
-        const querySnapshot = await getDocs(collection(db, "menu"));
-        menuItems = [];
-
-        querySnapshot.forEach((docSnap) => {
-          const item = { id: docSnap.id, ...docSnap.data() };
-          if (item.available === true) {
-            item.price = cleanPrice(item.price);
-            menuItems.push(item);
-          }
-        });
-
-        renderMenu();
-      } catch (error) {
-        console.error(error);
-        menuDiv.innerHTML = `
-          <div class="empty-cart-view" style="grid-column: 1 / -1;">
-            <i data-lucide="alert-triangle" style="color: var(--danger)"></i>
-            <h3>Unable to retrieve menu</h3>
-            <p>Please check your internet connection or check Firestore rules.</p>
-          </div>`;
-        lucide.createIcons();
-      }
-    }
-
-    // Render filtered items
-    function renderMenu() {
-      const menuDiv = document.getElementById("menu");
-      menuDiv.innerHTML = "";
-
-      const filtered = menuItems.filter(item => {
-        if (activeFilter === 'All') return true;
-        return (item.category || "").toLowerCase() === activeFilter.toLowerCase();
-      });
-
-      if (filtered.length === 0) {
-        menuDiv.innerHTML = `
-          <div class="empty-cart-view" style="grid-column: 1 / -1; width: 100%;">
-            <i data-lucide="meh"></i>
-            <h3>No items available today</h3>
-            <p>We are currently prepping fresh items. Check back shortly!</p>
-          </div>`;
-        lucide.createIcons();
-        return;
-      }
-
-      filtered.forEach((item) => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.id = `item-card-${item.id}`;
-
-        card.innerHTML = `
-          <div class="card-meta">
-            <span class="category-tag">${item.category || "Cafe Item"}</span>
-            <span class="price-badge">₹${item.price.toFixed(0)}</span>
-          </div>
-          <h3>${item.name}</h3>
-          <p class="card-desc">${item.description || 'Prepared fresh by local artisans using the best ingredients.'}</p>
-          <button class="btn-add" onclick="animateAddToCart('${item.id}', event)">
-            <i data-lucide="plus"></i> Add to Cart
-          </button>`;
-
-        menuDiv.appendChild(card);
-      });
-
-      lucide.createIcons();
-    }
-
-    // Micro-interactions: Curved flying dot particle animation
-    window.animateAddToCart = function(id, event) {
-      const button = event.currentTarget;
-      const cartIcon = document.getElementById("floatingCartBtn");
-
-      // Button scale animation feedback
-      button.style.transform = "scale(0.95)";
-      setTimeout(() => button.style.transform = "", 150);
-
-      // Create fly particle
-      const particle = document.createElement("div");
-      particle.className = "cart-fly-particle";
-      document.body.appendChild(particle);
-
-      // Coordinates setup
-      const rect = button.getBoundingClientRect();
-      const cartRect = cartIcon.getBoundingClientRect();
-
-      const startX = rect.left + rect.width / 2;
-      const startY = rect.top + window.scrollY;
-      const endX = cartRect.left + cartRect.width / 2;
-      const endY = cartRect.top + window.scrollY;
-
-      particle.style.left = `${startX}px`;
-      particle.style.top = `${startY}px`;
-
-      // CSS Animation execution via interpolation
-      let progress = 0;
-      const speed = 0.05; // speed steps
-      
-      function animate() {
-        progress += speed;
-        if (progress <= 1) {
-          // Quadratic Bezier curves trajectory logic
-          const controlX = (startX + endX) / 2 + 100; // Curve arc control point
-          const controlY = Math.min(startY, endY) - 150;
-
-          // Interpolation equations
-          const currentX = (1 - progress) * (1 - progress) * startX + 2 * (1 - progress) * progress * controlX + progress * progress * endX;
-          const currentY = (1 - progress) * (1 - progress) * startY + 2 * (1 - progress) * progress * controlY + progress * progress * endY;
-
-          particle.style.left = `${currentX}px`;
-          particle.style.top = `${currentY}px`;
-          particle.style.transform = `scale(${1 - progress * 0.5})`;
-
-          requestAnimationFrame(animate);
-        } else {
-          particle.remove();
-          // Bounce cart floating badge
-          cartIcon.style.transform = "scale(1.25)";
-          setTimeout(() => cartIcon.style.transform = "", 200);
-          
-          // Trigger actual programmatic logic
-          addToCart(id);
-        }
-      }
-      
-      requestAnimationFrame(animate);
-    }
-
-    window.addToCart = function(id) {
-      const item = menuItems.find(i => i.id === id);
-      if (!item) return;
-
-      const existing = cart.find(i => i.id === id);
-
-      if (existing) {
-        existing.quantity += 1;
-      } else {
-        cart.push({ id: item.id, name: item.name, price: cleanPrice(item.price), quantity: 1 });
-      }
-
-      showToast(`${item.name} added to delivery cart!`, "shopping-cart");
-      renderCart();
-      document.getElementById("paymentArea").innerHTML = "";
-    };
-
-    function renderCart() {
-      const cartDiv = document.getElementById("cartItems");
-      const totalSpan = document.getElementById("total");
-      const floatingCart = document.getElementById("floatingCartBtn");
-      const floatingCount = document.getElementById("floatingCartCount");
-      const cartBadge = document.getElementById("cartCountBadge");
-
-      const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
-      floatingCount.textContent = totalItems;
-      cartBadge.textContent = totalItems;
-
-      // Handle float button hide/reveal
-      if (totalItems > 0) {
-        floatingCart.style.display = "flex";
-      } else {
-        floatingCart.style.display = "none";
-      }
-
-      if (cart.length === 0) {
-        cartDiv.innerHTML = `
-          <div class="empty-cart-view">
-            <i data-lucide="truck"></i>
-            <p>Your delivery cart is empty. Select appetizing items from the menu above to get started.</p>
-          </div>`;
-        totalSpan.textContent = "0.00";
-        lucide.createIcons();
-        return;
-      }
-
-      cartDiv.innerHTML = "";
-      let total = 0;
-
-      cart.forEach((item, index) => {
-        const itemTotal = cleanPrice(item.price) * item.quantity;
-        total += itemTotal;
-
-        const row = document.createElement("div");
-        row.className = "cart-item";
-
-        row.innerHTML = `
-          <div class="cart-item-name">${item.name}</div>
-          <div class="cart-item-controls">
-            <button class="qty-btn" onclick="updateQty(${index}, -1)">-</button>
-            <span class="cart-item-qty">${item.quantity}</span>
-            <button class="qty-btn" onclick="updateQty(${index}, 1)">+</button>
-            <span style="font-weight:700; width:65px; text-align:right;">₹${itemTotal.toFixed(0)}</span>
-            <button class="remove-btn" onclick="removeItem(${index})">
-              <i data-lucide="trash-2" style="width: 16px; height: 16px;"></i>
-            </button>
-          </div>`;
-
-        cartDiv.appendChild(row);
-      });
-
-      totalSpan.textContent = total.toFixed(2);
-      lucide.createIcons();
-    }
-
-    window.updateQty = function(index, delta) {
-      cart[index].quantity += delta;
-      if (cart[index].quantity <= 0) {
-        cart.splice(index, 1);
-      }
-      renderCart();
-      document.getElementById("paymentArea").innerHTML = "";
-    }
-
-    window.removeItem = function(index) {
-      showToast(`${cart[index].name} removed from your delivery order.`, "trash-2");
-      cart.splice(index, 1);
-      renderCart();
-      document.getElementById("paymentArea").innerHTML = "";
-    };
-
-    window.scrollToCart = function() {
-      document.getElementById("cartSection").scrollIntoView({ behavior: "smooth" });
-    }
-
-    // Toggle Alternative Payment Methods Accordion
-    window.toggleBackupPayments = function() {
-      const element = document.getElementById("backupOptionsContent");
-      const icon = document.getElementById("backupAccordionIcon");
-      if (element.classList.contains("active")) {
-        element.classList.remove("active");
-        icon.style.transform = "rotate(0deg)";
-      } else {
-        element.classList.add("active");
-        icon.style.transform = "rotate(180deg)";
-      }
-    }
-
-    // Save order data to Firestore and trigger UPI Payment Engine
-    window.placeOrder = async function() {
-      const name = document.getElementById("customerName").value.trim();
-      const phone = document.getElementById("phone").value.trim();
-      const address = document.getElementById("deliveryAddress").value.trim();
-
-      if (cart.length === 0) {
-        showModal("Cart is Empty", "Please select items from our menu before placing your delivery order.", false);
-        return;
-      }
-
-      if (!name || !phone || !address) {
-        showModal("Details Missing", "Please provide your Name, Phone Number, and Delivery Address to place the order.", false);
-        return;
-      }
-
-      const total = cart.reduce((sum, item) => sum + cleanPrice(item.price) * item.quantity, 0);
-
-      if (!total || isNaN(total) || total <= 0) {
-        showModal("Checkout Error", "Invalid order total amount calculated. Please inspect your cart.", false);
-        return;
-      }
-
-      const finalAmount = total.toFixed(2);
-      const safeCart = cart.map(item => ({ id: item.id, name: item.name, price: cleanPrice(item.price), quantity: item.quantity }));
-
-      const orderData = { 
-        customerName: name, 
-        phone: phone, 
-        deliveryAddress: address,
-        items: safeCart, 
-        total: Number(finalAmount), 
-        status: "New", 
-        paymentStatus: "Pending", 
-        createdAt: serverTimestamp() 
-      };
-
-      try {
-        await addDoc(collection(db, "orders"), orderData);
-
-        // Standard Intent URL Parameters
-        const exactParams = new URLSearchParams({ pa: CAFE_UPI_ID, pn: CAFE_NAME, am: finalAmount, cu: "INR" });
-        const backupParams = new URLSearchParams({ pa: CAFE_UPI_ID, pn: CAFE_NAME, cu: "INR" }); // amount omitted
-
-        // Single primary unified standard deep link format (opens default consumer UPI selector on mobile)
-        const standardExactUPI = "upi://pay?" + exactParams.toString();
-        const standardManualUPI = "upi://pay?" + backupParams.toString();
-
-        // QR Code mapping containing the exact payment intent URL
-        const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(standardExactUPI)}`;
-
-        const paymentArea = document.getElementById("paymentArea");
-
-        paymentArea.innerHTML = `
-          <div class="payment-box" id="paymentViewPort">
-            <h2>Instant UPI Payment</h2>
-            <p style="color: var(--text-light); margin-bottom: 20px; font-size: 14px;">
-              Your delivery order has been saved. Tap below to complete your payment directly via UPI.
-            </p>
-
-            <div class="pay-amount-hero">
-              <p>Amount to Pay</p>
-              <h1>₹${finalAmount}</h1>
-              <span style="font-size: 11px; font-weight: 700; color: var(--primary); background: rgba(45,106,79,0.1); padding: 4px 10px; border-radius: 20px;">
-                Securing Delivery Order
-              </span>
-            </div>
-
-            <!-- Single Premium Direct Action Button -->
-            <a class="direct-pay-anchor" href="${standardExactUPI}">
-              <button class="btn-direct-pay-hero">
-                <i data-lucide="zap" style="fill: white; width: 22px; height: 22px;"></i>
-                ⚡ Pay ₹${finalAmount} Now
+            <!-- Fail-proof Manual UPI ID copy fallback card -->
+            <div class="upi-display-card">
+              <div class="upi-info">
+                <span>Manual Payee UPI ID</span>
+                <span>${CAFE_UPI_ID}</span>
+              </div>
+              <button class="btn-copy" onclick="copyUPI()">
+                <i data-lucide="copy" style="width: 14px;"></i> Copy ID
               </button>
-            </a>
-
-            <!-- Clean Accordion Interface for Desk & QR Fallbacks -->
-            <div class="backup-accordion">
-              <div class="backup-header" onclick="toggleBackupPayments()">
-                <span>Desktop Scan, Copy UPI ID, or Manual Backup</span>
-                <i id="backupAccordionIcon" data-lucide="chevron-down" style="width: 16px; transition: transform 0.3s;"></i>
-              </div>
-              <div class="backup-content" id="backupOptionsContent">
-                
-                <p style="font-size: 13px; color: var(--text-light); margin-bottom: 12px; text-align: left;">
-                  If paying from a desktop, scan this QR code using GPay, Paytm, PhonePe, or BHIM:
-                </p>
-
-                <!-- Centered QR Box -->
-                <div class="pay-qr-column">
-                  <img src="${qrCodeUrl}" alt="Scan QR Code to Pay" onerror="this.style.display='none'" />
-                  <p style="font-size:11px; font-weight:700; color:var(--primary); margin-top:10px;">
-                    Scan using any UPI App
-                  </p>
-                </div>
-
-                <p style="font-size: 13px; color: var(--text-light); margin: 20px 0 8px; text-align: left;">
-                  Or copy our UPI ID to transfer manually:
-                </p>
-
-                <div class="upi-display-card">
-                  <div class="upi-info">
-                    <span>Direct UPI ID</span>
-                    <span>${CAFE_UPI_ID}</span>
-                  </div>
-                  <button class="btn-copy" onclick="copyUPI()">
-                    <i data-lucide="copy" style="width:14px;"></i> Copy
-                  </button>
-                </div>
-
-                <div class="notice-box">
-                  <i data-lucide="alert-circle" style="color: #b89130; width: 18px;"></i>
-                  <div>
-                    <strong>Having transaction limit errors?</strong><br>
-                    If standard payment apps decline due to merchant limit limits, use this link to launch your UPI client with blank totals, then input exactly <strong>₹${finalAmount}</strong>:
-                    <a href="${standardManualUPI}" style="display:block; margin-top:8px; font-weight:700; color: var(--primary);">
-                      🔗 Launch UPI App Without Preset Total
-                    </a>
-                  </div>
-                </div>
-
-              </div>
             </div>
 
-            <p style="font-size: 12px; text-align: center; color: var(--text-light); margin-top: 24px; line-height: 1.5;">
-              Kindly show or send the payment receipt screenshot to the delivery executive when they reach your location.
+            <p style="font-size: 13px; text-align: center; color: var(--text-light); line-height: 1.5; max-width: 480px; margin: 24px auto 0;">
+              *Once payment is finalized, kindly capture a screenshot of your transaction success screen and share/show it to our delivery driver upon arrival.
             </p>
           </div>`;
 
         lucide.createIcons();
-        showModal("Order Saved!", `Your delivery order has been placed with status "PENDING PAYMENT". Tap the direct payment button below to pay.`, true);
+        showModal("Delivery Order Saved!", `Your order for ₹${finalAmount} has been registered securely. Please scan the QR code below to pay and trigger dispatch.`, true);
 
         // Smoothly bring the payment module into view
         setTimeout(() => {
           document.getElementById("paymentViewPort").scrollIntoView({ behavior: "smooth" });
         }, 300);
 
-        // Direct automatic execution: launch payment intent instantly on mobile
-        if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-          setTimeout(() => {
-            window.location.href = standardExactUPI;
-          }, 1200);
-        }
-
       } catch (error) {
         console.error(error);
-        showModal("Order Submission Failed", "Could not sync delivery details with our cloud database. Please verify your connection and try again.", false);
+        showModal("Database Error", "Could not synchronize delivery details with the cloud server. Verify internet connectivity and re-submit.", false);
       }
     };
 
-    // Absolute fail-proof programmatic copy function
+    // Programmable copy utility
     window.copyUPI = function() {
       const el = document.createElement('textarea');
       el.value = CAFE_UPI_ID;
@@ -3022,7 +1432,7 @@
       showToast("UPI ID Copied to Clipboard!", "copy");
     }
 
-    // Initial Execution
+    // Initial load call
     loadMenu();
     renderCart();
   </script>
