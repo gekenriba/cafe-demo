@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tokyi Cafe - Owner Console</title>
+  <title>Tawang Cafe - Owner Console</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,6 +24,7 @@
       --danger: #d90429;
       --success: #2d6a4f;
       --warning: #b89130;
+      --blue: #2b6cb0;
       --border-soft: rgba(45, 106, 79, 0.08);
     }
 
@@ -108,7 +109,6 @@
     }
 
     .refresh-btn {
-      border: none;
       background: white;
       color: var(--primary);
       border: 1px solid var(--border-soft);
@@ -120,6 +120,7 @@
       align-items: center;
       gap: 6px;
       cursor: pointer;
+      white-space: nowrap;
     }
 
     .admin-tabs {
@@ -128,7 +129,7 @@
       border-radius: 18px;
       padding: 6px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 6px;
       margin-bottom: 16px;
       position: sticky;
@@ -140,7 +141,7 @@
     .tab-btn {
       border: none;
       border-radius: 14px;
-      padding: 11px 12px;
+      padding: 11px 10px;
       background: transparent;
       color: var(--text-light);
       font-size: 12px;
@@ -180,7 +181,7 @@
 
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 10px;
       margin-bottom: 16px;
     }
@@ -278,7 +279,8 @@
     .btn-primary,
     .btn-danger,
     .btn-soft,
-    .btn-small {
+    .btn-small,
+    .btn-warning {
       border: none;
       padding: 10px 14px;
       border-radius: 10px;
@@ -314,6 +316,11 @@
     .btn-soft {
       background: rgba(45, 106, 79, 0.08);
       color: var(--primary);
+    }
+
+    .btn-warning {
+      background: rgba(184, 145, 48, 0.12);
+      color: var(--warning);
     }
 
     .btn-small {
@@ -422,6 +429,10 @@
       box-shadow: 0 4px 18px rgba(45, 106, 79, 0.02);
     }
 
+    .order-card.cancelled {
+      opacity: 0.78;
+    }
+
     .order-header {
       display: flex;
       justify-content: space-between;
@@ -438,6 +449,1155 @@
       line-height: 1.1;
     }
 
+    .customer-meta p {
+      font-size: 12px;
+      color: var(--text-light);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 4px;
+    }
+
+    .order-meta-badges {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .badge {
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+
+    .badge.status-new {
+      background: rgba(49, 130, 206, 0.12);
+      color: #2b6cb0;
+    }
+
+    .badge.status-preparing {
+      background: rgba(184, 145, 48, 0.15);
+      color: #9a721d;
+    }
+
+    .badge.status-dispatched {
+      background: rgba(82, 183, 136, 0.16);
+      color: #2d6a4f;
+    }
+
+    .badge.status-completed {
+      background: rgba(45, 106, 79, 0.1);
+      color: var(--primary);
+    }
+
+    .badge.status-cancelled {
+      background: rgba(217, 4, 41, 0.08);
+      color: var(--danger);
+    }
+
+    .badge.paid {
+      background: rgba(82, 183, 136, 0.16);
+      color: #2d6a4f;
+    }
+
+    .badge.unpaid {
+      background: rgba(217, 4, 41, 0.08);
+      color: var(--danger);
+    }
+
+    .badge.cancelled-pay {
+      background: rgba(217, 4, 41, 0.08);
+      color: var(--danger);
+    }
+
+    .order-address {
+      background: var(--bg-cream);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 12px;
+      color: var(--text-dark);
+      display: flex;
+      gap: 7px;
+      margin-bottom: 10px;
+    }
+
+    .order-address i {
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .order-items-list {
+      margin-bottom: 10px;
+    }
+
+    .order-item-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 13px;
+      padding: 4px 0;
+      color: var(--text-dark);
+    }
+
+    .order-total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px dashed var(--border-soft);
+      padding-top: 10px;
+      font-weight: 800;
+      margin-top: 8px;
+    }
+
+    .order-total-row span:last-child {
+      color: var(--primary);
+      font-size: 18px;
+    }
+
+    .order-controls {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .record-controls {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .expired-note {
+      margin-top: 10px;
+      background: rgba(217, 4, 41, 0.06);
+      color: var(--danger);
+      border: 1px solid rgba(217, 4, 41, 0.12);
+      padding: 8px 10px;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .empty-view {
+      text-align: center;
+      background: white;
+      border: 1px solid var(--border-soft);
+      border-radius: 18px;
+      padding: 28px 16px;
+      color: var(--text-light);
+    }
+
+    .empty-view h3 {
+      font-size: 16px;
+      color: var(--primary);
+      margin-top: 8px;
+    }
+
+    .empty-view p {
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .toast-container {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 3000;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .toast {
+      background: var(--primary);
+      color: white;
+      padding: 10px 16px;
+      border-radius: 10px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      animation: slideInRight 0.25s ease;
+      pointer-events: auto;
+    }
+
+    @keyframes slideInRight {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 14px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .top-bar {
+        align-items: flex-start;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+
+      .stat-card {
+        padding: 11px;
+      }
+
+      .stat-card strong {
+        font-size: 18px;
+      }
+
+      .admin-tabs {
+        grid-template-columns: 1fr;
+      }
+
+      .menu-item {
+        align-items: flex-start;
+      }
+
+      .menu-actions {
+        flex-direction: column;
+      }
+
+      .order-controls {
+        grid-template-columns: 1fr;
+      }
+
+      .toast-container {
+        left: 16px;
+        right: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-logo">
+    <i data-lucide="coffee"></i>
+    <span>Tawang Cafe</span>
+  </div>
+  <p>Owner Console &bull; <a href="index.html">Open Customer Website</a></p>
+</header>
+
+<div class="container">
+
+  <div class="top-bar">
+    <div class="page-title">
+      <h1>Owner Dashboard</h1>
+      <p>Manage today’s bakes, menu stock, payments and delivery orders.</p>
+    </div>
+
+    <button class="refresh-btn" onclick="refreshAll()">
+      <i data-lucide="refresh-cw" style="width: 14px;"></i>
+      Refresh
+    </button>
+  </div>
+
+  <div class="admin-tabs">
+    <button class="tab-btn active" id="menuTabBtn" onclick="switchAdminTab('menu')">
+      <i data-lucide="cake-slice" style="width: 15px;"></i>
+      Menu
+    </button>
+
+    <button class="tab-btn" id="ordersTabBtn" onclick="switchAdminTab('orders')">
+      <i data-lucide="truck" style="width: 15px;"></i>
+      Orders
+    </button>
+
+    <button class="tab-btn" id="recordsTabBtn" onclick="switchAdminTab('records')">
+      <i data-lucide="archive" style="width: 15px;"></i>
+      Records
+    </button>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <span>Total Items</span>
+      <strong id="statItems">0</strong>
+    </div>
+
+    <div class="stat-card">
+      <span>Today’s Bakes</span>
+      <strong id="statBakes">0</strong>
+    </div>
+
+    <div class="stat-card">
+      <span>Active Orders</span>
+      <strong id="statOrders">0</strong>
+    </div>
+
+    <div class="stat-card">
+      <span>Unpaid</span>
+      <strong id="statUnpaid">0</strong>
+    </div>
+  </div>
+
+  <div class="tab-panel active" id="menuPanel">
+
+    <div class="box">
+      <h2>
+        <i data-lucide="cake-slice" style="width: 16px;"></i>
+        Today's Bakes
+      </h2>
+
+      <div id="bakesList">
+        <div class="empty-view">
+          <i data-lucide="loader" style="width: 32px; height: 32px;"></i>
+          <h3>Loading Today’s Bakes</h3>
+          <p>Only cake items will appear here.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="box">
+      <h2>
+        <i data-lucide="plus-circle" style="width: 16px;"></i>
+        Add New Item
+      </h2>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label" for="itemName">Item Name</label>
+          <input id="itemName" class="form-input" placeholder="e.g. Chocolate Cake" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="itemPrice">Price INR</label>
+          <input id="itemPrice" type="number" class="form-input" placeholder="e.g. 120" />
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label" for="itemCategory">Category</label>
+          <select id="itemCategory" class="form-select">
+            <option value="Cake">Cake</option>
+            <option value="Coffee">Coffee</option>
+            <option value="Tea">Tea</option>
+            <option value="Snacks">Snacks</option>
+            <option value="Desserts">Desserts</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="itemDescription">Short Description</label>
+          <textarea id="itemDescription" class="form-textarea" placeholder="e.g. Freshly baked today"></textarea>
+        </div>
+      </div>
+
+      <button class="btn-primary" onclick="addMenuItem()">
+        <i data-lucide="save" style="width: 14px;"></i>
+        Save Item
+      </button>
+    </div>
+
+    <div class="box">
+      <h2>
+        <i data-lucide="toggle-left" style="width: 16px;"></i>
+        Full Menu Stock
+      </h2>
+
+      <div id="menuList">
+        <div class="empty-view">
+          <i data-lucide="loader" style="width: 32px; height: 32px;"></i>
+          <h3>Loading Menu</h3>
+          <p>Please wait...</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="tab-panel" id="ordersPanel">
+
+    <div class="filters-row">
+      <button class="filter-chip active" data-filter="Active" onclick="setOrderFilter('Active')">Active</button>
+      <button class="filter-chip" data-filter="New" onclick="setOrderFilter('New')">New</button>
+      <button class="filter-chip" data-filter="Preparing" onclick="setOrderFilter('Preparing')">Preparing</button>
+      <button class="filter-chip" data-filter="Dispatched" onclick="setOrderFilter('Dispatched')">Dispatched</button>
+      <button class="filter-chip" data-filter="Unpaid" onclick="setOrderFilter('Unpaid')">Unpaid</button>
+      <button class="filter-chip" data-filter="Paid" onclick="setOrderFilter('Paid')">Paid</button>
+      <button class="filter-chip" data-filter="Cancelled" onclick="setOrderFilter('Cancelled')">Cancelled</button>
+      <button class="filter-chip" data-filter="All" onclick="setOrderFilter('All')">All</button>
+    </div>
+
+    <div id="ordersList">
+      <div class="empty-view">
+        <i data-lucide="loader" style="width: 32px; height: 32px;"></i>
+        <h3>Loading Orders</h3>
+        <p>Please wait...</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="tab-panel" id="recordsPanel">
+
+    <div class="box">
+      <h2>
+        <i data-lucide="archive" style="width: 16px;"></i>
+        Order Records
+      </h2>
+      <p style="font-size: 12px; color: var(--text-light); margin-bottom: 12px;">
+        This keeps every order detail including completed, cancelled, paid and unpaid orders. You can delete old records manually.
+      </p>
+
+      <div id="recordsList">
+        <div class="empty-view">
+          <i data-lucide="loader" style="width: 32px; height: 32px;"></i>
+          <h3>Loading Records</h3>
+          <p>Please wait...</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import {
+    getFirestore,
+    collection,
+    getDocs,
+    addDoc,
+    updateDoc,
+    deleteDoc,
+    doc,
+    query,
+    orderBy,
+    serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAYonKe7d9rNp59LOkzEbBowQrcsFH32ts",
+    authDomain: "cafe-b80ce.firebaseapp.com",
+    projectId: "cafe-b80ce",
+    storageBucket: "cafe-b80ce.firebasestorage.app",
+    messagingSenderId: "110426428527",
+    appId: "1:110426428527:web:d91f0d414bd13a61ea699a",
+    measurementId: "G-0JVCTK651G"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  let menuCache = [];
+  let ordersCache = [];
+  let orderFilter = "Active";
+
+  const PAYMENT_EXPIRY_MINUTES = 15;
+
+  function cleanPrice(value) {
+    const number = Number(String(value).replace(/[^0-9.]/g, ""));
+    return isNaN(number) ? 0 : number;
+  }
+
+  function escapeHTML(value) {
+    return String(value || "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  function safeCreateIcons() {
+    try {
+      if (typeof lucide !== "undefined" && typeof lucide.createIcons === "function") {
+        lucide.createIcons();
+      }
+    } catch (e) {
+      console.warn("Lucide icons failed:", e);
+    }
+  }
+
+  function getDateFromTimestamp(timestamp) {
+    try {
+      if (timestamp && typeof timestamp.toDate === "function") {
+        return timestamp.toDate();
+      }
+    } catch (e) {}
+
+    return null;
+  }
+
+  function formatDate(timestamp) {
+    const date = getDateFromTimestamp(timestamp);
+
+    if (!date) return "Just now";
+
+    return date.toLocaleString("en-IN", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit"
+    });
+  }
+
+  function isPaymentExpired(order) {
+    const status = String(order.status || "New");
+    const paymentStatus = String(order.paymentStatus || "Pending");
+
+    if (paymentStatus === "Paid") return false;
+    if (status === "Completed") return false;
+    if (status === "Cancelled") return false;
+
+    const createdDate = getDateFromTimestamp(order.createdAt);
+    if (!createdDate) return false;
+
+    const now = new Date();
+    const diffMinutes = (now - createdDate) / 60000;
+
+    return diffMinutes > PAYMENT_EXPIRY_MINUTES;
+  }
+
+  async function autoCancelExpiredOrders() {
+    const expiredOrders = ordersCache.filter(isPaymentExpired);
+
+    if (expiredOrders.length === 0) return;
+
+    await Promise.all(
+      expiredOrders.map(order => {
+        return updateDoc(doc(db, "orders", order.id), {
+          status: "Cancelled",
+          paymentStatus: "Cancelled",
+          cancelReason: "Payment not completed within 15 minutes",
+          cancelledAt: serverTimestamp()
+        });
+      })
+    );
+
+    ordersCache = ordersCache.map(order => {
+      if (expiredOrders.some(expired => expired.id === order.id)) {
+        return {
+          ...order,
+          status: "Cancelled",
+          paymentStatus: "Cancelled",
+          cancelReason: "Payment not completed within 15 minutes"
+        };
+      }
+
+      return order;
+    });
+
+    showToast(`${expiredOrders.length} unpaid order cancelled after 15 minutes`, "clock");
+  }
+
+  window.showToast = function(message, iconName = "check") {
+    const container = document.getElementById("toastContainer");
+    const toast = document.createElement("div");
+
+    toast.className = "toast";
+    toast.innerHTML = `
+      <i data-lucide="${iconName}" style="width: 16px; height: 16px;"></i>
+      <span>${escapeHTML(message)}</span>
+    `;
+
+    container.appendChild(toast);
+    safeCreateIcons();
+
+    setTimeout(() => {
+      toast.style.opacity = "0";
+      toast.style.transition = "opacity 0.5s ease-out";
+      setTimeout(() => toast.remove(), 500);
+    }, 2400);
+  };
+
+  window.switchAdminTab = function(tabName) {
+    document.getElementById("menuTabBtn").classList.toggle("active", tabName === "menu");
+    document.getElementById("ordersTabBtn").classList.toggle("active", tabName === "orders");
+    document.getElementById("recordsTabBtn").classList.toggle("active", tabName === "records");
+
+    document.getElementById("menuPanel").classList.toggle("active", tabName === "menu");
+    document.getElementById("ordersPanel").classList.toggle("active", tabName === "orders");
+    document.getElementById("recordsPanel").classList.toggle("active", tabName === "records");
+
+    if (tabName === "records") {
+      renderRecords();
+    }
+
+    safeCreateIcons();
+  };
+
+  window.refreshAll = async function() {
+    await Promise.all([loadMenuAdmin(), loadOrders()]);
+    showToast("Dashboard refreshed", "refresh-cw");
+  };
+
+  function updateStats() {
+    const totalItems = menuCache.length;
+    const totalBakes = menuCache.filter(item => String(item.category || "").toLowerCase() === "cake").length;
+
+    const activeOrders = ordersCache.filter(order => {
+      const status = String(order.status || "New").toLowerCase();
+      return status !== "completed" && status !== "cancelled";
+    }).length;
+
+    const unpaidOrders = ordersCache.filter(order => {
+      const status = String(order.status || "New").toLowerCase();
+      const paymentStatus = String(order.paymentStatus || "Pending");
+      return paymentStatus !== "Paid" && status !== "cancelled";
+    }).length;
+
+    document.getElementById("statItems").textContent = totalItems;
+    document.getElementById("statBakes").textContent = totalBakes;
+    document.getElementById("statOrders").textContent = activeOrders;
+    document.getElementById("statUnpaid").textContent = unpaidOrders;
+  }
+
+  async function loadMenuAdmin() {
+    const menuList = document.getElementById("menuList");
+    const bakesList = document.getElementById("bakesList");
+
+    try {
+      let querySnapshot;
+
+      try {
+        const q = query(collection(db, "menu"), orderBy("createdAt", "desc"));
+        querySnapshot = await getDocs(q);
+      } catch (e) {
+        querySnapshot = await getDocs(collection(db, "menu"));
+      }
+
+      menuCache = [];
+
+      querySnapshot.forEach((documentSnap) => {
+        menuCache.push({
+          id: documentSnap.id,
+          ...documentSnap.data()
+        });
+      });
+
+      renderBakesOnly();
+      renderMenuAdmin();
+      updateStats();
+
+    } catch (err) {
+      console.error(err);
+
+      const errorHTML = `
+        <div class="empty-view">
+          <i data-lucide="alert-triangle" style="width: 32px; height: 32px; color: var(--danger);"></i>
+          <h3>Menu Sync Failed</h3>
+          <p>Please check your Firebase rules.</p>
+        </div>
+      `;
+
+      menuList.innerHTML = errorHTML;
+      bakesList.innerHTML = errorHTML;
+
+      safeCreateIcons();
+    }
+  }
+
+  function createMenuItemHTML(item) {
+    return `
+      <div class="menu-info">
+        <h4>${escapeHTML(item.name)}</h4>
+        <p>${escapeHTML(item.category || "General")} &bull; ₹${cleanPrice(item.price).toFixed(0)}</p>
+        ${
+          item.description
+            ? `<p>${escapeHTML(item.description)}</p>`
+            : `<p>No description added</p>`
+        }
+      </div>
+
+      <div class="menu-actions">
+        <button class="toggle-btn ${item.available ? "on" : "off"}" onclick="toggleAvailability('${item.id}', ${item.available === true})">
+          <i data-lucide="${item.available ? "check" : "x"}" style="width: 12px;"></i>
+          ${item.available ? "ON" : "OUT"}
+        </button>
+
+        <button class="btn-danger btn-small" onclick="deleteMenuItemWithConfirm('${item.id}')">
+          <i data-lucide="trash-2" style="width: 13px;"></i>
+        </button>
+      </div>
+    `;
+  }
+
+  function renderBakesOnly() {
+    const bakesList = document.getElementById("bakesList");
+    bakesList.innerHTML = "";
+
+    const cakes = menuCache.filter(item => String(item.category || "").toLowerCase() === "cake");
+
+    if (cakes.length === 0) {
+      bakesList.innerHTML = `
+        <div class="empty-view">
+          <i data-lucide="cake-slice" style="width: 34px; height: 34px;"></i>
+          <h3>No Cakes Added</h3>
+          <p>Add cake items below and they will appear in Today’s Bakes.</p>
+        </div>
+      `;
+
+      safeCreateIcons();
+      return;
+    }
+
+    cakes.forEach((item) => {
+      const div = document.createElement("div");
+      div.className = "menu-item";
+      div.innerHTML = createMenuItemHTML(item);
+      bakesList.appendChild(div);
+    });
+
+    safeCreateIcons();
+  }
+
+  function renderMenuAdmin() {
+    const menuList = document.getElementById("menuList");
+    menuList.innerHTML = "";
+
+    if (menuCache.length === 0) {
+      menuList.innerHTML = `
+        <div class="empty-view">
+          <i data-lucide="coffee" style="width: 34px; height: 34px;"></i>
+          <h3>No Menu Items</h3>
+          <p>Add your first cafe item above.</p>
+        </div>
+      `;
+
+      safeCreateIcons();
+      return;
+    }
+
+    menuCache.forEach((item) => {
+      const div = document.createElement("div");
+      div.className = "menu-item";
+      div.innerHTML = createMenuItemHTML(item);
+      menuList.appendChild(div);
+    });
+
+    safeCreateIcons();
+  }
+
+  window.addMenuItem = async function() {
+    const name = document.getElementById("itemName").value.trim();
+    const price = Number(document.getElementById("itemPrice").value);
+    const category = document.getElementById("itemCategory").value;
+    const description = document.getElementById("itemDescription").value.trim();
+
+    if (!name || isNaN(price) || price <= 0) {
+      showToast("Enter item name and valid price", "alert-circle");
+      return;
+    }
+
+    try {
+      await addDoc(collection(db, "menu"), {
+        name: name,
+        price: price,
+        category: category,
+        description: description,
+        available: true,
+        createdAt: serverTimestamp()
+      });
+
+      document.getElementById("itemName").value = "";
+      document.getElementById("itemPrice").value = "";
+      document.getElementById("itemDescription").value = "";
+
+      showToast(`${name} added to menu`, "check-circle");
+      await loadMenuAdmin();
+
+    } catch (err) {
+      console.error(err);
+      showToast("Failed to save item", "alert-triangle");
+    }
+  };
+
+  window.toggleAvailability = async function(id, currentStatus) {
+    try {
+      await updateDoc(doc(db, "menu", id), {
+        available: !currentStatus
+      });
+
+      showToast("Stock updated", "toggle-right");
+      await loadMenuAdmin();
+
+    } catch (err) {
+      console.error(err);
+      showToast("Failed to update stock", "alert-circle");
+    }
+  };
+
+  window.deleteMenuItemWithConfirm = async function(id) {
+    const item = menuCache.find(menuItem => menuItem.id === id);
+    const itemName = item?.name || "this item";
+
+    const confirmDelete = confirm(`Delete "${itemName}" from the menu? This cannot be undone.`);
+
+    if (!confirmDelete) return;
+
+    try {
+      await deleteDoc(doc(db, "menu", id));
+      showToast("Menu item deleted", "trash-2");
+      await loadMenuAdmin();
+    } catch (err) {
+      console.error(err);
+      showToast("Failed to delete item", "alert-circle");
+    }
+  };
+
+  async function loadOrders() {
+    const ordersList = document.getElementById("ordersList");
+
+    try {
+      let querySnapshot;
+
+      try {
+        const q = query(collection(db, "orders"), orderBy("createdAt", "desc"));
+        querySnapshot = await getDocs(q);
+      } catch (e) {
+        querySnapshot = await getDocs(collection(db, "orders"));
+      }
+
+      ordersCache = [];
+
+      querySnapshot.forEach((documentSnap) => {
+        ordersCache.push({
+          id: documentSnap.id,
+          ...documentSnap.data()
+        });
+      });
+
+      await autoCancelExpiredOrders();
+
+      renderOrders();
+      renderRecords();
+      updateStats();
+
+    } catch (err) {
+      console.error(err);
+
+      ordersList.innerHTML = `
+        <div class="empty-view">
+          <i data-lucide="alert-triangle" style="width: 32px; height: 32px; color: var(--danger);"></i>
+          <h3>Order Sync Failed</h3>
+          <p>Please check your Firebase rules.</p>
+        </div>
+      `;
+
+      safeCreateIcons();
+    }
+  }
+
+  window.setOrderFilter = function(filterName) {
+    orderFilter = filterName;
+
+    document.querySelectorAll(".filter-chip").forEach(chip => {
+      chip.classList.toggle("active", chip.dataset.filter === filterName);
+    });
+
+    renderOrders();
+  };
+
+  function getFilteredOrders() {
+    return ordersCache.filter(order => {
+      const status = String(order.status || "New");
+      const paymentStatus = String(order.paymentStatus || "Pending");
+
+      if (orderFilter === "All") return true;
+
+      if (orderFilter === "Active") {
+        return status.toLowerCase() !== "completed" && status.toLowerCase() !== "cancelled";
+      }
+
+      if (orderFilter === "Paid") return paymentStatus === "Paid";
+      if (orderFilter === "Unpaid") {
+        return paymentStatus !== "Paid" && status.toLowerCase() !== "cancelled";
+      }
+
+      return status.toLowerCase() === orderFilter.toLowerCase();
+    });
+  }
+
+  function getOrderCardHTML(order, options = {}) {
+    const id = order.id;
+    const status = order.status || "New";
+    const paymentStatus = order.paymentStatus || "Pending";
+    const deliveryLocation = order.deliveryAddress || "Takeaway / Self Pickup";
+    const statusLower = String(status).toLowerCase();
+
+    const badgeStatusClass = `status-${statusLower}`;
+    let paymentBadgeClass = "unpaid";
+
+    if (paymentStatus === "Paid") {
+      paymentBadgeClass = "paid";
+    }
+
+    if (paymentStatus === "Cancelled") {
+      paymentBadgeClass = "cancelled-pay";
+    }
+
+    let itemsListHtml = "";
+
+    if (Array.isArray(order.items) && order.items.length > 0) {
+      order.items.forEach(item => {
+        const itemName = escapeHTML(item.name || "Item");
+        const itemQty = Number(item.quantity || 1);
+        const itemPrice = cleanPrice(item.price) * itemQty;
+
+        itemsListHtml += `
+          <div class="order-item-row">
+            <span>${itemName} <strong style="color: var(--primary)">× ${itemQty}</strong></span>
+            <span>₹${itemPrice.toFixed(0)}</span>
+          </div>
+        `;
+      });
+    } else {
+      itemsListHtml = `
+        <div class="order-item-row">
+          <span>No items found</span>
+          <span>₹0</span>
+        </div>
+      `;
+    }
+
+    let controlsHTML = "";
+
+    if (options.recordMode) {
+      controlsHTML = `
+        <div class="record-controls">
+          <button class="btn-danger" onclick="deleteOrderRecord('${id}')">
+            <i data-lucide="trash-2" style="width: 13px;"></i>
+            Delete This Record
+          </button>
+        </div>
+      `;
+    } else {
+      if (statusLower !== "completed" && statusLower !== "cancelled") {
+        controlsHTML = `
+          <div class="order-controls">
+            <button class="btn-primary" style="background:#2b6cb0;" onclick="updateOrderStatus('${id}', 'Preparing')">
+              <i data-lucide="cog" style="width: 13px;"></i>
+              Preparing
+            </button>
+
+            <button class="btn-primary" style="background: var(--secondary);" onclick="updateOrderStatus('${id}', 'Dispatched')">
+              <i data-lucide="navigation" style="width: 13px;"></i>
+              Dispatch
+            </button>
+
+            <button class="btn-primary" onclick="updateOrderStatus('${id}', 'Completed')">
+              <i data-lucide="check-square" style="width: 13px;"></i>
+              Complete
+            </button>
+
+            <button class="btn-soft" onclick="markPaid('${id}')">
+              <i data-lucide="indian-rupee" style="width: 13px;"></i>
+              Mark Paid
+            </button>
+          </div>
+        `;
+      } else {
+        controlsHTML = `
+          <div class="expired-note">
+            This order is ${escapeHTML(status)} and has been moved out of active orders. See Records tab for full history.
+          </div>
+        `;
+      }
+    }
+
+    const cancelledNote = statusLower === "cancelled"
+      ? `
+        <div class="expired-note">
+          ${escapeHTML(order.cancelReason || "Order cancelled.")}
+        </div>
+      `
+      : "";
+
+    return `
+      <div class="order-header">
+        <div class="customer-meta">
+          <h3>${escapeHTML(order.customerName || "Customer")}</h3>
+          <p>
+            <i data-lucide="phone" style="width: 13px;"></i>
+            <a href="tel:${escapeHTML(order.phone || "")}" style="color: inherit; text-decoration: none;">
+              ${escapeHTML(order.phone || "No phone")}
+            </a>
+          </p>
+          <p>
+            <i data-lucide="clock" style="width: 13px;"></i>
+            ${escapeHTML(formatDate(order.createdAt))}
+          </p>
+        </div>
+
+        <div class="order-meta-badges">
+          <span class="badge ${badgeStatusClass}">${escapeHTML(status)}</span>
+          <span class="badge ${paymentBadgeClass}">
+            ${paymentStatus === "Paid" ? "Paid" : paymentStatus === "Cancelled" ? "Payment Cancelled" : "Unpaid"}
+          </span>
+        </div>
+      </div>
+
+      <div class="order-address">
+        <i data-lucide="map-pin" style="width: 16px;"></i>
+        <span>${escapeHTML(deliveryLocation)}</span>
+      </div>
+
+      <div class="order-items-list">
+        ${itemsListHtml}
+      </div>
+
+      <div class="order-total-row">
+        <span>Order Value</span>
+        <span>₹${cleanPrice(order.total).toFixed(0)}</span>
+      </div>
+
+      ${cancelledNote}
+      ${controlsHTML}
+    `;
+  }
+
+  function renderOrders() {
+    const ordersList = document.getElementById("ordersList");
+    const filteredOrders = getFilteredOrders();
+
+    ordersList.innerHTML = "";
+
+    if (filteredOrders.length === 0) {
+      ordersList.innerHTML = `
+        <div class="empty-view">
+          <i data-lucide="package-open" style="width: 34px; height: 34px;"></i>
+          <h3>No ${escapeHTML(orderFilter)} Orders</h3>
+          <p>Completed orders are removed from Active Orders and stored in Records.</p>
+        </div>
+      `;
+
+      safeCreateIcons();
+      return;
+    }
+
+    filteredOrders.forEach((order) => {
+      const card = document.createElement("div");
+      card.className = `order-card ${String(order.status || "").toLowerCase() === "cancelled" ? "cancelled" : ""}`;
+      card.innerHTML = getOrderCardHTML(order);
+      ordersList.appendChild(card);
+    });
+
+    safeCreateIcons();
+  }
+
+  function renderRecords() {
+    const recordsList = document.getElementById("recordsList");
+    if (!recordsList) return;
+
+    recordsList.innerHTML = "";
+
+    if (ordersCache.length === 0) {
+      recordsList.innerHTML = `
+        <div class="empty-view">
+          <i data-lucide="archive" style="width: 34px; height: 34px;"></i>
+          <h3>No Order Records</h3>
+          <p>All order details will be saved here after customers place orders.</p>
+        </div>
+      `;
+
+      safeCreateIcons();
+      return;
+    }
+
+    ordersCache.forEach(order => {
+      const card = document.createElement("div");
+      card.className = `order-card ${String(order.status || "").toLowerCase() === "cancelled" ? "cancelled" : ""}`;
+      card.innerHTML = getOrderCardHTML(order, { recordMode: true });
+      recordsList.appendChild(card);
+    });
+
+    safeCreateIcons();
+  }
+
+  window.updateOrderStatus = async function(id, status) {
+    try {
+      await updateDoc(doc(db, "orders", id), {
+        status: status
+      });
+
+      showToast(`Order moved to ${status}`, "check");
+      await loadOrders();
+
+    } catch (err) {
+      console.error(err);
+      showToast("Failed to update order", "alert-triangle");
+    }
+  };
+
+  window.markPaid = async function(id) {
+    try {
+      await updateDoc(doc(db, "orders", id), {
+        paymentStatus: "Paid"
+      });
+
+      showToast("Order marked paid", "indian-rupee");
+      await loadOrders();
+
+    } catch (err) {
+      console.error(err);
+      showToast("Failed to mark paid", "alert-triangle");
+    }
+  };
+
+  window.deleteOrderRecord = async function(id) {
+    const order = ordersCache.find(orderItem => orderItem.id === id);
+    const customerName = order?.customerName || "this customer";
+
+    const confirmDelete = confirm(`Delete the order record of "${customerName}"? This will permanently remove it from Firestore.`);
+
+    if (!confirmDelete) return;
+
+    try {
+      await deleteDoc(doc(db, "orders", id));
+      showToast("Order record deleted", "trash-2");
+      await loadOrders();
+    } catch (err) {
+      console.error(err);
+      showToast("Failed to delete record", "alert-circle");
+    }
+  };
+
+  loadMenuAdmin();
+  loadOrders();
+  safeCreateIcons();
+
+  setInterval(() => {
+    loadOrders();
+  }, 30000);
+</script>
+
+</body>
+</html>
     .customer-meta p {
       font-size: 12px;
       color: var(--text-light);
