@@ -43,7 +43,7 @@
       padding-bottom: 80px; /* Space for sticky mobile cart bottom bar */
     }
 
-    /* Elegant Custom Scrollbar */
+    /* Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
     }
@@ -66,7 +66,6 @@
       box-shadow: 0 4px 20px rgba(27, 67, 50, 0.15);
     }
 
-    /* Stylized organic background detail */
     header::before {
       content: '';
       position: absolute;
@@ -145,6 +144,1513 @@
       font-weight: 600;
       white-space: nowrap;
       cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+
+    .category-btn.active, .category-btn:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      box-shadow: 0 4px 12px rgba(27, 67, 50, 0.2);
+      transform: translateY(-1px);
+    }
+
+    /* Dynamic Menu Grid */
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 700;
+      margin: 15px 0 20px;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, rgba(27,67,50,0.2), transparent);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    /* Elegant Cards */
+    .card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 8px 24px rgba(27, 67, 50, 0.04);
+      border: 1px solid rgba(27, 67, 50, 0.05);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(27, 67, 50, 0.08);
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .category-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--secondary);
+      background: rgba(116, 198, 157, 0.15);
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    .price-badge {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: var(--text-light);
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    /* Button Animations */
+    .btn-add {
+      border: none;
+      padding: 12px 18px;
+      border-radius: 14px;
+      background: var(--primary);
+      color: white;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      width: 100%;
+      box-shadow: 0 4px 12px rgba(27, 67, 50, 0.1);
+    }
+
+    .btn-add:hover {
+      background: var(--primary-hover);
+      box-shadow: 0 6px 16px rgba(27, 67, 50, 0.2);
+    }
+
+    .btn-add:active {
+      transform: scale(0.97);
+    }
+
+    /* Cart Floating / Sticky Bar on Desktop & Mobile */
+    .cart-anchor-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--accent);
+      color: white;
+      padding: 16px 24px;
+      border-radius: 40px;
+      box-shadow: 0 8px 32px rgba(184, 145, 48, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      z-index: 100;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .cart-anchor-btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      background: #cba23e;
+    }
+
+    .cart-count-badge {
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      transition: transform 0.3s ease;
+    }
+
+    /* Cart & Checkouts Section */
+    .cart-section {
+      background: white;
+      margin-top: 40px;
+      padding: 30px;
+      border-radius: 24px;
+      box-shadow: 0 10px 35px rgba(27, 67, 50, 0.06);
+      border: 1px solid rgba(27, 67, 50, 0.05);
+      scroll-margin-top: 100px;
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid rgba(27, 67, 50, 0.06);
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+    }
+
+    .cart-header h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--primary);
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(27, 67, 50, 0.04);
+      padding: 16px 0;
+    }
+
+    .cart-item-name {
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .cart-item-controls {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .qty-btn {
+      background: rgba(27,67,50,0.06);
+      border: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-weight: 700;
+      transition: all 0.2s;
+    }
+
+    .qty-btn:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .cart-item-qty {
+      font-weight: 700;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    .remove-btn {
+      background: transparent;
+      border: none;
+      color: var(--danger);
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .remove-btn:hover {
+      background: rgba(179, 38, 30, 0.1);
+    }
+
+    .empty-cart-view {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-light);
+    }
+
+    .empty-cart-view i {
+      font-size: 48px;
+      color: #ccd5ae;
+      margin-bottom: 12px;
+    }
+
+    /* Checkout Customer Form */
+    .checkout-form {
+      margin-top: 25px;
+      background: var(--bg-cream);
+      padding: 24px;
+      border-radius: 20px;
+    }
+
+    .checkout-form h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--text-light);
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(27,67,50,0.15);
+      background: white;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(27, 67, 50, 0.1);
+    }
+
+    .form-textarea {
+      width: 100%;
+      min-height: 80px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(27,67,50,0.15);
+      background: white;
+      font-size: 15px;
+      outline: none;
+      resize: vertical;
+      transition: border-color 0.2s;
+    }
+
+    .form-textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(27, 67, 50, 0.1);
+    }
+
+    /* Total and Primary Checkout Actions */
+    .total-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+      margin: 15px 0;
+      border-top: 2px dashed rgba(27, 67, 50, 0.1);
+      border-bottom: 2px dashed rgba(27, 67, 50, 0.1);
+    }
+
+    .total-label {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-light);
+    }
+
+    .total-price {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--success);
+    }
+
+    .pay-btn {
+      width: 100%;
+      padding: 16px;
+      background: var(--success);
+      color: white;
+      border: none;
+      border-radius: 16px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 6px 20px rgba(45, 106, 79, 0.25);
+      transition: all 0.2s ease;
+    }
+
+    .pay-btn:hover {
+      background: #1b4d3e;
+      transform: translateY(-2px);
+    }
+
+    /* Payment Portal Panel Style (Streamlined Direct Payment) */
+    .payment-box {
+      background: white;
+      border: 1px solid rgba(27, 67, 50, 0.08);
+      margin-top: 30px;
+      padding: 28px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+      animation: slideUp 0.4s ease-out;
+      scroll-margin-top: 100px;
+      text-align: center;
+    }
+
+    .payment-box h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .pay-amount-hero {
+      text-align: center;
+      padding: 24px;
+      background: var(--bg-cream);
+      border-radius: 20px;
+      margin-bottom: 24px;
+      border: 1px solid rgba(27, 67, 50, 0.05);
+    }
+
+    .pay-amount-hero p {
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--text-light);
+      letter-spacing: 1px;
+    }
+
+    .pay-amount-hero h1 {
+      font-size: 42px;
+      font-weight: 800;
+      color: var(--success);
+      margin: 4px 0;
+    }
+
+    /* Direct Payment Big Hero Button */
+    .btn-direct-pay-hero {
+      width: 100%;
+      background: linear-gradient(135deg, var(--success), #1b4332);
+      color: white;
+      border: none;
+      padding: 20px 24px;
+      border-radius: 18px;
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      box-shadow: 0 8px 24px rgba(45, 106, 79, 0.3);
+      transition: all 0.25s ease;
+    }
+
+    .btn-direct-pay-hero:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(45, 106, 79, 0.4);
+      background: linear-gradient(135deg, #387a5c, #132a13);
+    }
+
+    .btn-direct-pay-hero:active {
+      transform: scale(0.98);
+    }
+
+    /* Direct Instructions Pop-up Modal CSS */
+    .pay-modal-content {
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    .pay-modal-badge {
+      display: inline-flex;
+      background: #fff8e1;
+      border: 1px solid #ffe082;
+      color: #b78103;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+
+    .pay-manual-amount-card {
+      background: var(--bg-cream);
+      border: 1px dashed rgba(27, 67, 50, 0.15);
+      border-radius: 18px;
+      padding: 20px;
+      margin: 15px 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .pay-instruction-step {
+      font-size: 13px;
+      color: var(--text-light);
+      line-height: 1.4;
+      text-align: left;
+      background: white;
+      border-radius: 12px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+
+    .pay-instruction-step strong {
+      color: var(--primary);
+    }
+
+    .pay-instruction-step .step-number {
+      background: var(--primary);
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .modal-copy-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .modal-copy-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-light);
+      text-transform: uppercase;
+      text-align: left;
+    }
+
+    .modal-copy-value {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .modal-copy-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: background 0.2s;
+    }
+
+    .modal-copy-btn:hover {
+      background: var(--primary-hover);
+    }
+
+    /* Interactive Accordion for Alternative/Backup Options */
+    .backup-accordion {
+      border: 1px solid rgba(27, 67, 50, 0.1);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-top: 15px;
+      background: var(--bg-cream);
+    }
+
+    .backup-header {
+      background: rgba(27, 67, 50, 0.03);
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--primary);
+      user-select: none;
+    }
+
+    .backup-content {
+      padding: 20px;
+      background: white;
+      display: none;
+      border-top: 1px solid rgba(27, 67, 50, 0.08);
+      animation: fadeIn 0.3s ease;
+    }
+
+    .backup-content.active {
+      display: block;
+    }
+
+    /* Copy UPI ID component */
+    .upi-display-card {
+      background: rgba(184, 145, 48, 0.08);
+      border: 1px dashed rgba(184, 145, 48, 0.4);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+    }
+
+    .upi-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .upi-info span:first-child {
+      font-size: 11px;
+      color: var(--text-light);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .upi-info span:last-child {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .btn-copy {
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 8px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+
+    .btn-copy:hover {
+      background: var(--primary-hover);
+    }
+
+    .pay-qr-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-cream);
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 12px;
+    }
+
+    .pay-qr-column img {
+      max-width: 160px;
+      width: 100%;
+      border-radius: 12px;
+      padding: 6px;
+      background: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+
+    /* Fly-to-Cart Particle style */
+    .cart-fly-particle {
+      position: fixed;
+      width: 16px;
+      height: 16px;
+      background-color: var(--accent);
+      border-radius: 50%;
+      z-index: 9999;
+      pointer-events: none;
+      box-shadow: 0 0 10px rgba(184, 145, 48, 0.5);
+    }
+
+    /* Admin link style */
+    .admin-footer {
+      text-align: center;
+      padding: 30px 0;
+      margin-top: 40px;
+    }
+
+    .admin-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      border-bottom: 1px solid var(--primary);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .admin-link:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* Beautiful custom Modal replace */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 42, 29, 0.6);
+      backdrop-filter: blur(5px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      padding: 16px;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 24px;
+      max-width: 450px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: 0 15px 45px rgba(0,0,0,0.2);
+      transform: scale(0.9);
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      text-align: center;
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: scale(1);
+    }
+
+    .modal-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .modal-icon.success {
+      background: rgba(45, 106, 79, 0.15);
+      color: var(--success);
+    }
+
+    .modal-icon.warning {
+      background: rgba(179, 38, 30, 0.15);
+      color: var(--danger);
+    }
+
+    .modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .modal-desc {
+      font-size: 14px;
+      color: var(--text-light);
+      margin-bottom: 20px;
+    }
+
+    .modal-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s;
+    }
+
+    .modal-btn:hover {
+      background: var(--primary-hover);
+    }
+
+    /* Toast Notification system */
+    .toast-container {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      z-index: 3000;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .toast-container {
+        left: 24px;
+        right: 24px;
+      }
+    }
+
+    .toast {
+      background: var(--primary);
+      color: white;
+      padding: 14px 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      animation: slideInRight 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.25);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideInRight {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="delivery-info-banner">
+    <i data-lucide="truck" style="width: 16px;"></i>
+    <span>Delivering delicious warmth direct to your doorstep in 30-45 mins</span>
+  </div>
+
+  <header>
+    <div class="header-logo">
+      <i data-lucide="coffee"></i>
+      <span>Tokyi Cafe</span>
+    </div>
+    <p>Fresh organic coffee, local Himalayan tea, and exquisite bakes delivered hot & fresh to you</p>
+  </header>
+
+  <div class="container">
+    
+    <!-- Custom Search / Categories Selector -->
+    <div class="categories-bar" id="categoriesBar">
+      <button class="category-btn active" onclick="filterMenu('All')">All Delights</button>
+      <button class="category-btn" onclick="filterMenu('Coffee')">Coffee</button>
+      <button class="category-btn" onclick="filterMenu('Tea')">Tea</button>
+      <button class="category-btn" onclick="filterMenu('Snacks')">Snacks</button>
+      <button class="category-btn" onclick="filterMenu('Desserts')">Desserts</button>
+    </div>
+
+    <!-- Today's Menu Section -->
+    <h2 class="section-title">
+      <i data-lucide="sparkles" style="color: var(--accent); width: 22px;"></i>
+      Today's Menu
+    </h2>
+    <div id="menu" class="menu-grid"></div>
+
+    <!-- Active Cart Display Drawer -->
+    <div class="cart-section" id="cartSection">
+      <div class="cart-header">
+        <h2>
+          <i data-lucide="shopping-bag" style="color: var(--primary);"></i>
+          Your Delivery Order
+        </h2>
+        <span id="cartCountBadge" class="cart-count-badge">0</span>
+      </div>
+
+      <div id="cartItems"></div>
+
+      <div class="total-box">
+        <span class="total-label">Subtotal</span>
+        <span class="total-price">₹<span id="total">0.00</span></span>
+      </div>
+
+      <div class="checkout-form">
+        <h3>Delivery Details</h3>
+        <div class="form-group">
+          <label class="form-label" for="customerName">Your Name</label>
+          <input id="customerName" class="form-input" placeholder="e.g. Tendzin Wangmo" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="phone">Phone Number</label>
+          <input id="phone" type="tel" class="form-input" placeholder="e.g. 9876543210" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="deliveryAddress">Complete Delivery Address</label>
+          <textarea id="deliveryAddress" class="form-textarea" placeholder="e.g. Apartment No, Street Address, Landmark near Tawang Monastery"></textarea>
+        </div>
+
+        <button class="pay-btn" onclick="placeOrder()">
+          <i data-lucide="truck"></i>
+          Place Delivery Order
+        </button>
+      </div>
+    </div>
+
+    <!-- Secure Modern Payment Interface Box -->
+    <div id="paymentArea"></div>
+
+    <div class="admin-footer">
+      <a href="admin.html" class="admin-link">
+        <i data-lucide="settings" style="width: 14px;"></i>
+        Owner Admin Console
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Sticky Bottom Cart Trigger for Mobile UX -->
+  <div class="cart-anchor-btn" onclick="scrollToCart()" id="floatingCartBtn">
+    <i data-lucide="shopping-cart"></i>
+    <span>View Cart</span>
+    <div id="floatingCartCount" class="cart-count-badge" style="background: white; color: var(--accent);">0</div>
+  </div>
+
+  <!-- Main System Modal Overlay -->
+  <div class="modal-overlay" id="customModal">
+    <div class="modal-content">
+      <div id="modalIcon" class="modal-icon success">
+        <i id="modalIconSymbol" data-lucide="check-circle" style="width: 32px; height: 32px;"></i>
+      </div>
+      <h3 id="modalTitle" class="modal-title">Order Complete</h3>
+      <div id="modalCustomMarkup" class="pay-modal-content">
+        <p id="modalDesc" class="modal-desc">Your delivery order has been saved successfully.</p>
+      </div>
+      <button class="modal-btn" onclick="closeModal()">Got it</button>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Firebase Setup & App Logic -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, collection, getDocs, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    // Re-bind to user's provided Firebase Instance Config safely
+    const firebaseConfig = { 
+      apiKey: "AIzaSyAYonKe7d9rNp59LOkzEbBowQrcsFH32ts", 
+      authDomain: "cafe-b80ce.firebaseapp.com", 
+      projectId: "cafe-b80ce", 
+      storageBucket: "cafe-b80ce.firebasestorage.app", 
+      messagingSenderId: "110426428527", 
+      appId: "1:110426428527:web:d91f0d414bd13a61ea699a", 
+      measurementId: "G-0JVCTK651G" 
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Business payment values
+    const CAFE_UPI_ID = "geliriba11@oksbi";
+    const CAFE_NAME = "Tokyi Cafe";
+
+    let menuItems = [];
+    let cart = [];
+    let activeFilter = 'All';
+
+    // Helper functions
+    function cleanPrice(value) {
+      const number = Number(String(value).replace(/[^0-9.]/g, ""));
+      return isNaN(number) ? 0 : number;
+    }
+
+    // Modal Manager
+    window.showModal = function(title, description, isSuccess = true, customMarkup = '') {
+      const modal = document.getElementById("customModal");
+      const modalIcon = document.getElementById("modalIcon");
+      const modalIconSymbol = document.getElementById("modalIconSymbol");
+      const markupContainer = document.getElementById("modalCustomMarkup");
+      
+      document.getElementById("modalTitle").innerText = title;
+      
+      if (customMarkup) {
+        markupContainer.innerHTML = customMarkup;
+      } else {
+        markupContainer.innerHTML = `<p id="modalDesc" class="modal-desc">${description}</p>`;
+      }
+
+      if(isSuccess) {
+        modalIcon.className = "modal-icon success";
+        modalIconSymbol.setAttribute("data-lucide", "check-circle");
+      } else {
+        modalIcon.className = "modal-icon warning";
+        modalIconSymbol.setAttribute("data-lucide", "alert-circle");
+      }
+      
+      lucide.createIcons();
+      modal.classList.add("active");
+    }
+
+    window.closeModal = function() {
+      document.getElementById("customModal").classList.remove("active");
+    }
+
+    // Toast Manager
+    window.showToast = function(message, iconName = "check") {
+      const container = document.getElementById("toastContainer");
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.innerHTML = `<i data-lucide="${iconName}"></i> <span>${message}</span>`;
+      container.appendChild(toast);
+      lucide.createIcons();
+
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transition = 'opacity 0.5s ease-out';
+        setTimeout(() => toast.remove(), 500);
+      }, 3000);
+    }
+
+    // Dynamic Filter System
+    window.filterMenu = function(category) {
+      activeFilter = category;
+      
+      // Update Active Button states
+      const buttons = document.querySelectorAll("#categoriesBar .category-btn");
+      buttons.forEach(btn => {
+        if(btn.innerText.includes(category)) {
+          btn.classList.add("active");
+        } else {
+          btn.classList.remove("active");
+        }
+      });
+
+      renderMenu();
+    };
+
+    // Load menu from Firestore with robust styling
+    async function loadMenu() {
+      const menuDiv = document.getElementById("menu");
+      menuDiv.innerHTML = `
+        <div style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+          <i data-lucide="loader" class="animate-spin" style="width: 48px; height: 48px; color: var(--primary); margin: auto;"></i>
+          <p style="margin-top: 10px; color: var(--text-light)">Brewing your menu delights...</p>
+        </div>`;
+      lucide.createIcons();
+
+      try {
+        const querySnapshot = await getDocs(collection(db, "menu"));
+        menuItems = [];
+
+        querySnapshot.forEach((docSnap) => {
+          const item = { id: docSnap.id, ...docSnap.data() };
+          if (item.available === true) {
+            item.price = cleanPrice(item.price);
+            menuItems.push(item);
+          }
+        });
+
+        renderMenu();
+      } catch (error) {
+        console.error(error);
+        menuDiv.innerHTML = `
+          <div class="empty-cart-view" style="grid-column: 1 / -1;">
+            <i data-lucide="alert-triangle" style="color: var(--danger)"></i>
+            <h3>Unable to retrieve menu</h3>
+            <p>Please check your internet connection or check Firestore rules.</p>
+          </div>`;
+        lucide.createIcons();
+      }
+    }
+
+    // Render filtered items
+    function renderMenu() {
+      const menuDiv = document.getElementById("menu");
+      menuDiv.innerHTML = "";
+
+      const filtered = menuItems.filter(item => {
+        if (activeFilter === 'All') return true;
+        return (item.category || "").toLowerCase() === activeFilter.toLowerCase();
+      });
+
+      if (filtered.length === 0) {
+        menuDiv.innerHTML = `
+          <div class="empty-cart-view" style="grid-column: 1 / -1; width: 100%;">
+            <i data-lucide="meh"></i>
+            <h3>No items available today</h3>
+            <p>We are currently prepping fresh items. Check back shortly!</p>
+          </div>`;
+        lucide.createIcons();
+        return;
+      }
+
+      filtered.forEach((item) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.id = `item-card-${item.id}`;
+
+        card.innerHTML = `
+          <div class="card-meta">
+            <span class="category-tag">${item.category || "Cafe Item"}</span>
+            <span class="price-badge">₹${item.price.toFixed(0)}</span>
+          </div>
+          <h3>${item.name}</h3>
+          <p class="card-desc">${item.description || 'Prepared fresh by local artisans using the best ingredients.'}</p>
+          <button class="btn-add" onclick="animateAddToCart('${item.id}', event)">
+            <i data-lucide="plus"></i> Add to Cart
+          </button>`;
+
+        menuDiv.appendChild(card);
+      });
+
+      lucide.createIcons();
+    }
+
+    // Curved flying dot particle animation
+    window.animateAddToCart = function(id, event) {
+      const button = event.currentTarget;
+      const cartIcon = document.getElementById("floatingCartBtn");
+
+      button.style.transform = "scale(0.95)";
+      setTimeout(() => button.style.transform = "", 150);
+
+      const particle = document.createElement("div");
+      particle.className = "cart-fly-particle";
+      document.body.appendChild(particle);
+
+      const rect = button.getBoundingClientRect();
+      const cartRect = cartIcon.getBoundingClientRect();
+
+      const startX = rect.left + rect.width / 2;
+      const startY = rect.top + window.scrollY;
+      const endX = cartRect.left + cartRect.width / 2;
+      const endY = cartRect.top + window.scrollY;
+
+      particle.style.left = `${startX}px`;
+      particle.style.top = `${startY}px`;
+
+      let progress = 0;
+      const speed = 0.05;
+      
+      function animate() {
+        progress += speed;
+        if (progress <= 1) {
+          const controlX = (startX + endX) / 2 + 100;
+          const controlY = Math.min(startY, endY) - 150;
+
+          const currentX = (1 - progress) * (1 - progress) * startX + 2 * (1 - progress) * progress * controlX + progress * progress * endX;
+          const currentY = (1 - progress) * (1 - progress) * startY + 2 * (1 - progress) * progress * controlY + progress * progress * endY;
+
+          particle.style.left = `${currentX}px`;
+          particle.style.top = `${currentY}px`;
+          particle.style.transform = `scale(${1 - progress * 0.5})`;
+
+          requestAnimationFrame(animate);
+        } else {
+          particle.remove();
+          cartIcon.style.transform = "scale(1.25)";
+          setTimeout(() => cartIcon.style.transform = "", 200);
+          addToCart(id);
+        }
+      }
+      
+      requestAnimationFrame(animate);
+    }
+
+    window.addToCart = function(id) {
+      const item = menuItems.find(i => i.id === id);
+      if (!item) return;
+
+      const existing = cart.find(i => i.id === id);
+
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ id: item.id, name: item.name, price: cleanPrice(item.price), quantity: 1 });
+      }
+
+      showToast(`${item.name} added to delivery cart!`, "shopping-cart");
+      renderCart();
+      document.getElementById("paymentArea").innerHTML = "";
+    };
+
+    function renderCart() {
+      const cartDiv = document.getElementById("cartItems");
+      const totalSpan = document.getElementById("total");
+      const floatingCart = document.getElementById("floatingCartBtn");
+      const floatingCount = document.getElementById("floatingCartCount");
+      const cartBadge = document.getElementById("cartCountBadge");
+
+      const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+      floatingCount.textContent = totalItems;
+      cartBadge.textContent = totalItems;
+
+      if (totalItems > 0) {
+        floatingCart.style.display = "flex";
+      } else {
+        floatingCart.style.display = "none";
+      }
+
+      if (cart.length === 0) {
+        cartDiv.innerHTML = `
+          <div class="empty-cart-view">
+            <i data-lucide="truck"></i>
+            <p>Your delivery cart is empty. Select appetizing items from the menu above to get started.</p>
+          </div>`;
+        totalSpan.textContent = "0.00";
+        lucide.createIcons();
+        return;
+      }
+
+      cartDiv.innerHTML = "";
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        const itemTotal = cleanPrice(item.price) * item.quantity;
+        total += itemTotal;
+
+        const row = document.createElement("div");
+        row.className = "cart-item";
+
+        row.innerHTML = `
+          <div class="cart-item-name">${item.name}</div>
+          <div class="cart-item-controls">
+            <button class="qty-btn" onclick="updateQty(${index}, -1)">-</button>
+            <span class="cart-item-qty">${item.quantity}</span>
+            <button class="qty-btn" onclick="updateQty(${index}, 1)">+</button>
+            <span style="font-weight:700; width:65px; text-align:right;">₹${itemTotal.toFixed(0)}</span>
+            <button class="remove-btn" onclick="removeItem(${index})">
+              <i data-lucide="trash-2" style="width: 16px; height: 16px;"></i>
+            </button>
+          </div>`;
+
+        cartDiv.appendChild(row);
+      });
+
+      totalSpan.textContent = total.toFixed(2);
+      lucide.createIcons();
+    }
+
+    window.updateQty = function(index, delta) {
+      cart[index].quantity += delta;
+      if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+      }
+      renderCart();
+      document.getElementById("paymentArea").innerHTML = "";
+    }
+
+    window.removeItem = function(index) {
+      showToast(`${cart[index].name} removed from your delivery order.`, "trash-2");
+      cart.splice(index, 1);
+      renderCart();
+      document.getElementById("paymentArea").innerHTML = "";
+    };
+
+    window.scrollToCart = function() {
+      document.getElementById("cartSection").scrollIntoView({ behavior: "smooth" });
+    }
+
+    window.toggleBackupPayments = function() {
+      const element = document.getElementById("backupOptionsContent");
+      const icon = document.getElementById("backupAccordionIcon");
+      if (element.classList.contains("active")) {
+        element.classList.remove("active");
+        icon.style.transform = "rotate(0deg)";
+      } else {
+        element.classList.add("active");
+        icon.style.transform = "rotate(180deg)";
+      }
+    }
+
+    // Triggers the fail-proof manual typing popup and handles app launch
+    window.launchUnifiedPaymentPortal = function(amount, standardManualUPI) {
+      const modalMarkup = `
+        <div class="pay-modal-content">
+          <span class="pay-modal-badge">Direct Payment Safe-Mode</span>
+          <p style="font-size: 14px; margin-bottom: 12px; color: var(--text-dark); line-height: 1.4;">
+            To complete your order, you must <strong>manually enter</strong> the exact amount below in your UPI app:
+          </p>
+
+          <div class="pay-manual-amount-card">
+            
+            <div class="modal-copy-row">
+              <div style="text-align: left;">
+                <div class="modal-copy-label">Amount to Enter</div>
+                <div class="modal-copy-value">₹${amount}</div>
+              </div>
+              <button class="modal-copy-btn" onclick="copyValueToClipboard('${amount}', 'Amount')">
+                <i data-lucide="copy" style="width:12px;"></i> Copy
+              </button>
+            </div>
+
+            <div class="modal-copy-row">
+              <div style="text-align: left;">
+                <div class="modal-copy-label">Payee UPI ID</div>
+                <div class="modal-copy-value" style="font-size:14px;">${CAFE_UPI_ID}</div>
+              </div>
+              <button class="modal-copy-btn" onclick="copyValueToClipboard('${CAFE_UPI_ID}', 'UPI ID')">
+                <i data-lucide="copy" style="width:12px;"></i> Copy
+              </button>
+            </div>
+
+          </div>
+
+          <div class="pay-instruction-step" style="margin-bottom: 8px;">
+            <span class="step-number">1</span>
+            <span>Tap <strong>Launch UPI App</strong> below.</span>
+          </div>
+
+          <div class="pay-instruction-step" style="margin-bottom: 16px;">
+            <span class="step-number">2</span>
+            <span>Type exactly <strong>₹${amount}</strong> manually and confirm payment.</span>
+          </div>
+
+          <button class="pay-btn" onclick="openDirectUPIApp('${standardManualUPI}')" style="background: var(--primary); box-shadow: 0 4px 12px rgba(27,67,50,0.25);">
+            <i data-lucide="external-link"></i> Launch UPI App
+          </button>
+        </div>
+      `;
+
+      showModal("Enter Exact Amount Manually", "", true, modalMarkup);
+    };
+
+    window.openDirectUPIApp = function(upiUrl) {
+      window.location.href = upiUrl;
+    };
+
+    window.copyValueToClipboard = function(text, label) {
+      const el = document.createElement('textarea');
+      el.value = text;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      showToast(`${label} Copied!`, "copy");
+    };
+
+    // Save order data to Firestore and trigger UPI Payment Engine
+    window.placeOrder = async function() {
+      const name = document.getElementById("customerName").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const address = document.getElementById("deliveryAddress").value.trim();
+
+      if (cart.length === 0) {
+        showModal("Cart is Empty", "Please select items from our menu before placing your delivery order.", false);
+        return;
+      }
+
+      if (!name || !phone || !address) {
+        showModal("Details Missing", "Please provide your Name, Phone Number, and Delivery Address to place the order.", false);
+        return;
+      }
+
+      const total = cart.reduce((sum, item) => sum + cleanPrice(item.price) * item.quantity, 0);
+
+      if (!total || isNaN(total) || total <= 0) {
+        showModal("Checkout Error", "Invalid order total amount calculated. Please inspect your cart.", false);
+        return;
+      }
+
+      const finalAmount = total.toFixed(2);
+      const safeCart = cart.map(item => ({ id: item.id, name: item.name, price: cleanPrice(item.price), quantity: item.quantity }));
+
+      const orderData = { 
+        customerName: name, 
+        phone: phone, 
+        deliveryAddress: address,
+        items: safeCart, 
+        total: Number(finalAmount), 
+        status: "New", 
+        paymentStatus: "Pending", 
+        createdAt: serverTimestamp() 
+      };
+
+      try {
+        await addDoc(collection(db, "orders"), orderData);
+
+        // Blank-Amount Deep Link configuration to guarantee limit bypass
+        const backupParams = new URLSearchParams({ pa: CAFE_UPI_ID, pn: CAFE_NAME, cu: "INR" });
+        const standardManualUPI = "upi://pay?" + backupParams.toString();
+
+        // Exact pre-filled parameter QR Code configuration for backup scanning
+        const exactParams = new URLSearchParams({ pa: CAFE_UPI_ID, pn: CAFE_NAME, am: finalAmount, cu: "INR" });
+        const standardExactUPI = "upi://pay?" + exactParams.toString();
+        const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(standardExactUPI)}`;
+
+        const paymentArea = document.getElementById("paymentArea");
+
+        paymentArea.innerHTML = `
+          <div class="payment-box" id="paymentViewPort">
+            <h2>Instant UPI Payment</h2>
+            <p style="color: var(--text-light); margin-bottom: 20px; font-size: 14px;">
+              Your delivery order has been saved. Tap below to pay directly.
+            </p>
+
+            <div class="pay-amount-hero">
+              <p>Amount to Pay</p>
+              <h1>₹${finalAmount}</h1>
+              <span style="font-size: 11px; font-weight: 700; color: var(--primary); background: rgba(45,106,79,0.1); padding: 4px 10px; border-radius: 20px;">
+                Securing Delivery Order
+              </span>
+            </div>
+
+            <!-- Single Premium Direct Action Button -->
+            <button class="btn-direct-pay-hero" onclick="launchUnifiedPaymentPortal('${finalAmount}', '${standardManualUPI}')">
+              <i data-lucide="zap" style="fill: white; width: 22px; height: 22px;"></i>
+              ⚡ Pay ₹${finalAmount} Now
+            </button>
+
+            <!-- Clean Accordion Interface for Desk & QR Fallbacks -->
+            <div class="backup-accordion">
+              <div class="backup-header" onclick="toggleBackupPayments()">
+                <span>Desktop Scan, Copy UPI ID, or Manual Backup</span>
+                <i id="backupAccordionIcon" data-lucide="chevron-down" style="width: 16px; transition: transform 0.3s;"></i>
+              </div>
+              <div class="backup-content" id="backupOptionsContent">
+                
+                <p style="font-size: 13px; color: var(--text-light); margin-bottom: 12px; text-align: left;">
+                  If paying from a desktop, scan this QR code using GPay, Paytm, PhonePe, or BHIM:
+                </p>
+
+                <!-- Centered QR Box -->
+                <div class="pay-qr-column">
+                  <img src="${qrCodeUrl}" alt="Scan QR Code to Pay" onerror="this.style.display='none'" />
+                  <p style="font-size:11px; font-weight:700; color:var(--primary); margin-top:10px;">
+                    Scan using any UPI App
+                  </p>
+                </div>
+
+                <p style="font-size: 13px; color: var(--text-light); margin: 20px 0 8px; text-align: left;">
+                  Or copy our UPI ID to transfer manually:
+                </p>
+
+                <div class="upi-display-card">
+                  <div class="upi-info">
+                    <span>Direct UPI ID</span>
+                    <span>${CAFE_UPI_ID}</span>
+                  </div>
+                  <button class="btn-copy" onclick="copyUPI()">
+                    <i data-lucide="copy" style="width:14px;"></i> Copy
+                  </button>
+                </div>
+
+                <div class="notice-box">
+                  <i data-lucide="alert-circle" style="color: #b89130; width: 18px;"></i>
+                  <div>
+                    <strong>Having transaction limit errors?</strong><br>
+                    If standard payment apps decline due to merchant limits, use this link to launch your UPI client with blank totals, then input exactly <strong>₹${finalAmount}</strong>:
+                    <a href="${standardManualUPI}" style="display:block; margin-top:8px; font-weight:700; color: var(--primary);">
+                      🔗 Launch UPI App Without Preset Total
+                    </a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <p style="font-size: 12px; text-align: center; color: var(--text-light); margin-top: 24px; line-height: 1.5;">
+              Kindly show or send the payment receipt screenshot to our delivery driver when they reach your location.
+            </p>
+          </div>`;
+
+        lucide.createIcons();
+        
+        // Launch instructions modal immediately
+        launchUnifiedPaymentPortal(finalAmount, standardManualUPI);
+
+        // Smoothly bring the payment module into view
+        setTimeout(() => {
+          document.getElementById("paymentViewPort").scrollIntoView({ behavior: "smooth" });
+        }, 300);
+
+      } catch (error) {
+        console.error(error);
+        showModal("Order Submission Failed", "Could not sync delivery details with our cloud database. Please verify your connection and try again.", false);
+      }
+    };
+
+    // Absolute fail-proof copy function
+    window.copyUPI = function() {
+      copyValueToClipboard(CAFE_UPI_ID, "UPI ID");
+    }
+
+    // Initial Execution
+    loadMenu();
+    renderCart();
+  </script>
+</body>
+</html>
+
+```
       transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       box-shadow: 0 2px 8px rgba(0,0,0,0.03);
     }
