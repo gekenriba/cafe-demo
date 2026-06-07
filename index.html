@@ -3,38 +3,671 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Leparada hub - Fresh Delivery</title>
+  <title>Monyul Cafe — Order Online</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
     :root {
-      --primary: #2d6a4f;
-      --primary-hover: #1b4332;
-      --secondary: #52b788;
-      --accent: #b89130;
-      --bg-cream: #faf9f5;
-      --card-bg: #ffffff;
-      --text-dark: #1f2c24;
-      --text-light: #6b7c70;
-      --danger: #d90429;
-      --success: #2d6a4f;
-      --border-soft: rgba(45, 106, 79, 0.08);
+      --espresso: #1a100a;
+      --roast:    #2e1a0e;
+      --mahogany: #3d2314;
+      --gold:     #c9a84c;
+      --gold-dim: #9e7a30;
+      --cream:    #f5ede0;
+      --parchment:#ede0cc;
+      --fog:      #bfab94;
+      --smoke:    #7a6653;
+      --danger:   #c0392b;
+      --border:   rgba(201,168,76,0.18);
+      --card-bg:  rgba(46,26,14,0.72);
+      --overlay:  rgba(10,5,2,0.82);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      -webkit-tap-highlight-color: transparent;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; }
 
     body {
+      background-color: var(--espresso);
+      background-image:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 70%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      padding-bottom: 96px;
+      min-height: 100vh;
+    }
+
+    .banner {
+      background: var(--gold);
+      color: var(--espresso);
+      padding: 7px 16px;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 7px;
+    }
+    .banner i { width: 13px; height: 13px; }
+
+    header {
+      padding: 36px 20px 28px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 100% at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .logo-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+      opacity: 0.85;
+    }
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 600;
+      color: var(--cream);
+      letter-spacing: 0.04em;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+    .logo-divider { width: 1px; height: 32px; background: var(--gold); opacity: 0.4; }
+    .logo-icon { color: var(--gold); width: 26px; height: 26px; margin-top: 2px; }
+    .logo-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 13px;
+      color: var(--fog);
+      margin-top: 8px;
+      letter-spacing: 0.04em;
+    }
+    .header-rule {
+      display: flex; align-items: center; justify-content: center;
+      gap: 12px; margin-top: 18px; opacity: 0.35;
+    }
+    .header-rule span { width: 40px; height: 1px; background: var(--gold); }
+    .header-rule i { width: 10px; height: 10px; color: var(--gold); }
+
+    .container { max-width: 660px; margin: 0 auto; padding: 24px 16px; }
+
+    .steps-wrapper { display: flex; align-items: center; gap: 0; margin-bottom: 28px; padding: 0 4px; }
+    .step-node { display: flex; flex-direction: column; align-items: center; gap: 5px; flex: 1; }
+    .step-circle {
+      width: 28px; height: 28px; border-radius: 50%;
+      border: 1.5px solid rgba(201,168,76,0.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 600; color: var(--smoke);
+      transition: all 0.35s ease; position: relative; z-index: 1;
+    }
+    .step-circle.active {
+      border-color: var(--gold); color: var(--gold);
+      background: rgba(201,168,76,0.12);
+      box-shadow: 0 0 12px rgba(201,168,76,0.2);
+    }
+    .step-label { font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--smoke); transition: color 0.3s; }
+    .step-label.active { color: var(--gold); }
+    .step-connector { flex: 1; height: 1px; background: rgba(201,168,76,0.15); margin-bottom: 18px; position: relative; overflow: hidden; }
+    .step-connector-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0%; background: var(--gold); transition: width 0.5s ease; }
+
+    .step-view { display: none; animation: fadeUp 0.35s cubic-bezier(0.16,1,0.3,1); }
+    .step-view.active { display: block; }
+    @keyframes fadeUp { from { transform: translateY(14px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+    .category-bar { display: flex; gap: 6px; overflow-x: auto; padding: 2px 0 18px; scrollbar-width: none; }
+    .category-bar::-webkit-scrollbar { display: none; }
+    .cat-btn {
+      background: transparent;
+      border: 1px solid rgba(201,168,76,0.2);
+      color: var(--fog);
+      padding: 6px 16px; border-radius: 2px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      white-space: nowrap; cursor: pointer; transition: all 0.2s;
+    }
+    .cat-btn:hover { border-color: rgba(201,168,76,0.5); color: var(--cream); }
+    .cat-btn.active { background: var(--gold); border-color: var(--gold); color: var(--espresso); font-weight: 600; }
+
+    .menu-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+
+    .card {
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: 4px;
+      padding: 16px 18px; display: flex; justify-content: space-between; align-items: center;
+      gap: 14px; backdrop-filter: blur(12px); transition: all 0.22s ease;
+      position: relative; overflow: hidden;
+    }
+    .card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--gold); opacity: 0; transition: opacity 0.2s; }
+    .card:hover { border-color: rgba(201,168,76,0.4); }
+    .card:hover::before { opacity: 1; }
+    .card-category { font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; opacity: 0.8; }
+    .card-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; color: var(--cream); letter-spacing: 0.02em; line-height: 1.2; }
+    .card-desc { font-size: 11.5px; color: var(--smoke); margin-top: 3px; line-height: 1.5; }
+    .card-right { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; flex-shrink: 0; }
+    .card-price { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; color: var(--gold); letter-spacing: 0.02em; }
+    .btn-add {
+      background: transparent; border: 1px solid var(--gold); color: var(--gold);
+      padding: 5px 14px; border-radius: 2px;
+      font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      cursor: pointer; display: flex; align-items: center; gap: 5px; transition: all 0.18s ease;
+    }
+    .btn-add:hover { background: var(--gold); color: var(--espresso); }
+    .btn-add:active { transform: scale(0.96); }
+
+    .qty-wrap { display: flex; align-items: center; gap: 0; border: 1px solid var(--gold); border-radius: 2px; overflow: hidden; }
+    .qty-btn { width: 28px; height: 28px; background: transparent; border: none; color: var(--gold); font-size: 16px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s; }
+    .qty-btn:hover { background: rgba(201,168,76,0.15); }
+    .qty-count { min-width: 28px; text-align: center; font-size: 13px; font-weight: 600; color: var(--cream); border-left: 1px solid rgba(201,168,76,0.3); border-right: 1px solid rgba(201,168,76,0.3); height: 28px; display: flex; align-items: center; justify-content: center; }
+
+    .empty-state { text-align: center; padding: 48px 24px; color: var(--smoke); }
+    .empty-state i { width: 36px; height: 36px; color: rgba(201,168,76,0.25); margin-bottom: 12px; }
+    .empty-state h3 { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--fog); margin-bottom: 6px; }
+    .empty-state p { font-size: 12px; }
+
+    .section-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: 4px; padding: 20px; margin-bottom: 14px; backdrop-filter: blur(12px); }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 600; color: var(--gold); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; letter-spacing: 0.04em; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+    .section-title i { width: 15px; height: 15px; }
+
+    .order-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; font-size: 13px; gap: 12px; }
+    .order-row:not(:last-child) { border-bottom: 1px solid rgba(201,168,76,0.08); }
+    .order-row-name { color: var(--cream); flex: 1; }
+    .order-row-qty { color: var(--gold); font-weight: 600; margin-left: 6px; }
+    .order-row-price { color: var(--fog); font-weight: 500; }
+    .order-total-row { display: flex; justify-content: space-between; padding: 12px 0 0; margin-top: 6px; border-top: 1px solid rgba(201,168,76,0.2); }
+    .order-total-row span:first-child { color: var(--fog); letter-spacing: 0.06em; text-transform: uppercase; font-size: 10px; align-self: center; }
+    .order-total-row span:last-child { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--gold); }
+
+    .form-group { margin-bottom: 14px; }
+    .form-label { display: block; font-size: 9px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--smoke); margin-bottom: 6px; }
+    .form-input, .form-textarea { width: 100%; padding: 10px 14px; background: rgba(10,5,2,0.5); border: 1px solid rgba(201,168,76,0.2); border-radius: 2px; color: var(--cream); font-family: 'DM Sans', sans-serif; font-size: 13px; outline: none; transition: border-color 0.2s, background 0.2s; }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--smoke); }
+    .form-input:focus, .form-textarea:focus { border-color: rgba(201,168,76,0.55); background: rgba(10,5,2,0.7); }
+    .form-textarea { min-height: 72px; resize: vertical; }
+
+    .back-btn { background: transparent; border: none; color: var(--smoke); cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 20px; transition: color 0.2s; }
+    .back-btn:hover { color: var(--fog); }
+    .back-btn i { width: 13px; height: 13px; }
+
+    .swipe-wrap { margin-top: 22px; }
+    .swipe-label { text-align: center; font-size: 9px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--smoke); margin-bottom: 10px; }
+    .swipe-container { width: 100%; height: 54px; background: rgba(10,5,2,0.5); border: 1px solid rgba(201,168,76,0.25); border-radius: 27px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; user-select: none; }
+    .swipe-track-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: linear-gradient(90deg, rgba(201,168,76,0.12), rgba(201,168,76,0.04)); border-radius: 27px 0 0 27px; pointer-events: none; }
+    .swipe-text { font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(201,168,76,0.45); pointer-events: none; z-index: 1; }
+    .swipe-thumb { width: 46px; height: 46px; border-radius: 50%; background: var(--gold); position: absolute; left: 4px; cursor: grab; display: flex; align-items: center; justify-content: center; color: var(--espresso); box-shadow: 0 4px 16px rgba(201,168,76,0.35), 0 0 0 1px rgba(201,168,76,0.2); z-index: 2; touch-action: none; }
+    .swipe-thumb i { width: 18px; height: 18px; }
+
+    .payment-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 4px; padding: 28px 20px; text-align: center; backdrop-filter: blur(12px); }
+    .payment-badge { display: inline-flex; align-items: center; gap: 5px; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.25); color: var(--gold); font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; padding: 5px 12px; border-radius: 2px; margin-bottom: 20px; }
+    .payment-badge i { width: 11px; height: 11px; }
+    .payment-amount { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 600; color: var(--gold); line-height: 1; letter-spacing: 0.02em; margin-bottom: 6px; }
+    .payment-amount sup { font-size: 24px; vertical-align: top; margin-top: 10px; display: inline-block; }
+    .payment-sub { font-size: 11px; color: var(--smoke); margin-bottom: 24px; letter-spacing: 0.04em; }
+    .qr-wrapper { background: white; border-radius: 8px; padding: 14px; max-width: 200px; margin: 0 auto 22px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
+    .qr-wrapper img { width: 100%; height: auto; border-radius: 4px; }
+    .upi-row { background: rgba(10,5,2,0.5); border: 1px solid rgba(201,168,76,0.2); border-radius: 2px; padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; max-width: 340px; margin: 0 auto 20px; gap: 12px; }
+    .upi-label { font-size: 9px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--smoke); display: block; margin-bottom: 2px; }
+    .upi-value { font-size: 13px; font-weight: 500; color: var(--cream); }
+    .btn-copy { background: transparent; border: 1px solid rgba(201,168,76,0.35); color: var(--gold); border-radius: 2px; padding: 5px 12px; font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; gap: 5px; transition: all 0.18s; white-space: nowrap; }
+    .btn-copy:hover { background: rgba(201,168,76,0.12); }
+    .btn-copy i { width: 11px; height: 11px; }
+    .payment-note { font-size: 11px; color: var(--smoke); line-height: 1.6; max-width: 320px; margin: 0 auto; }
+
+    .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 100; display: none; padding: 10px 16px; background: var(--roast); border-top: 1px solid var(--border); box-shadow: 0 -8px 32px rgba(0,0,0,0.5); }
+    .cart-bar-inner { max-width: 660px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    .cart-info-label { font-size: 10px; color: var(--smoke); font-weight: 500; letter-spacing: 0.06em; }
+    .cart-info-total { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--gold); line-height: 1; margin-top: 1px; }
+    .btn-proceed { background: var(--gold); color: var(--espresso); border: none; padding: 11px 22px; border-radius: 2px; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; gap: 7px; transition: background 0.2s, transform 0.15s; white-space: nowrap; }
+    .btn-proceed:hover { background: #d4b054; }
+    .btn-proceed:active { transform: scale(0.97); }
+    .btn-proceed i { width: 14px; height: 14px; }
+
+    .modal-overlay { position: fixed; inset: 0; background: var(--overlay); backdrop-filter: blur(10px); z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; pointer-events: none; transition: opacity 0.28s ease; }
+    .modal-overlay.active { opacity: 1; pointer-events: auto; }
+    .modal-box { background: var(--mahogany); border: 1px solid var(--border); border-radius: 6px; max-width: 360px; width: 100%; padding: 28px 24px; text-align: center; transform: scale(0.92); transition: transform 0.28s cubic-bezier(0.175,0.885,0.32,1.275); }
+    .modal-overlay.active .modal-box { transform: scale(1); }
+    .modal-icon-wrap { width: 48px; height: 48px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+    .modal-icon-wrap.ok { background: rgba(201,168,76,0.12); color: var(--gold); }
+    .modal-icon-wrap.err { background: rgba(192,57,43,0.12); color: var(--danger); }
+    .modal-icon-wrap i { width: 22px; height: 22px; }
+    .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; color: var(--cream); margin-bottom: 6px; }
+    .modal-desc { font-size: 12px; color: var(--smoke); margin-bottom: 20px; line-height: 1.6; }
+    .modal-confirm { background: var(--gold); color: var(--espresso); border: none; padding: 10px 20px; border-radius: 2px; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; width: 100%; transition: background 0.2s; }
+    .modal-confirm:hover { background: #d4b054; }
+
+    .toast-stack { position: fixed; top: 16px; right: 16px; z-index: 3000; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
+    .toast { background: var(--mahogany); border: 1px solid rgba(201,168,76,0.25); color: var(--cream); padding: 10px 16px; border-radius: 3px; display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 500; box-shadow: 0 4px 20px rgba(0,0,0,0.4); animation: toastIn 0.3s cubic-bezier(0.175,0.885,0.32,1.25); pointer-events: auto; }
+    .toast i { width: 14px; height: 14px; color: var(--gold); flex-shrink: 0; }
+    @keyframes toastIn { from { transform: translateX(110%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+    .admin-footer { text-align: center; padding: 28px 0 8px; margin-top: 16px; }
+    .admin-link { display: inline-flex; align-items: center; gap: 5px; color: var(--smoke); text-decoration: none; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; border-bottom: 1px solid rgba(122,102,83,0.4); padding-bottom: 1px; transition: color 0.2s; }
+    .admin-link:hover { color: var(--fog); }
+    .admin-link i { width: 11px; height: 11px; }
+
+    @media (max-width: 420px) {
+      .logo { font-size: 34px; }
+      .card { padding: 13px 14px; }
+      .btn-proceed { padding: 11px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="banner">
+    <i data-lucide="clock"></i>
+    <span>FRESH BREW &middot; DELIVERED IN 25&ndash;35 MINUTES &middot; TAWANG</span>
+  </div>
+
+  <header>
+    <div class="logo-eyebrow">Est. in the heart of Arunachal</div>
+    <div class="logo">
+      <i data-lucide="coffee" class="logo-icon"></i>
+      <div class="logo-divider"></div>
+      <span>Monyul Cafe</span>
+    </div>
+    <div class="logo-tagline">Coffee, tea &amp; warm bakes &mdash; crafted with care</div>
+    <div class="header-rule">
+      <span></span>
+      <i data-lucide="star"></i>
+      <span></span>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div class="steps-wrapper">
+      <div class="step-node">
+        <div class="step-circle active" id="sc1">1</div>
+        <div class="step-label active" id="sl1">Menu</div>
+      </div>
+      <div class="step-connector"><div class="step-connector-fill" id="conn1"></div></div>
+      <div class="step-node">
+        <div class="step-circle" id="sc2">2</div>
+        <div class="step-label" id="sl2">Details</div>
+      </div>
+      <div class="step-connector"><div class="step-connector-fill" id="conn2"></div></div>
+      <div class="step-node">
+        <div class="step-circle" id="sc3">3</div>
+        <div class="step-label" id="sl3">Payment</div>
+      </div>
+    </div>
+
+    <div class="step-view active" id="step1">
+      <div class="category-bar" id="catBar">
+        <button class="cat-btn active" data-cat="All" onclick="filterMenu('All')">All</button>
+        <button class="cat-btn" data-cat="Coffee" onclick="filterMenu('Coffee')">Coffee</button>
+        <button class="cat-btn" data-cat="Tea" onclick="filterMenu('Tea')">Tea</button>
+        <button class="cat-btn" data-cat="Snacks" onclick="filterMenu('Snacks')">Snacks</button>
+        <button class="cat-btn" data-cat="Desserts" onclick="filterMenu('Desserts')">Desserts</button>
+        <button class="cat-btn" data-cat="Cake" onclick="filterMenu('Cake')">Cake</button>
+      </div>
+      <div class="menu-grid" id="menuGrid"></div>
+    </div>
+
+    <div class="step-view" id="step2">
+      <button class="back-btn" onclick="goStep(1)">
+        <i data-lucide="arrow-left"></i> Back to Menu
+      </button>
+      <div class="section-box">
+        <div class="section-title"><i data-lucide="receipt"></i> Your Order</div>
+        <div id="orderLines"></div>
+        <div class="order-total-row">
+          <span>Total</span>
+          <span id="orderTotal">&#8377;0</span>
+        </div>
+      </div>
+      <div class="section-box">
+        <div class="section-title"><i data-lucide="map-pin"></i> Delivery Details</div>
+        <div class="form-group">
+          <label class="form-label" for="fName">Full Name</label>
+          <input id="fName" class="form-input" placeholder="e.g. Tendzin Wangmo" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="fPhone">Mobile Number</label>
+          <input id="fPhone" type="tel" class="form-input" placeholder="e.g. 9876543210" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="fAddr">Delivery Address</label>
+          <textarea id="fAddr" class="form-textarea" placeholder="Apartment, street, landmark near Tawang Monastery..."></textarea>
+        </div>
+      </div>
+      <div class="swipe-wrap">
+        <div class="swipe-label">Slide to confirm order</div>
+        <div class="swipe-container" id="swipeCont">
+          <div class="swipe-track-fill" id="swipeFill"></div>
+          <span class="swipe-text">CONFIRM &amp; PLACE ORDER</span>
+          <div class="swipe-thumb" id="swipeThumb">
+            <i data-lucide="chevron-right"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-view" id="step3">
+      <div class="payment-card">
+        <div class="payment-badge"><i data-lucide="shield-check"></i> Secure UPI Payment</div>
+        <div class="payment-amount"><sup>&#8377;</sup><span id="payAmt">0</span></div>
+        <div class="payment-sub">Scan &amp; pay to confirm dispatch</div>
+        <div class="qr-wrapper">
+          <img id="qrImg" src="" alt="UPI QR Code" />
+        </div>
+        <div class="upi-row">
+          <div>
+            <span class="upi-label">Pay To</span>
+            <span class="upi-value" id="upiDisplay">geliriba11@oksbi</span>
+          </div>
+          <button class="btn-copy" onclick="copyUPI()">
+            <i data-lucide="copy"></i> Copy
+          </button>
+        </div>
+        <p class="payment-note">Open any UPI app, scan the QR code, and complete the payment. Show the receipt to your delivery person upon arrival.</p>
+      </div>
+    </div>
+
+    <div class="admin-footer">
+      <a href="admin.html" class="admin-link">
+        <i data-lucide="settings"></i> Owner Console
+      </a>
+    </div>
+
+  </div>
+
+  <div class="cart-bar" id="cartBar">
+    <div class="cart-bar-inner">
+      <div>
+        <div class="cart-info-label" id="cartQtyLabel">0 items</div>
+        <div class="cart-info-total" id="cartTotalLabel">&#8377;0</div>
+      </div>
+      <button class="btn-proceed" onclick="goStep(2)">
+        Proceed <i data-lucide="arrow-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal">
+    <div class="modal-box">
+      <div id="modalIcon" class="modal-icon-wrap err">
+        <i id="modalIconSvg" data-lucide="alert-circle"></i>
+      </div>
+      <h3 id="modalTitle" class="modal-title">Error</h3>
+      <p id="modalDesc" class="modal-desc">Something went wrong.</p>
+      <button class="modal-confirm" onclick="closeModal()">Understood</button>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack"></div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, collection, getDocs, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAYonKe7d9rNp59LOkzEbBowQrcsFH32ts",
+      authDomain: "cafe-b80ce.firebaseapp.com",
+      projectId: "cafe-b80ce",
+      storageBucket: "cafe-b80ce.firebasestorage.app",
+      messagingSenderId: "110426428527",
+      appId: "1:110426428527:web:d91f0d414bd13a61ea699a",
+      measurementId: "G-0JVCTK651G"
+    };
+    const app = initializeApp(firebaseConfig);
+    const db  = getFirestore(app);
+
+    const UPI_ID    = "geliriba11@oksbi";
+    const SHOP_NAME = "Monyul Cafe";
+
+    let items   = [];
+    let cart    = [];
+    let filter  = "All";
+    let step    = 1;
+    let maxDrag = 150;
+
+    const esc = v => String(v||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
+    const px  = v => { const n = Number(String(v).replace(/[^0-9.]/g,"")); return isNaN(n)?0:n; };
+    const icons = () => { try{ if(lucide?.createIcons) lucide.createIcons(); }catch(e){} };
+
+    window.closeModal = () => document.getElementById("modal").classList.remove("active");
+    function showModal(title, desc, ok=false) {
+      const mi = document.getElementById("modalIcon");
+      const ms = document.getElementById("modalIconSvg");
+      mi.className = "modal-icon-wrap " + (ok?"ok":"err");
+      ms.setAttribute("data-lucide", ok?"check-circle":"alert-circle");
+      document.getElementById("modalTitle").textContent = title;
+      document.getElementById("modalDesc").textContent  = desc;
+      icons();
+      document.getElementById("modal").classList.add("active");
+    }
+
+    function toast(msg, icon="check-circle") {
+      const stack = document.getElementById("toastStack");
+      const el = document.createElement("div");
+      el.className = "toast";
+      el.innerHTML = `<i data-lucide="${icon}"></i><span>${esc(msg)}</span>`;
+      stack.appendChild(el);
+      icons();
+      setTimeout(() => { el.style.opacity="0"; el.style.transition="opacity 0.4s"; setTimeout(()=>el.remove(),400); }, 2500);
+    }
+
+    window.goStep = function(n) {
+      if (n===2 && cart.length===0) { showModal("Cart is Empty","Please add at least one item before proceeding."); return; }
+      step = n;
+      document.querySelectorAll(".step-view").forEach(v=>v.classList.remove("active"));
+      document.getElementById("step"+n).classList.add("active");
+      [1,2,3].forEach(i=>{
+        document.getElementById("sc"+i).classList.toggle("active", i<=n);
+        document.getElementById("sl"+i).classList.toggle("active", i<=n);
+      });
+      document.getElementById("conn1").style.width = n>=2 ? "100%" : "0%";
+      document.getElementById("conn2").style.width = n>=3 ? "100%" : "0%";
+      updateCartBar();
+      if (n===2) { renderOrderLines(); resetSwipe(); }
+      window.scrollTo({ top:0, behavior:"smooth" });
+      icons();
+    };
+
+    window.filterMenu = function(cat) {
+      filter = cat;
+      document.querySelectorAll(".cat-btn").forEach(b => b.classList.toggle("active", b.dataset.cat===cat));
+      renderMenu();
+    };
+
+    async function loadMenu() {
+      const grid = document.getElementById("menuGrid");
+      grid.innerHTML = `<div class="empty-state"><i data-lucide="coffee"></i><h3>Loading Menu</h3><p>Gathering fresh selections...</p></div>`;
+      icons();
+      try {
+        const snap = await getDocs(collection(db,"menu"));
+        items = [];
+        snap.forEach(d => {
+          const it = { id:d.id, ...d.data() };
+          if (it.available===true) { it.price = px(it.price); items.push(it); }
+        });
+        renderMenu();
+      } catch(e) {
+        grid.innerHTML = `<div class="empty-state"><i data-lucide="wifi-off"></i><h3>Connection Error</h3><p>Please check your internet and Firestore rules.</p></div>`;
+        icons();
+      }
+    }
+
+    function renderMenu() {
+      const grid = document.getElementById("menuGrid");
+      grid.innerHTML = "";
+      const list = items.filter(it => filter==="All" || (it.category||"").toLowerCase()===filter.toLowerCase());
+      if (!list.length) {
+        grid.innerHTML = `<div class="empty-state"><i data-lucide="meh"></i><h3>Nothing here</h3><p>Try a different category.</p></div>`;
+        icons(); return;
+      }
+      list.forEach(it => {
+        const inCart = cart.find(c=>c.id===it.id);
+        const qty    = inCart ? inCart.quantity : 0;
+        const card   = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <div style="flex:1;min-width:0">
+            <div class="card-category">${esc(it.category||"Specialty")}</div>
+            <div class="card-name">${esc(it.name)}</div>
+            <div class="card-desc">${esc(it.description||"Crafted with the finest local ingredients.")}</div>
+          </div>
+          <div class="card-right">
+            <div class="card-price">&#8377;${Number(it.price).toFixed(0)}</div>
+            ${qty>0
+              ? `<div class="qty-wrap"><button class="qty-btn" onclick="adjCart('${it.id}',-1)">&#8722;</button><span class="qty-count">${qty}</span><button class="qty-btn" onclick="adjCart('${it.id}',1)">&#43;</button></div>`
+              : `<button class="btn-add" onclick="addItem('${it.id}',this)"><i data-lucide="plus" style="width:12px;height:12px"></i> Add</button>`
+            }
+          </div>`;
+        grid.appendChild(card);
+      });
+      icons();
+    }
+
+    window.addItem = function(id, btn) {
+      btn.style.transform="scale(0.92)"; setTimeout(()=>btn.style.transform="",130);
+      const it = items.find(i=>i.id===id); if(!it) return;
+      const ex = cart.find(c=>c.id===id);
+      if (ex) ex.quantity++;
+      else cart.push({ id:it.id, name:it.name, price:px(it.price), quantity:1 });
+      toast(`${it.name} added`, "coffee");
+      updateCartBar(); renderMenu();
+      if(step===2) renderOrderLines();
+    };
+
+    window.adjCart = function(id, d) {
+      const ex = cart.find(c=>c.id===id);
+      if (!ex && d>0) { const it=items.find(i=>i.id===id); if(it){cart.push({id:it.id,name:it.name,price:px(it.price),quantity:1});} }
+      else if (ex) {
+        ex.quantity += d;
+        if (ex.quantity<=0) cart = cart.filter(c=>c.id!==id);
+      }
+      updateCartBar(); renderMenu();
+      if(step===2){ renderOrderLines(); if(!cart.length) goStep(1); }
+    };
+
+    function updateCartBar() {
+      const tot = cart.reduce((a,c)=>a+c.price*c.quantity,0);
+      const qty = cart.reduce((a,c)=>a+c.quantity,0);
+      document.getElementById("cartQtyLabel").textContent = `${qty} item${qty!==1?"s":""}`;
+      document.getElementById("cartTotalLabel").innerHTML = `&#8377;${tot.toFixed(0)}`;
+      document.getElementById("cartBar").style.display = (qty>0 && step===1) ? "block" : "none";
+    }
+
+    function renderOrderLines() {
+      const box = document.getElementById("orderLines");
+      const tot = document.getElementById("orderTotal");
+      box.innerHTML = "";
+      let sum = 0;
+      if (!cart.length) { box.innerHTML=`<p style="font-size:12px;color:var(--smoke)">Your cart is empty.</p>`; tot.innerHTML="&#8377;0"; return; }
+      cart.forEach((c,i)=>{
+        const line = c.price*c.quantity; sum+=line;
+        const row = document.createElement("div");
+        row.className = "order-row";
+        row.innerHTML = `
+          <span class="order-row-name">${esc(c.name)} <span class="order-row-qty">&#215;${c.quantity}</span></span>
+          <span style="display:flex;align-items:center;gap:10px">
+            <span class="order-row-price">&#8377;${line.toFixed(0)}</span>
+            <span class="qty-wrap" style="transform:scale(0.9)">
+              <button class="qty-btn" onclick="adjCart('${c.id}',-1)">&#8722;</button>
+              <button class="qty-btn" onclick="adjCart('${c.id}',1)">&#43;</button>
+            </span>
+          </span>`;
+        box.appendChild(row);
+      });
+      tot.innerHTML = `&#8377;${sum.toFixed(2)}`;
+    }
+
+    const thumb = document.getElementById("swipeThumb");
+    const cont  = document.getElementById("swipeCont");
+    const fill  = document.getElementById("swipeFill");
+    let sx=0, dragging=false, confirmed=false;
+
+    function resetSwipe() {
+      confirmed=false; dragging=false;
+      thumb.style.transition="transform 0.25s ease"; fill.style.transition="width 0.25s ease";
+      thumb.style.transform="translateX(0)"; fill.style.width="0";
+      setTimeout(()=>{ thumb.style.transition=""; fill.style.transition=""; },260);
+    }
+
+    thumb.addEventListener("mousedown",  e=>startDrag(e.clientX));
+    thumb.addEventListener("touchstart", e=>startDrag(e.touches[0].clientX), {passive:true});
+    document.addEventListener("mousemove",  e=>{ if(dragging)moveDrag(e.clientX); });
+    document.addEventListener("touchmove",  e=>{ if(dragging)moveDrag(e.touches[0].clientX); },{passive:true});
+    document.addEventListener("mouseup",  endDrag);
+    document.addEventListener("touchend", endDrag);
+
+    function startDrag(x) {
+      if (confirmed) return;
+      sx=x; dragging=true; thumb.style.cursor="grabbing";
+      maxDrag = Math.max(cont.clientWidth - 54 - 8, 120);
+    }
+    function moveDrag(x) {
+      if (!dragging||confirmed) return;
+      let d = Math.min(Math.max(x-sx,0), maxDrag);
+      thumb.style.transform = `translateX(${d}px)`;
+      fill.style.width = `${d+27}px`;
+      if (d>=maxDrag-4) { confirmed=true; dragging=false; thumb.style.transform=`translateX(${maxDrag}px)`; fill.style.width="100%"; doCheckout(); }
+    }
+    function endDrag() { if(!dragging||confirmed) return; dragging=false; thumb.style.cursor="grab"; resetSwipe(); }
+
+    async function doCheckout() {
+      const name  = document.getElementById("fName").value.trim();
+      const phone = document.getElementById("fPhone").value.trim();
+      const addr  = document.getElementById("fAddr").value.trim();
+      if (!cart.length)         { showModal("Cart Empty","Add at least one item.");      resetSwipe(); return; }
+      if (!name||!phone||!addr) { showModal("Incomplete Details","Please fill all delivery fields."); resetSwipe(); return; }
+      const ph = phone.replace(/\D/g,"");
+      if (ph.length<10)         { showModal("Invalid Number","Enter a valid 10-digit mobile number."); resetSwipe(); return; }
+      const total = cart.reduce((a,c)=>a+c.price*c.quantity,0).toFixed(2);
+      try {
+        await addDoc(collection(db,"orders"), {
+          customerName: name, phone: ph, deliveryAddress: addr,
+          items: cart.map(c=>({ id:c.id, name:c.name, price:Number(c.price), quantity:Number(c.quantity) })),
+          total: Number(total), status:"New", paymentStatus:"Pending", createdAt: serverTimestamp()
+        });
+        const upiStr = new URLSearchParams({ pa:UPI_ID, pn:SHOP_NAME, am:total, cu:"INR", tn:`${SHOP_NAME} Order - ${name}` }).toString();
+        document.getElementById("payAmt").textContent = total;
+        document.getElementById("qrImg").src = `https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=${encodeURIComponent("upi://pay?"+upiStr)}`;
+        goStep(3);
+        toast("Order placed successfully!", "check-circle");
+      } catch(e) {
+        showModal("Order Failed","Could not save order. Check Firestore rules.");
+        resetSwipe();
+      }
+    }
+
+    window.copyUPI = async function() {
+      try { await navigator.clipboard.writeText(UPI_ID); }
+      catch { const t=document.createElement("textarea"); t.value=UPI_ID; document.body.appendChild(t); t.select(); document.execCommand("copy"); t.remove(); }
+      toast("UPI ID copied", "copy");
+    };
+
+    loadMenu();
+    icons();
+  </script>
+</body>
+</html>    body {
       background-color: var(--bg-cream);
       color: var(--text-dark);
       line-height: 1.5;
