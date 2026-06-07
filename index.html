@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Leparada Hub - Online Delivery Service</title>
+  <title>Leparada hub - Fresh Delivery</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -129,97 +129,6 @@
         transform: translateY(0);
         opacity: 1;
       }
-    }
-
-
-    .hero-panel {
-      background: linear-gradient(135deg, rgba(45, 106, 79, 0.96), rgba(27, 67, 50, 0.96));
-      color: white;
-      border-radius: 22px;
-      padding: 20px;
-      margin-bottom: 18px;
-      overflow: hidden;
-      position: relative;
-      box-shadow: 0 12px 35px rgba(45, 106, 79, 0.12);
-    }
-
-    .hero-panel::after {
-      content: "";
-      position: absolute;
-      right: -45px;
-      top: -45px;
-      width: 135px;
-      height: 135px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .hero-kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.9px;
-      font-weight: 800;
-      background: rgba(255, 255, 255, 0.12);
-      padding: 5px 10px;
-      border-radius: 999px;
-      margin-bottom: 12px;
-    }
-
-    .hero-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 25px;
-      line-height: 1.15;
-      max-width: 420px;
-      margin-bottom: 8px;
-    }
-
-    .hero-text {
-      font-size: 12px;
-      opacity: 0.9;
-      max-width: 470px;
-      margin-bottom: 14px;
-    }
-
-    .service-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .service-chip {
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 11px;
-      font-weight: 700;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .section-title-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-
-    .section-title-row h2 {
-      font-size: 15px;
-      color: var(--primary);
-    }
-
-    .section-title-row span {
-      font-size: 11px;
-      color: var(--text-light);
-      font-weight: 600;
     }
 
     .categories-bar {
@@ -878,15 +787,15 @@
 
   <div class="delivery-info-banner">
     <i data-lucide="truck"></i>
-    <span>Order food, groceries, drinks and daily essentials online — delivered across Leparada</span>
+    <span>Brewing and delivering exquisite coffee direct to your door in 25-35 mins</span>
   </div>
 
   <header>
     <div class="header-logo">
-      <i data-lucide="store"></i>
-      <span>Leparada Hub</span>
+      <i data-lucide="coffee"></i>
+      <span>Tawang Cafe</span>
     </div>
-    <p>Your local online delivery service for food, groceries, essentials and more</p>
+    <p>Fresh coffee, tea, snacks and warm bakes delivered hot & crisp in Tawang</p>
   </header>
 
   <div class="container">
@@ -898,34 +807,13 @@
     </div>
 
     <div class="step-view active" id="step1">
-      <div class="hero-panel">
-        <div class="hero-kicker">
-          <i data-lucide="map-pin" style="width: 12px; height: 12px;"></i>
-          Leparada Local Delivery
-        </div>
-        <h1 class="hero-title">Anything local, delivered to your doorstep.</h1>
-        <p class="hero-text">Browse available products, add them to your cart, enter your delivery details, and complete payment using the QR code.</p>
-        <div class="service-chips">
-          <span class="service-chip"><i data-lucide="utensils" style="width: 12px;"></i> Food</span>
-          <span class="service-chip"><i data-lucide="shopping-basket" style="width: 12px;"></i> Groceries</span>
-          <span class="service-chip"><i data-lucide="package" style="width: 12px;"></i> Essentials</span>
-          <span class="service-chip"><i data-lucide="cup-soda" style="width: 12px;"></i> Drinks</span>
-        </div>
-      </div>
-
-      <div class="section-title-row">
-        <h2>Available for delivery</h2>
-        <span>Tap Add to order</span>
-      </div>
-
       <div class="categories-bar" id="categoriesBar">
         <button class="category-btn active" data-category="All" onclick="filterMenu('All')">All</button>
-        <button class="category-btn" data-category="Food" onclick="filterMenu('Food')">Food</button>
-        <button class="category-btn" data-category="Groceries" onclick="filterMenu('Groceries')">Groceries</button>
-        <button class="category-btn" data-category="Essentials" onclick="filterMenu('Essentials')">Essentials</button>
-        <button class="category-btn" data-category="Drinks" onclick="filterMenu('Drinks')">Drinks</button>
+        <button class="category-btn" data-category="Coffee" onclick="filterMenu('Coffee')">Coffee</button>
+        <button class="category-btn" data-category="Tea" onclick="filterMenu('Tea')">Tea</button>
         <button class="category-btn" data-category="Snacks" onclick="filterMenu('Snacks')">Snacks</button>
         <button class="category-btn" data-category="Desserts" onclick="filterMenu('Desserts')">Desserts</button>
+        <button class="category-btn" data-category="Cake" onclick="filterMenu('Cake')">Cake</button>
       </div>
 
       <div id="menu" class="menu-grid"></div>
@@ -934,7 +822,7 @@
     <div class="step-view" id="step2">
       <div class="back-btn-container">
         <button class="btn-back" onclick="changeStep(1)">
-          <i data-lucide="arrow-left" style="width: 14px;"></i> Return to Products
+          <i data-lucide="arrow-left" style="width: 14px;"></i> Return to Menu
         </button>
       </div>
 
@@ -948,11 +836,11 @@
       </div>
 
       <div class="step-box">
-        <h3><i data-lucide="map-pin" style="width: 16px;"></i> Delivery Details</h3>
+        <h3><i data-lucide="map-pin" style="width: 16px;"></i> Delivery Destination</h3>
 
         <div class="form-group">
           <label class="form-label" for="customerName">Your Name</label>
-          <input id="customerName" class="form-input" placeholder="e.g. Geken Riba" />
+          <input id="customerName" class="form-input" placeholder="e.g. Tendzin Wangmo" />
         </div>
 
         <div class="form-group">
@@ -962,7 +850,7 @@
 
         <div class="form-group">
           <label class="form-label" for="deliveryAddress">Delivery Address</label>
-          <textarea id="deliveryAddress" class="form-textarea" placeholder="e.g. House no., ward/colony, village/town, landmark in Leparada"></textarea>
+          <textarea id="deliveryAddress" class="form-textarea" placeholder="e.g. Apartment No., Street Address, Landmark near Tawang Monastery"></textarea>
         </div>
       </div>
 
@@ -981,7 +869,7 @@
           <i data-lucide="shield-check" style="width: 12px;"></i> Secure Transaction
         </span>
 
-        <p>Order registered successfully. Scan the QR code below and pay the exact amount to confirm your delivery.</p>
+        <p>Order registered successfully. Scan the QR code below and pay the exact amount to confirm dispatch.</p>
 
         <h1>₹<span id="qrAmount">0.00</span></h1>
 
@@ -991,7 +879,7 @@
 
         <div class="upi-id-box">
           <div class="upi-info">
-            <span>Leparada Hub UPI ID</span>
+            <span>Payee UPI ID</span>
             <span id="upiId">geliriba11@oksbi</span>
           </div>
           <button class="btn-copy" onclick="copyUPI()">
@@ -1000,7 +888,7 @@
         </div>
 
         <div class="payment-instruction">
-          Scan the QR code using any UPI app. After payment, keep the transaction receipt ready for order verification.
+          Scan the QR code using any UPI app. After payment, show the transaction receipt to the delivery executive.
         </div>
       </div>
     </div>
@@ -1029,7 +917,7 @@
         <i id="modalIconSymbol" data-lucide="alert-circle" style="width: 24px; height: 24px;"></i>
       </div>
       <h3 id="modalTitle" class="modal-title">Missing Details</h3>
-      <p id="modalDesc" class="modal-desc">Please supply all delivery information to complete the order.</p>
+      <p id="modalDesc" class="modal-desc">Please supply all delivery info to complete the order.</p>
       <button class="modal-btn" onclick="closeModal()">Got it</button>
     </div>
   </div>
@@ -1059,8 +947,8 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    const HUB_UPI_ID = "geliriba11@oksbi";
-    const HUB_NAME = "Leparada Hub";
+    const CAFE_UPI_ID = "geliriba11@oksbi";
+    const CAFE_NAME = "Tawang Cafe";
 
     let menuItems = [];
     let cart = [];
@@ -1180,9 +1068,9 @@
 
       menuDiv.innerHTML = `
         <div class="empty-cart-view">
-          <i data-lucide="package-search" style="width: 32px; height: 32px; color: var(--primary);"></i>
-          <h3>Loading Products</h3>
-          <p>Gathering available products...</p>
+          <i data-lucide="coffee" style="width: 32px; height: 32px; color: var(--primary);"></i>
+          <h3>Loading Menu</h3>
+          <p>Gathering fresh beans...</p>
         </div>
       `;
 
@@ -1212,8 +1100,8 @@
         menuDiv.innerHTML = `
           <div class="empty-cart-view">
             <i data-lucide="alert-triangle" style="color: var(--danger); width: 32px; height: 32px;"></i>
-            <h3>Delivery Menu Not Loading</h3>
-            <p>Please check your Firestore rules, menu collection and internet connection.</p>
+            <h3>Database Connection Failed</h3>
+            <p>Please inspect your Firestore rules and internet connection.</p>
           </div>
         `;
 
@@ -1234,8 +1122,8 @@
         menuDiv.innerHTML = `
           <div class="empty-cart-view">
             <i data-lucide="meh" style="width: 32px; height: 32px;"></i>
-            <h3>No Items Here Yet</h3>
-            <p>Try another category or check again after the owner updates today’s products.</p>
+            <h3>Unavailable Category</h3>
+            <p>Try exploring another category above.</p>
           </div>
         `;
 
@@ -1253,10 +1141,10 @@
         card.innerHTML = `
           <div class="card-details">
             <div class="card-meta">
-              <span class="category-tag">${escapeHTML(item.category || "Local Pick")}</span>
+              <span class="category-tag">${escapeHTML(item.category || "Tawang Delight")}</span>
             </div>
             <h3>${escapeHTML(item.name)}</h3>
-            <p class="card-desc">${escapeHTML(item.description || "Prepared, packed, or supplied by local sellers for doorstep delivery.")}</p>
+            <p class="card-desc">${escapeHTML(item.description || "Prepped with fresh ingredients and craft brewed.")}</p>
           </div>
 
           <div class="card-price-action">
@@ -1537,7 +1425,6 @@
         total: Number(finalAmount),
         status: "New",
         paymentStatus: "Pending",
-        serviceName: HUB_NAME,
         createdAt: serverTimestamp()
       };
 
@@ -1545,11 +1432,11 @@
         await addDoc(collection(db, "orders"), orderData);
 
         const upiParams = new URLSearchParams({
-          pa: HUB_UPI_ID,
-          pn: HUB_NAME,
+          pa: CAFE_UPI_ID,
+          pn: CAFE_NAME,
           am: finalAmount,
           cu: "INR",
-          tn: `Leparada Hub Order ${name}`
+          tn: `Tawang Cafe Order ${name}`
         });
 
         const upiLink = "upi://pay?" + upiParams.toString();
@@ -1572,16 +1459,16 @@
 
     window.copyUPI = async function() {
       try {
-        await navigator.clipboard.writeText(HUB_UPI_ID);
-        showToast("Leparada Hub UPI ID copied!", "copy");
+        await navigator.clipboard.writeText(CAFE_UPI_ID);
+        showToast("UPI ID copied!", "copy");
       } catch (error) {
         const el = document.createElement("textarea");
-        el.value = HUB_UPI_ID;
+        el.value = CAFE_UPI_ID;
         document.body.appendChild(el);
         el.select();
         document.execCommand("copy");
         document.body.removeChild(el);
-        showToast("Leparada Hub UPI ID copied!", "copy");
+        showToast("UPI ID copied!", "copy");
       }
     };
 
