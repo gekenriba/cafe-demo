@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#3a2518" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <title>Tokyi cafe</title>
+  <title>Mijjum Cafe</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1163,7 +1163,7 @@
             <i data-lucide="coffee" style="width: 22px; height: 22px;"></i>
           </div>
           <div>
-            <div class="brand-title">Monyul Cafe</div>
+            <div class="brand-title">Mijjum Cafe</div>
             <div class="brand-subtitle">Cafe ordering made simple in Tawang</div>
           </div>
         </div>
@@ -1350,7 +1350,7 @@
           </div>
 
           <div class="qr-wrap">
-            <img id="qrImage" src="" alt="Scan QR to pay Monyul Cafe" />
+            <img id="qrImage" src="" alt="Scan QR to pay Mijjum Cafe" />
           </div>
 
           <div class="upi-row">
@@ -1439,9 +1439,9 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    const CAFE_NAME = "Monyul Cafe";
+    const CAFE_NAME = "Mijjum Cafe";
     const CAFE_UPI_ID = "geliriba11@oksbi";
-    const STORAGE_CUSTOMER = "monyulCafeCustomerDetails";
+    const STORAGE_CUSTOMER = "mijjumCafeCustomerDetails";
 
     let menuItems = [];
     let cart = [];
@@ -1740,7 +1740,7 @@
         const desc =
           item.description ||
           fallbackDescriptions[String(category).toLowerCase()] ||
-          "Freshly prepared at Monyul Cafe.";
+          "Freshly prepared at Mijjum Cafe.";
 
         return `
           <article class="menu-card">
