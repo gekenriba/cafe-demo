@@ -1163,7 +1163,7 @@
             <i data-lucide="coffee" style="width: 22px; height: 22px;"></i>
           </div>
           <div>
-            <div class="brand-title">Mijjum Cafe</div>
+            <div class="brand-title">Aasha Cafe</div>
             <div class="brand-subtitle">Cafe ordering made simple in Tawang</div>
           </div>
         </div>
@@ -1350,7 +1350,7 @@
           </div>
 
           <div class="qr-wrap">
-            <img id="qrImage" src="" alt="Scan QR to pay Mijjum Cafe" />
+            <img id="qrImage" src="" alt="Scan QR to pay Aasha Cafe" />
           </div>
 
           <div class="upi-row">
@@ -1439,9 +1439,9 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    const CAFE_NAME = "Mijjum Cafe";
+    const CAFE_NAME = "Aasha Cafe";
     const CAFE_UPI_ID = "geliriba11@oksbi";
-    const STORAGE_CUSTOMER = "mijjumCafeCustomerDetails";
+    const STORAGE_CUSTOMER = "aashaCafeCustomerDetails";
 
     let menuItems = [];
     let cart = [];
@@ -1740,7 +1740,7 @@
         const desc =
           item.description ||
           fallbackDescriptions[String(category).toLowerCase()] ||
-          "Freshly prepared at Mijjum Cafe.";
+          "Freshly prepared at Aasha Cafe.";
 
         return `
           <article class="menu-card">
